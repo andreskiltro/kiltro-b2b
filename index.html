@@ -602,7 +602,7 @@ var OD=[
 function renderOps(){
   if(window.__opsOk)return;
   window.__opsOk=true;
-  const wrap=document.getElementById('ops-content');
+  const wrap=document.getElementById('ops-root');
   if(!wrap)return;
   const ST={a:'Activo',p:'En proceso',c:'En conversación',s:'Seguimiento',f:'Frío'};
   const STC={a:'activo',p:'proceso',c:'conv',s:'seg',f:'frio'};
