@@ -623,7 +623,7 @@ function renderOps(){
   h+='<div class="ops-section"><div class="ops-section-title">📋 Resumen de acuerdos activos</div>';
   h+='<div class="ops-table-wrap"><table class="ops-table"><thead><tr><th>Institución</th><th>Estado</th><th>Startups</th><th>Período</th><th>Próxima acción</th></tr></thead><tbody>';
   OD.forEach(function(d){
-    h+='<tr class="ops-row'+(d.ug?' ops-urgent':'')+'" onclick="toggleOpsCard(\''+d.id+\')">';
+    h+='<tr class="ops-row'+(d.ug?' ops-urgent':'')+'" onclick="toggleOpsCard(\''+d.id+'\')">';
     h+='<td><span class="od-ic">'+d.ic+'</span> <strong>'+d.nm+'</strong></td>';
     h+='<td><span class="od-st od-st-'+STC[d.st]+'">'+ST[d.st]+'</span></td>';
     h+='<td class="od-su">'+d.su.join('<br>')+'</td>';
