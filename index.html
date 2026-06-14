@@ -362,7 +362,10 @@ table.ot{width:100%;border-collapse:collapse;background:#fff;font-size:12.5px;}
 .ops-qa-ta{width:100%;padding:9px 12px;border:1px solid var(--border);border-radius:8px;font-size:13px;resize:vertical;font-family:inherit;background:#fff;}
 .ops-qa-btn{margin-top:10px;background:var(--k);color:#111;border:none;padding:10px 24px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;display:inline-block;}
 .ops-qa-btn:hover{background:var(--k-dark);color:#fff;}
-.inst-resumen{margin:0 0 14px}.inst-resumen-wrap{background:#fff;border:1px solid #e0e4ef;border-radius:10px;padding:12px 16px}.inst-resumen-title{font-size:13px;font-weight:700;color:#333;margin:0 0 9px}.inst-resumen-table{width:100%;border-collapse:collapse;font-size:11.5px}.inst-resumen-table th{background:#f0f4ff;padding:5px 8px;text-align:left;border-bottom:2px solid #c8d0e8;font-weight:600;color:#444;white-space:nowrap}.inst-resumen-table td{padding:5px 8px;border-bottom:1px solid #eef0f6;vertical-align:top}.inst-resumen-table tr:last-child td{border-bottom:none}.inst-resumen-table td:first-child{font-weight:600}.ci-inst{color:#1a7f5a}.ci-su{color:#0055c8}.ci-ambas{color:#a45c00}.ci-alianza{color:#888}</style>
+.inst-resumen{margin:0 0 14px}.inst-resumen-wrap{background:#fff;border:1px solid #e0e4ef;border-radius:10px;padding:12px 16px}.inst-resumen-title{font-size:13px;font-weight:700;color:#333;margin:0 0 9px}.inst-resumen-table{width:100%;border-collapse:collapse;font-size:11.5px}.inst-resumen-table th{background:#f0f4ff;padding:5px 8px;text-align:left;border-bottom:2px solid #c8d0e8;font-weight:600;color:#444;white-space:nowrap}.inst-resumen-table td{padding:5px 8px;border-bottom:1px solid #eef0f6;vertical-align:top}.inst-resumen-table tr:last-child td{border-bottom:none}.inst-resumen-table td:first-child{font-weight:600}.ci-inst{color:#1a7f5a}.ci-su{color:#0055c8}.ci-ambas{color:#a45c00}.ci-alianza{color:#888}
+/* Chat ops */
+#ops-chat-wrap{margin:20px 0 0}.chat-box{background:#fff;border:1px solid #e0e4ef;border-radius:12px;overflow:hidden}.chat-header{background:#3b5bdb;color:#fff;padding:10px 16px;font-size:13px;font-weight:700;letter-spacing:.02em}.chat-setup{padding:16px}.chat-setup p{font-size:13px;color:#555;margin:0 0 8px}.chat-setup input{width:100%;box-sizing:border-box;padding:8px 10px;border:1px solid #ccc;border-radius:6px;font-size:13px;margin-bottom:8px}.chat-setup button{padding:7px 18px;background:#3b5bdb;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:13px;font-weight:600}.chat-msgs{padding:12px 16px;max-height:340px;overflow-y:auto;display:flex;flex-direction:column;gap:10px}.chat-empty{color:#aaa;font-size:13px;text-align:center;margin:24px 0}.chat-msg{display:flex;flex-direction:column;gap:3px}.chat-msg-user{align-items:flex-end}.chat-msg-assistant{align-items:flex-start}.chat-role{font-size:11px;color:#aaa;font-weight:600;padding:0 4px}.chat-text{padding:9px 13px;border-radius:10px;font-size:13px;line-height:1.55;max-width:85%}.chat-msg-user .chat-text{background:#3b5bdb;color:#fff;border-radius:10px 10px 2px 10px}.chat-msg-assistant .chat-text{background:#f0f4ff;color:#333;border-radius:10px 10px 10px 2px}.chat-input-row{display:flex;gap:8px;padding:10px 16px;border-top:1px solid #eee;align-items:flex-end}.chat-input-row textarea{flex:1;padding:8px 10px;border:1px solid #ccc;border-radius:8px;font-size:13px;resize:none;font-family:inherit;line-height:1.4}.chat-input-row button{padding:9px 18px;background:#3b5bdb;color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;white-space:nowrap}.chat-input-row button:disabled{opacity:.45;cursor:default}.chat-actions{padding:6px 16px 10px;display:flex;gap:8px;flex-wrap:wrap}.chat-actions button{font-size:11.5px;padding:4px 11px;border:1px solid #dde;border-radius:6px;background:#fafafa;cursor:pointer;color:#555}.chat-actions button:hover{background:#f0f0f0}
+</style>
 </head>
 <body>
 
@@ -432,7 +435,7 @@ table.ot{width:100%;border-collapse:collapse;background:#fff;font-size:12.5px;}
 </div>
 </div><!-- /tab-comercial -->
 
-<div id="tab-operaciones" class="tab-panel"><div id="ops-root"></div></div>
+<div id="tab-operaciones" class="tab-panel"><div id="ops-root"></div><div id="ops-chat-wrap"></div></div>
 <div class="saved-toast" id="toast">✅ Guardado</div>
 
 <script>
@@ -1113,7 +1116,96 @@ function closeSalesModal(){
   document.getElementById('salesModal').classList.remove('open');
 }
 
-function render(){renderSummary();renderInstResumen();renderAlerts();renderGrid();renderProj();var _ab=document.getElementById('alertsBar');var _tc=document.getElementById('tab-comercial');if(_ab&&_tc&&_ab.parentElement!==_tc)_tc.appendChild(_ab);if(editMode)document.body.classList.add('edit-mode');}
+
+function initOpsChat(){
+  var wrap=document.getElementById('ops-chat-wrap');
+  if(!wrap)return;
+  var LS_KEY='kiltro_ant_key';
+  if(!window._chatMsgs)window._chatMsgs=[];
+  var msgs=window._chatMsgs;
+  function buildCtx(){
+    var ctx='Eres un asistente del equipo comercial de Kiltro (empresa de acompañamiento comercial para startups). Responde consultas sobre el estado del pipeline B2B institucional con precisión y brevedad.\n\nDATA ACTUALIZADA:\n\n';
+    OD.forEach(function(o){
+      var st={a:'Activo',p:'En proceso',c:'En conversación',f:'Frío'}[o.st]||o.st;
+      ctx+='### '+o.nm+' ('+o.pa+') — '+st+'\n';
+      if(o.ac)ctx+='Acuerdo: '+o.ac+'\n';
+      if(o.co)ctx+='Contexto: '+o.co+'\n';
+      if(o.pr)ctx+='Próximo paso: '+o.pr+'\n';
+      if(o.se)ctx+='Seguimiento: '+o.se+'\n';
+      if(o.su&&o.su.length)ctx+='Startups asociadas: '+o.su.join(' · ')+'\n';
+      ctx+='\n';
+    });
+    return ctx;
+  }
+  function getKey(){return localStorage.getItem(LS_KEY);}
+  function renderChat(){
+    var key=getKey();
+    if(!key){
+      wrap.innerHTML='<div class="chat-box"><div class="chat-header">💬 Consulta al equipo comercial</div>'+
+        '<div class="chat-setup"><p>Ingresa tu API key de Anthropic para activar el chat interno:</p>'+
+        '<input id="ck-inp" type="password" placeholder="sk-ant-api03-...">'+
+        '<button onclick="(function(){var k=document.getElementById(\'ck-inp\').value.trim();if(k){localStorage.setItem(\'kiltro_ant_key\',k);initOpsChat();}})()">Activar</button>'+
+        '</div></div>';
+      return;
+    }
+    var msgsHtml=msgs.length===0
+      ?'<p class="chat-empty">Pregunta sobre instituciones, próximos pasos, o pide un borrador de comunicación.</p>'
+      :msgs.map(function(m){
+        return '<div class="chat-msg chat-msg-'+m.role+'">'+
+          '<span class="chat-role">'+(m.role==='user'?'Tú':'🤖 Kiltro')+'</span>'+
+          '<div class="chat-text">'+m.content.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/\n/g,'<br>')+'</div>'+
+          '</div>';
+      }).join('');
+    wrap.innerHTML='<div class="chat-box">'+
+      '<div class="chat-header">💬 Consulta al equipo comercial</div>'+
+      '<div id="chat-msgs" class="chat-msgs">'+msgsHtml+'</div>'+
+      '<div class="chat-input-row">'+
+      '<textarea id="chat-inp" placeholder="Escribe tu consulta... (Ctrl+Enter para enviar)" rows="2"></textarea>'+
+      '<button id="chat-send-btn">Enviar</button>'+
+      '</div>'+
+      '<div class="chat-actions">'+
+      '<button id="chat-clr-btn">🗑 Nueva conversación</button>'+
+      (msgs.length>0?'<button id="chat-email-btn">📋 Copiar como borrador</button>':'')+
+      '<button id="chat-key-btn">🔑 Cambiar key</button>'+
+      '</div></div>';
+    var me=document.getElementById('chat-msgs');
+    if(me)me.scrollTop=me.scrollHeight;
+    document.getElementById('chat-send-btn').onclick=sendMsg;
+    document.getElementById('chat-inp').addEventListener('keydown',function(e){
+      if(e.key==='Enter'&&(e.ctrlKey||e.metaKey)){e.preventDefault();sendMsg();}
+    });
+    document.getElementById('chat-clr-btn').onclick=function(){window._chatMsgs=[];msgs.length=0;renderChat();};
+    document.getElementById('chat-key-btn').onclick=function(){localStorage.removeItem(LS_KEY);window._chatMsgs=[];msgs.length=0;initOpsChat();};
+    var eb=document.getElementById('chat-email-btn');
+    if(eb)eb.onclick=function(){
+      var txt=msgs.map(function(m){return(m.role==='user'?'CONSULTA:\n':'RESPUESTA:\n')+m.content;}).join('\n\n---\n\n');
+      navigator.clipboard.writeText(txt).then(function(){eb.textContent='✓ Copiado';setTimeout(function(){eb.textContent='📋 Copiar como borrador';},2000);});
+    };
+  }
+  async function sendMsg(){
+    var inp=document.getElementById('chat-inp');
+    var txt=inp?inp.value.trim():'';
+    if(!txt)return;
+    inp.value='';
+    msgs.push({role:'user',content:txt});
+    var btn=document.getElementById('chat-send-btn');
+    if(btn){btn.disabled=true;btn.textContent='...';}
+    renderChat();
+    try{
+      var res=await fetch('https://api.anthropic.com/v1/messages',{
+        method:'POST',
+        headers:{'Content-Type':'application/json','x-api-key':getKey(),'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
+        body:JSON.stringify({model:'claude-haiku-4-5-20251001',max_tokens:1024,system:buildCtx(),messages:msgs.map(function(m){return{role:m.role,content:m.content};})})
+      });
+      var data=await res.json();
+      msgs.push({role:'assistant',content:data.content&&data.content[0]?data.content[0].text:'⚠️ '+(data.error?data.error.message:JSON.stringify(data).substring(0,120))});
+    }catch(e){msgs.push({role:'assistant',content:'⚠️ Error: '+e.message});}
+    window._chatMsgs=msgs;
+    renderChat();
+  }
+  renderChat();
+}
+function render(){renderSummary();renderInstResumen();renderAlerts();renderGrid();renderProj();initOpsChat();var _ab=document.getElementById('alertsBar');var _tc=document.getElementById('tab-comercial');if(_ab&&_tc&&_ab.parentElement!==_tc)_tc.appendChild(_ab);if(editMode)document.body.classList.add('edit-mode');}
 
 // ---- edit mode toggle ----
 function toggleEditMode(){
