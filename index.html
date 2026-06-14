@@ -1114,7 +1114,7 @@ function closeSalesModal(){
   document.getElementById('salesModal').classList.remove('open');
 }
 
-function render(){renderSummary();renderInstResumen();renderAlerts();renderGrid();renderProj();if(editMode)document.body.classList.add('edit-mode');}
+function render(){renderSummary();renderInstResumen();renderAlerts();renderGrid();renderProj();var _ab=document.getElementById('alertsBar');var _tc=document.getElementById('tab-comercial');if(_ab&&_tc&&_ab.parentElement!==_tc)_tc.appendChild(_ab);if(editMode)document.body.classList.add('edit-mode');}
 
 // ---- edit mode toggle ----
 function toggleEditMode(){
