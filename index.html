@@ -1339,7 +1339,7 @@ function renderNuevaIniciativa(container){
     '<div id="oni-alert-nueva" class="oni-alert">⚠️ Esta institución no está en el pipeline activo. Al guardar se generará un mensaje de alerta para el equipo Comercial.</div>'+
     '<div style="display:flex;gap:8px">'+
     '<button class="oni-save" onclick="guardarIniciativa()">Guardar iniciativa</button>'+
-    '<button class="oni-cancel" onclick="renderNuevaIniciativa(document.querySelector('#ops-nueva-container'))">Cancelar</button>'+
+    '<button class="oni-cancel" onclick="renderNuevaIniciativa(document.querySelector(\'#ops-nueva-container\'))">Cancelar</button>'+
     '</div>'+
     '</div>'+
     (itemsHtml?'<div class="ops-nueva-list">'+itemsHtml+'</div>':'')+
