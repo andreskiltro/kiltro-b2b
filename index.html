@@ -815,15 +815,14 @@ function renderInstResumen(){
   var stL={a:'🟢 Activo',p:'🔵 En proceso',c:'⭐ En conv.',f:'❄️ Frío'};
   var ciL={inst:'<span class="ci-inst">Con institución</span>',su:'<span class="ci-su">Con startups</span>',ambas:'<span class="ci-ambas">Inst. + Startups</span>',alianza:'<span class="ci-alianza">Alianza</span>'};
   var rows=OD.map(function(o){
-    var suTxt=(o.su||[]).join('<br>');
     return '<tr><td>'+o.nm+'</td><td style="color:#666">'+o.pa+'</td><td>'+
       (stL[o.st]||o.st)+'</td><td style="color:#555;font-size:11px">'+o.ac+'</td><td>'+
-      (ciL[o.ci||'inst']||'')+'</td><td style="color:#555;font-size:10.5px">'+suTxt+'</td></tr>';
+      (ciL[o.ci||'inst']||'')+'</td></tr>';
   }).join('');
   el.innerHTML='<div class="inst-resumen-wrap"><p class="inst-resumen-title">📋 Resumen institucional</p>'+
     '<table class="inst-resumen-table"><thead><tr>'+
     '<th>Institución</th><th>País/Región</th><th>Estado</th><th>Acuerdo</th>'+
-    '<th>Cierre posible</th><th>Proyectos / Startups vinculados</th></tr></thead>'+
+    '<th>Cierre posible</th></tr></thead>'+
     '<tbody>'+rows+'</tbody></table></div>';
 }
 function renderSummary(){
