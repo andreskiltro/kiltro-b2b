@@ -410,6 +410,29 @@ table.ot{width:100%;border-collapse:collapse;background:#fff;font-size:12.5px;}
 .ops-chat-input-row{display:flex;padding:10px 16px;border-top:1px solid #e0e4ef;gap:8px}
 .ops-chat-input{flex:1;padding:8px 10px;border:1px solid #ccc;border-radius:6px;font-size:12.5px}
 .ops-chat-send{background:#3b5bdb;color:#fff;border:none;border-radius:6px;padding:8px 14px;font-size:12.5px;cursor:pointer;font-weight:600}
+.hist-link-bar{text-align:right;padding:2px 6px 8px;margin-top:-4px}
+.hist-link-btn{background:none;border:none;color:#94a3b8;font-size:11px;cursor:pointer;padding:2px 6px;border-radius:4px;text-decoration:underline;text-underline-offset:2px}
+.hist-link-btn:hover{color:#475569}
+.proj-input{scroll-margin:0!important}
+.proj-table-wrap{overflow-anchor:none}
+.su-section{margin-top:24px}
+.su-section-title{font-size:13px;font-weight:700;color:#1e293b;padding:0 0 10px;border-bottom:2px solid #e2e8f0;margin-bottom:14px}
+.su-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.su-card{background:#fff;border:1px solid #e2e8f0;border-radius:10px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.su-card-head{display:flex;align-items:center;gap:8px;padding:10px 14px;border-bottom:1px solid #f1f5f9;background:#f8fafc}
+.su-card-ic{font-size:20px;line-height:1}
+.su-card-nm{font-size:12.5px;font-weight:700;color:#1e293b;flex:1}
+.su-card-st{font-size:10px;padding:2px 7px;border-radius:10px;font-weight:600;white-space:nowrap}
+.su-card-st.activo{background:#dcfce7;color:#166534}
+.su-card-st.proceso{background:#dbeafe;color:#1e40af}
+.su-card-st.conv{background:#f3e8ff;color:#6b21a8}
+.su-card-st.seg{background:#fef9c3;color:#713f12}
+.su-card-st.frio{background:#f1f5f9;color:#64748b}
+.su-card-body{padding:10px 14px}
+.su-pills{display:flex;flex-wrap:wrap;gap:5px}
+.su-pill{background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe;border-radius:12px;padding:3px 9px;font-size:11px;font-weight:500}
+.su-pill-note{background:#f8fafc;color:#64748b;border:1px solid #e2e8f0;border-radius:12px;padding:3px 9px;font-size:11px;font-style:italic}
+.su-empty{color:#94a3b8;font-size:12px;font-style:italic}
 </style>
 </head>
 <body>
@@ -431,6 +454,7 @@ table.ot{width:100%;border-collapse:collapse;background:#fff;font-size:12.5px;}
 <div id="inst-resumen" class="inst-resumen"></div>
 
 <!-- SALES MODAL -->
+<div class="hist-link-bar"><button class="hist-link-btn" onclick="openSalesModal()">📊 Ver historial de ventas completo →</button></div>
 <div id="salesModal" class="sales-modal-overlay" onclick="if(event.target===this)closeSalesModal()">
   <div class="sales-modal">
     <div class="sales-modal-header">
@@ -509,6 +533,31 @@ function showTab(n,b){
   if(n==="operaciones"&&!window.__opsOk){renderOps();window.__opsOk=true;}
 }
 var OD=[{id:'ship2b-tiina',nm:'Ship2B — Programa Tiina',ic:'🚀',st:'a',pa:'España',tp:'Aceleradora',ac:'Activo · calendario acordado jun–oct 2026',su:['8 startups financiadas (artes + alimentación)'],se:'Mentoría 0 · semana 29 jun 2026',co:'John Burgana (jburgana@ship2b.org)',cx:'Ship2B España — 8 startups con temática artes y alimentación, recién financiadas. Entregables: reporte por startup + informe institucional. Sin vinculación CORFO.',pr:'Ejecutar Mentoría 0 (semana 29 jun) · programa 5 etapas hasta oct 2026',pd:'Semana 29 jun 2026',periodo:'Jun – Oct 2026',al:['⚠️ Inicio: semana 29 jun (Mentoría 0)','Taller 1: lun 20 jul · Mentorías de valor: sep–oct 2026'],et:[{nm:'Mentoría 0 — conocer startups y objetivos',st:'active',dt:'Semana 29 jun 2026'},{nm:'Taller comercial 1 (+ post-work)',st:'pending',dt:'Lun 20 jul 12:00–13:30h'},{nm:'Mentoría 1 — 1ª asesoría de valor',st:'pending',dt:'Semana 7 sep 2026'},{nm:'Taller comercial 2',st:'pending',dt:'Lun 21 sep 12:00–13:30h'},{nm:'Mentoría 2 — 2ª asesoría de valor',st:'pending',dt:'Semana 5 oct 2026'},{nm:'Reportes por startup + informe institucional',st:'pending',dt:'Oct 2026'}],ci:'inst',ug:false},{id:'scale4impact',nm:'Ship2B — Scale4Impact',ic:'🚀',st:'a',pa:'Portugal / España',tp:'Aceleradora',ac:'EUR 8.000 · contrato activo',su:['8 startups activas'],se:'Sesiones semanales en curso',co:'John Burgana (jburgana@ship2b.org) / Guillem Bargalló (gbargallo@ship2b.org)',cx:'Scale4Impact: aceleradora inclusión social (educación y empleo), 4ª ed. Fondo VP €150k. 8 startups activas (una rechazó la plaza). ⚠️ Verificar fechas reales del programa con John.',pr:'Sesiones semanales en curso · verificar fechas cierre del programa con John',pd:'Jul 2026',periodo:'May – Jul 2026',al:['⚠️ Verificar fechas reales del programa (posible extensión)'],et:[{nm:'Asesorías 01 (diagnósticos iniciales)',st:'done',dt:'May 2026'},{nm:'Sesiones semanales en curso',st:'active',dt:'Jun–Jul 2026'},{nm:'Cierre programa',st:'pending',dt:'Jul 2026'}],ci:'inst',ug:false},{id:'2gether',nm:'2Gether International',ic:'🌍',st:'a',pa:'Internacional',tp:'Aceleradora',ac:'USD 6.300 · contrato firmado 2 jun 2026',su:['16 startups · Sesión 1 ✓: Tiflo Maze, Almafuertelab, Sol. Inclusivas, Embrace Diversity, LAT Bionics, AulaMind, INCLU+, Diversojob, LevTech+ · Pendientes: OtherAI, T.P.Ayudar + 5 más'],se:'3 ses/startup + taller grupal · deadline 10 jul',co:'Simon Robredo (simon@2gether-international.org) / Santiago García',cx:'2GI aceleradora negocios internacionales. Iniciado 9 jun. 3 sesiones/startup → deadline 10 jul. Taller grupal semana 15 jul. 9 de 16 startups con sesión 1 completada. Definir modalidad del programa (¿finalistas? ¿inversión?).',pr:'Completar 3 ses/startup para todas (deadline 10 jul) · taller grupal semana 15 jul',pd:'10 jul 2026',periodo:'9 jun – 24 jul 2026',al:['⚠️ Deadline 3 ses/startup: 10 jul · Taller semana 15 jul','⚠️ Definir modalidad: ¿finalistas? ¿inversión para ganadores?'],et:[{nm:'Contrato firmado',st:'done',dt:'2 jun 2026'},{nm:'Sesiones 1 — 9 de 16 completadas',st:'active',dt:'9–13 jun 2026'},{nm:'Completar sesiones 1 (7 pendientes)',st:'active',dt:'Jun–10 jul 2026'},{nm:'Sesiones 2 y 3 por startup',st:'pending',dt:'Jun–10 jul 2026'},{nm:'Taller grupal de ventas',st:'pending',dt:'Semana 15 jul 2026'},{nm:'Informe final + cierre',st:'pending',dt:'Jul 2026'}],ci:'inst',ug:true},{id:'knowhub',nm:'KnowHub',ic:'🎓',st:'p',pa:'Chile',tp:'Aceleradora',ac:'En negociación · cotización enviada 11 jun 2026',su:['VitaGreen (Andrés)','RedOcean (Andrés)','City Bloom (Andrés)','Rema / MOV (Maga)'],se:'5 ses/startup propuestas · negociando programa nov 2026',co:'Alonso Ureta (alonso.ureta@knowhub.cl)',cx:'Aceleradora Corfo Chile. 4 startups activas: 3 con Andrés (VitaGreen, RedOcean, City Bloom) y 1 con Maga (Rema/MOV). En negociación: programa desde nov 2026 para 4 nuevas startups + posible apoyo en selección.',pr:'Esperar respuesta KnowHub · confirmar arranque + cerrar propuesta nov 2026',pd:'Jun–Jul 2026',periodo:'Activo + negociación nov 2026',al:['Propuesta bajo revisión del equipo KnowHub','Negociando programa nov 2026 (4 startups + posible selección)'],et:[{nm:'Reunión inicial y cotización enviada',st:'done',dt:'11 jun 2026'},{nm:'Revisión interna KnowHub',st:'active',dt:'Jun 2026'},{nm:'Confirmación y arranque sesiones',st:'pending',dt:'Jul 2026'},{nm:'Negociación programa nov 2026',st:'active',dt:'En curso'}],ci:'ambas',ug:true},{id:'genialis',nm:'Genialis / EcoXcale',ic:'🌱',st:'a',pa:'Chile',tp:'Aceleradora',ac:'$5.4M CLP · Corfo Escalonado',su:['Sonner (Álvaro semanal)','Hidrobytes (Andrés directorio)'],se:'Directorio Estratégico mensual · Álvaro semanal con Sonner',co:'Daniela Mardones (daniela.mardones@genialis.cl) / Andrés Vega (andres@genialis.cl)',cx:'Genialis administra Corfo Escalonado. Kiltro actúa como Director Estratégico de 2 startups: Sonner (Álvaro sesiones semanales + Andrés directorio mensual) e Hidrobytes (Andrés directorio mensual).',pr:'Directorios mensuales en curso · 4to directorio 8 jul (Hidrobytes 5pm · Sonner 6pm CEST)',pd:'8 jul 2026',periodo:'2026 · directorios mensuales',al:['Preparar preguntas directorio antes del 8 jul','Revisar avance Hidrobytes'],et:[{nm:'3er Directorio Sonner',st:'done',dt:'6 may 2026'},{nm:'3er Directorio Hidrobytes',st:'done',dt:'13 may 2026'},{nm:'4to Directorio Hidrobytes (5pm CEST)',st:'pending',dt:'8 jul 2026'},{nm:'4to Directorio Sonner (6pm CEST)',st:'pending',dt:'8 jul 2026'}],ci:'inst',ug:false},{id:'agora',nm:'Agora Partnerships',ic:'🌎',st:'a',pa:'Latam / EEUU',tp:'ONG / Fundación',ac:'Módulos 2 y 3 impartidos · cobros pendientes · reporte pendiente',su:['TELL','VIVESANO 360 / Años Dorados','VITA SENIOR SAS','Zuustento','Talana','Casa Causa','Kuskakids / Legacy','UNAVOZUNALUZ','Telemed Vida','Kuidda','ETAM EAS / MIVA','(Panjam — contactar más adelante)'],se:'Asesorías activas con 11 startups (Taller Agora)',co:'Raquel Durón (rduron@agora2030.org) / Esmeralda Ospina (eospina@agora2030.org)',cx:'Programa Región Plateada (silver economy). Módulos 2 y 3 impartidos por Álvaro. Taller Agora — 19 contactadas: 11 con asesoría agendada, 1 para más adelante (Panjam), 7 no se presentaron o no calificaron (BondUP, Plataforma AM, COORYC, Metazero, GERO SILVER, Ciclo, ConSentido). Pendiente: reporte a Agora + selección 10 finalistas.',pr:'Asesorías activas con 11 startups · enviar reporte a Agora · cobros pendientes · atento a 10 finalistas',pd:'Urgente',periodo:'Mar–abr 2026 (módulos) · May–jun 2026 (Taller Agora)',al:['⚠️ Pagos Módulos 2 y 3 posiblemente sin confirmar','⚠️ Reporte a Agora pendiente · atento a 10 finalistas'],et:[{nm:'Módulo 2',st:'done',dt:'~9–20 mar 2026'},{nm:'Módulo 3',st:'done',dt:'~abr 2026'},{nm:'Taller Agora — RCs (19 startups contactadas)',st:'done',dt:'Abr–jun 2026'},{nm:'Asesorías con 11 startups',st:'active',dt:'May–jun 2026'},{nm:'Cobro Módulo 2',st:'active',dt:'Dentro 30 días hábiles de mar 20'},{nm:'Cobro Módulo 3',st:'active',dt:'Dentro 30 días hábiles de abr 17'},{nm:'Reporte a Agora (proceso Taller)',st:'active',dt:'Urgente'},{nm:'Selección 10 finalistas',st:'pending',dt:'Por confirmar'},{nm:'Nueva propuesta / continuidad',st:'pending',dt:'Por definir'}],ci:'ambas',ug:true},{id:'chrysalis',nm:'Chrysalis / Impulso Azul',ic:'🦋',st:'p',pa:'Chile',tp:'Aceleradora',ac:'Fase 1 completa · esperando confirmación financiamiento Corfo',su:['9 startups Impulso Azul (PUCV) — 1ª sesión completada · pendiente: 2ª sesión y confirmación Corfo'],se:'Diagnósticos completados · programa 8 meses pendiente de financiamiento',co:'Macarena Cornejo (macarena@chrysalis.cl) / Ismael Rivera (ismael.rivera.v@pucv.cl)',cx:'Incubadora PUCV — Programa Impulso Azul. Fase 1: 9 startups con primera sesión. Verificar cuáles ya tienen 2ª sesión. Esperando confirmación de cuáles startups reciben financiamiento Corfo para arrancar programa de acompañamiento de 8 meses.',pr:'Esperando confirmación financiamiento Corfo → arrancar programa 8 meses con startups seleccionadas',pd:'Urgente · confirmar',periodo:'Abr–jun 2026 (fase 1) · programa 8 meses pendiente',al:['⚠️ Confirmar startups con financiamiento Corfo → programa 8 meses','Verificar cuáles startups ya tienen 2ª sesión'],et:[{nm:'Coordinación inicial',st:'done',dt:'8 abr 2026'},{nm:'Fase 1: primeras sesiones (9 startups)',st:'done',dt:'Abr–jun 2026'},{nm:'Verificar 2das sesiones por startup',st:'active',dt:'Jun 2026'},{nm:'Confirmar startups con financiamiento Corfo',st:'active',dt:'Urgente'},{nm:'Propuesta y arranque programa 8 meses',st:'pending',dt:'Post-confirmación'}],ci:'ambas',ug:true},{id:'nesst',nm:'NESsT',ic:'🌿',st:'p',pa:'Colombia / Latam',tp:'ONG / Fundación',ac:'Por definir · primera etapa: coordinar RCs con 2 proyectos',su:['Bioincos (Colombia)','Chunaki (Colombia)'],se:'Coordinar RC con Bioincos y Chunaki (Colombia)',co:'Diana Alejandra Ramírez Loaiza / Juan Pablo Manrique (referido)',cx:'NESsT: inversión en empresas sociales. South America Accelerator (IKEA). Reunión inicial 12 jun ✓. Primera etapa: coordinar RC con Bioincos y Chunaki (Colombia) para evaluar si aplica ofrecer primer acompañamiento gratuito. Diana introduce a Andrés con Juan Pablo Manrique.',pr:'Coordinar RCs con Bioincos y Chunaki (Colombia) vía Juan Pablo Manrique',pd:'Esta semana',periodo:'Jun 2026 – por definir',al:['Reunión realizada 12 jun 2026 ✓','Coordinar RC con Bioincos y Chunaki (vía Juan Pablo)'],et:[{nm:'Primera reunión Kiltro–NESsT',st:'done',dt:'12 jun 2026'},{nm:'RC con Bioincos (Colombia)',st:'active',dt:'Por coordinar'},{nm:'RC con Chunaki (Colombia)',st:'active',dt:'Por coordinar'},{nm:'Evaluación: ofrecer acomp. gratuito',st:'pending',dt:'Post-RC'},{nm:'Propuesta formal NESsT',st:'pending',dt:'Por definir'}],ci:'su',ug:false},{id:'openb',nm:'Open Beaucheff (U. Chile)',ic:'🎓',st:'p',pa:'Chile',tp:'Universidad',ac:'5 talleres mensuales desde jul 2026',su:['Proyectos OpenSenior (adultos mayores 60+)'],se:'5 talleres híbridos jul–nov 2026 · asesorías por definir',co:'Fernando Nowajewski (fernando.nowajewski@uchile.cl) / Álvaro',cx:'OpenBeauchef — U. de Chile. Programa OpenSenior. 5 talleres híbridos mensuales jul–nov 2026. Certificación conjunta U. Chile + Kiltro. Álvaro viaja a Santiago.',pr:'5 talleres jul–nov 2026 · definir modelo asesorías 1:1 con Fernando',pd:'Jul 2026',periodo:'Jul – Nov 2026',al:['Reunión con Fernando pendiente de confirmar','Álvaro debe enviar documentos a Fernando'],et:[{nm:'Acuerdo inicial',st:'done',dt:'15 may 2026'},{nm:'Reunión modelo asesorías con Fernando',st:'active',dt:'Esta semana'},{nm:'Taller 1',st:'pending',dt:'Jul 2026'},{nm:'Talleres 2–5',st:'pending',dt:'Ago–nov 2026'}],ci:'inst',ug:false},{id:'kunan',nm:'Kunan',ic:'⭐',st:'c',pa:'Perú',tp:'ONG / Fundación',ac:'USD 3.800 referencial · por formalizar',su:['8 ganadores Desafío Kunan 2026'],se:'~3 meses acompañamiento · por confirmar',co:'Marlith Quiroz (mquiroz@perusostenible.org)',cx:'Kunan — Plataforma Peruana de Emprendimiento Social y Ambiental. Interés en acompañamiento técnico post-Desafío Kunan 2026 para 8 ganadores. Presupuesto referencial: USD 3.800.',pr:'Elaborar y enviar propuesta formal para 8 ganadores Desafío Kunan',pd:'Esta semana',periodo:'Por confirmar (~ago–oct 2026)',al:['⚠️ Propuesta formal PENDIENTE','Dirección Ejecutiva confirmó interés 12 jun'],et:[{nm:'Interés confirmado por Dirección Ejecutiva',st:'done',dt:'12 jun 2026'},{nm:'Elaborar propuesta formal',st:'active',dt:'Esta semana'},{nm:'Enviar y negociar propuesta',st:'pending',dt:'Jun 2026'},{nm:'Arranque acompañamiento',st:'pending',dt:'~ago 2026'}],ci:'inst',ug:true},{id:'lucha',nm:'Lucha (LIFT 3ª ed.)',ic:'💪',st:'a',pa:'Perú',tp:'ONG / Fundación',ac:'Colaboración alianza (sin costo fijo)',su:['PanQAyuda (RC ✓)','WiseMed (RC ✓ · Asesorías en progreso con Andrés)','COOL EXPERIENCES (RC ✓)','⚠️ Verificar listado completo en Excel agenda'],se:'Masterclass + RCs completados · asesorías 1:1 en curso',co:'Bruno Bambarén (bruno@luchala.org / +51 920 104 508)',cx:'Programa LIFT 3ª ed. (Lima, Perú). Masterclass ejecutada. RCs completados: PanQAyuda, WiseMed, COOL EXPERIENCES. WiseMed en proceso de asesoría con Andrés. Verificar Excel agenda para listado completo de startups y estado.',pr:'Asesorías 1:1 en curso (WiseMed) · coordinar seguimiento PanQAyuda y COOL EXPERIENCES',pd:'Jun 2026',periodo:'7 abr 2026 – en curso',al:['Confirmar fechas sesiones de seguimiento','⚠️ Verificar listado completo en Excel agenda (no disponible en esta sesión)'],et:[{nm:'Masterclass ejecutada',st:'done',dt:'May 2026'},{nm:'RC PanQAyuda',st:'done',dt:'May 2026'},{nm:'RC + Asesorías WiseMed (en curso)',st:'active',dt:'May–jun 2026'},{nm:'RC COOL EXPERIENCES',st:'done',dt:'May–jun 2026'},{nm:'Asesorías 1:1 Alumni (Lucha)',st:'active',dt:'Jun 2026'}],ci:'alianza',ug:false}];
+function renderStartupsGrid(){
+  var STC={a:"activo",p:"proceso",c:"conv",s:"seg",f:"frio"};
+  var STL={a:"Activo",p:"En proceso",c:"En conv.",s:"Seguimiento",f:"Frío"};
+  var cards=OD.filter(function(d){return d.su&&d.su.length>0;}).map(function(d){
+    var stcls=STC[d.st]||"frio";
+    var stlbl=STL[d.st]||d.st;
+    var pills=d.su.map(function(s){
+      if(s.match(/^\d+\s/)){
+        return '<span class="su-pill-note">'+s+'</span>';
+      }
+      var parts=s.split(",").map(function(p){return p.trim();});
+      if(parts.length>1||!s.includes(":")){
+        return parts.map(function(p){return '<span class="su-pill">'+p+'</span>';}).join("");
+      }
+      var after=s.split(":")[1]||s;
+      return after.split(",").map(function(p){return '<span class="su-pill">'+p.trim()+'</span>';}).join("");
+    }).join("");
+    return '<div class="su-card">'+ 
+      '<div class="su-card-head"><span class="su-card-ic">'+d.ic+'</span>'+
+      '<span class="su-card-nm">'+d.nm+'</span>'+
+      '<span class="su-card-st '+stcls+'">'+stlbl+'</span></div>'+
+      '<div class="su-card-body"><div class="su-pills">'+pills+'</div></div></div>';
+  }).join("");
+  return '<div class="su-section"><div class="ops-section-title">🌱 Startups por organización</div><div class="su-grid">'+cards+'</div></div>';
+}
 function renderOps(){
   if(window.__opsOk)return;
   window.__opsOk=true;
@@ -583,6 +632,7 @@ function renderOps(){
   h+='<textarea name="consulta" placeholder="Escribe tu consulta..." class="ops-qa-ta" rows="3"></textarea>';
   h+='<button type="submit" class="ops-qa-btn">Enviar consulta ✉️</button>';
   h+='</form></div>';
+  h+=renderStartupsGrid();
   wrap.innerHTML=h;
 }
 function toggleOpsCard(id){
@@ -914,11 +964,7 @@ function renderSummary(){
     <div class="sum-item"><div class="sum-v" style="color:var(--activo)">${a}</div><div class="sum-l">Activos</div></div>
     <div class="sum-item"><div class="sum-v" style="color:var(--proceso)">${p}</div><div class="sum-l">En proceso</div></div>
     <div class="sum-item"><div class="sum-v" style="color:var(--conv)">${c}</div><div class="sum-l">Conversación</div></div>
-    <div class="sum-item clickable" onclick="openSalesModal()" title="Ver desglose por año" style="border-left:3px solid #e2e8f0">
-      <div class="sum-v" style="color:#64748b;font-size:1.2rem">${fmtK(usdHistTotal)}</div>
-      <div class="sum-l">Venta B2B generada ↗</div>
-      <div style="font-size:9px;color:#94a3b8;margin-top:1px">2024–2026 · solo alianzas</div>
-    </div>
+
     <div class="sum-item" style="border-left:3px solid #7dd3fc">
       <div class="sum-v" style="color:#0891b2;font-size:1.2rem">${fmtK(usd2026)}</div>
       <div class="sum-l">2026 en curso</div>
@@ -1375,7 +1421,7 @@ function deleteIniciativa(i){
   var c=document.getElementById('ops-nueva-container');
   if(c)renderNuevaIniciativa(c);
 }
-function render(){renderSummary();renderInstResumen();renderAlerts();renderGrid();renderProj();var _nic=document.getElementById('ops-nueva-container');if(_nic)renderNuevaIniciativa(_nic);initOpsChat();var _ab=document.getElementById('alertsBar');var _tc=document.getElementById('tab-comercial');if(_ab&&_tc&&_ab.parentElement!==_tc)_tc.appendChild(_ab);if(editMode)document.body.classList.add('edit-mode');}
+function render(){renderSummary();renderInstResumen();renderAlerts();renderGrid();renderProj();(function(){document.querySelectorAll(".proj-input").forEach(function(el){if(!el._sfx){el._sfx=true;el.addEventListener("focus",function(){var y=window.scrollY;setTimeout(function(){if(Math.abs(window.scrollY-y)>30)window.scrollTo(0,y);},10);},true);}});})();var _nic=document.getElementById('ops-nueva-container');if(_nic)renderNuevaIniciativa(_nic);initOpsChat();var _ab=document.getElementById('alertsBar');var _tc=document.getElementById('tab-comercial');if(_ab&&_tc&&_ab.parentElement!==_tc)_tc.appendChild(_ab);if(editMode)document.body.classList.add('edit-mode');}
 
 // ---- edit mode toggle ----
 function toggleEditMode(){
