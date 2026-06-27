@@ -173,6 +173,24 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .sum-item.clickable:hover{background:#f0fdf4;}
 .sum-item.clickable .sum-l::after{content:' ↗';font-size:9px;opacity:.6;}
 
+/* FICHA TRIGGER + DETALLE MODAL */
+.ficha-trigger-btn{margin-top:7px;background:#fff;border:1.5px solid #93c5fd;color:#1d4ed8;font-size:11px;font-weight:600;padding:4px 10px;border-radius:7px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:all .15s;}
+.ficha-trigger-btn:hover{background:#eff6ff;border-color:#60a5fa;}
+.ficha-prog{background:#f1f5f9;color:#475569;font-size:10px;font-weight:700;padding:1px 6px;border-radius:8px;}
+.ficha-prog.full{background:#d1fae5;color:#065f46;}
+.fm-modal{max-width:760px;}
+.fm-actions{padding:14px 24px 22px;display:flex;gap:8px;justify-content:flex-end;border-top:1px solid var(--border);position:sticky;bottom:0;background:#fff;}
+.fm-block{padding:16px 24px;border-bottom:1px solid var(--border);}
+.fm-block:last-child{border-bottom:none;}
+.fm-block-title{font-size:12px;font-weight:800;color:var(--k);text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px;}
+.fm-field{margin-bottom:13px;}
+.fm-field:last-child{margin-bottom:0;}
+.fm-label{display:block;font-size:12.5px;font-weight:600;color:var(--text);line-height:1.4;margin-bottom:5px;}
+.fm-pending{margin-left:8px;font-size:10px;font-weight:700;color:#92400e;background:#fef3c7;padding:1px 7px;border-radius:8px;white-space:nowrap;}
+.fm-done{margin-left:8px;font-size:10px;font-weight:700;color:#065f46;background:#d1fae5;padding:1px 7px;border-radius:8px;white-space:nowrap;}
+.fm-input{width:100%;padding:8px 11px;border:1.5px solid var(--border);border-radius:7px;font-size:13px;font-family:inherit;min-height:54px;resize:vertical;outline:none;line-height:1.5;}
+.fm-input:focus{border-color:var(--k);}
+
 /* PRINT */
 @media print{
   .filters,.btn-header,.edit-btn,.edit-panel{display:none!important;}
@@ -468,6 +486,23 @@ table.ot{width:100%;border-collapse:collapse;background:#fff;font-size:12.5px;}
   </div>
 </div>
 
+<!-- FICHA DETALLADA MODAL (por acuerdo) -->
+<div id="fichaModal" class="sales-modal-overlay" onclick="if(event.target===this)closeFichaModal()">
+  <div class="sales-modal fm-modal">
+    <div class="sales-modal-header">
+      <div>
+        <h2 id="fichaModalTitle">📄 Ficha completa del acuerdo</h2>
+        <div class="sales-modal-sub" id="fichaModalSub"></div>
+      </div>
+      <button class="sales-modal-close" onclick="closeFichaModal()">✕</button>
+    </div>
+    <div id="fichaModalBody"></div>
+    <div class="fm-actions">
+      <button class="btn-cancel" onclick="closeFichaModal()">Cerrar</button>
+      <button class="btn-save" onclick="saveFicha()">💾 Guardar ficha</button>
+    </div>
+  </div>
+</div>
 
 
 <div class="filters">
@@ -707,7 +742,28 @@ const DEFAULT_DATA = [
    ]},
   {id:'ship2b',name:'Ship2b',tipo:'Aceleradora',status:'Activo',contacto:'Guillem Bargallo / John Burgana',pais:'España / Latam',hsId:'382543952110',
    modalidades:['Sesiones 1:1 con startups','Talleres','Referidos'],nextAction:'Sesiones Scale4impact — 23, 24 y 25 jun',nextDate:'2026-06-23',
-   contratos:[{año:'2026',nombre:'Scale4impact + Ship2be',monto:'EUR 8.000',detalle:'Sesiones 1:1 con startups en el segundo semestre 2026.'}],
+   contratos:[{año:'2026',nombre:'Scale4impact + Ship2be',monto:'EUR 8.000',detalle:'Sesiones 1:1 con startups en el segundo semestre 2026.',
+     ficha:{
+       f1:'Pendiente de firma. El borrador de Contrato Marco Kiltro–Ship2B (Scale4Impact y Tiina 2026) fue enviado a John Burgana y Guillem Bargalló el 18/06/2026 para revisión final; el 22/06/2026 se hicieron ajustes tras comentarios de John y se agendó coordinación para el 25/06/2026. A la fecha (27/06/2026) no hay registro de firma, aunque el servicio ya está operando en paralelo (sesiones Scale4Impact iniciadas 23–25 jun).',
+       f2:'EUR 8.000 netos (exento de IVA por exportación de servicios). Forma de pago: 50% anticipo (EUR 4.000) previo al inicio efectivo + 50% final (EUR 4.000) al finalizar. Plazo de pago por factura: 14 días corridos desde el envío. Datos de facturación del cliente: aún no completados en el contrato. Fuente: borrador de Contrato Marco (cláusula tercera), aún sin firmar.',
+       f3:'',
+       f4:'Sesiones de acompañamiento comercial 1:1 a tres cohortes de startups: Scale4Impact (7 entidades), Tiina Fase 2 / financiadas (8 entidades) y Tiina Fase 1 / nueva 5ª edición (15 entidades) — 30 entidades en total. Equipo ejecutor Kiltro: Andrés Romero, Magali Akerman y Álvaro Bravo.',
+       f5:'Scale4Impact: mínimo 2 sesiones 1:1 por entidad. Tiina Fase 2: 1 Sesión 0 (diagnóstico) + 2 Asesorías Comerciales de Valor (60–75 min) + 2 Talleres grupales (90 min) por entidad. Tiina Fase 1: esquema a definir, misma metodología que Fase 2, calendario pendiente de confirmación escrita.',
+       f6:'Inicio estimado: 15/06/2026. Scale4Impact: primeras sesiones 15–26 jun (ya realizadas: Lantxotegi, Lexiway; agendadas: NegoBide 23 jun, TERRALab 25 jun, Proyecto Arraigo 26 jun). Tiina Fase 2: Sesión 0 semana del 29 jun; Taller 1 — 20 jul (12:00–13:30 CEST); Asesoría 1 — semana del 7 sep; Taller 2 — 21 sep (12:00–13:30 CEST); Asesoría 2 — semana del 5 oct. Tiina Fase 1: calendario a confirmar. Cierre estimado: 31/12/2026.',
+       f7:'Informe de cierre con resultados y aprendizajes al finalizar cada programa (Scale4Impact y Tiina), según el borrador de Contrato Marco. Formato/plantilla específica: aún no acordada con Ship2B.',
+       f8:'30 entidades en total: 7 de Scale4Impact, 8 de Tiina Fase 2 (financiadas) y 15 de Tiina Fase 1 (nueva 5ª edición). Startups de Scale4Impact seleccionadas el 15/05/2026.',
+       f9:'',
+       f10:'Ship2B Foundation: fundación española (Barcelona) dedicada a acelerar la economía de impacto — aceleración y financiamiento de startups de impacto, estrategias de innovación para grandes empresas e inversión de impacto. Opera, entre otros, los programas Tiina y Scale4Impact.',
+       f11:'Guillem Bargalló y John Burgana — contactos/coordinadores principales del lado de Ship2B. Magali Akerman incorporada como coordinadora del lado de Kiltro (10/06/2026).',
+       f12:'Scale4Impact y Tiina (Fase 1 y Fase 2) — programas de aceleración para startups de impacto bajo el alero de Ship2B.',
+       f13:'',
+       f14:'',
+       f15:'Sesiones de acompañamiento comercial 1:1, talleres grupales y derivación de referidos (ej. Luz de Esperanza, derivado por Guillem el 02/06/2026).',
+       f16:'',
+       f17:'',
+       f18:'',
+       f19:'LinkedIn: linkedin.com/company/ship2bfoundation · Instagram: @ship2bfoundation · X/Twitter: @Ship2BFound · Web: ship2b.org',
+     }}],
    historia:[
      {date:'2026-06-22',tag:'contrato',text:'Ajustes finales al contrato tras comentarios de John; coordinación agendada 25/06.'},
      {date:'2026-06-18',tag:'programa',text:'Nuevas asesorías agendadas: NegoBide (23 jun), TERRALab (25 jun), Proyecto Arraigo (26 jun).'},
@@ -757,7 +813,28 @@ const DEFAULT_DATA = [
    modalidades:['Sesiones 1:1','Talleres grupales'],nextAction:'Asesoría 1 OtherAI — mié 17 jun 5pm. Asesoría 2 Embrace — 23 jun.',nextDate:'2026-06-17',
    contratos:[
      {año:'2025',nombre:'Asesorías + Taller',monto:'USD 2.700',detalle:'Sesiones individuales a startups + taller grupal.'},
-     {año:'2026',nombre:'Nuevo ciclo — contrato firmado',monto:'USD 6.300',detalle:'Contrato firmado electrónicamente el 2 jun 2026 (Agreement + Scope of Work). Ciclo iniciado 15 mayo (~10 semanas). 3 sesiones por startup + taller.'},
+     {año:'2026',nombre:'Nuevo ciclo — contrato firmado',monto:'USD 6.300',detalle:'Contrato firmado electrónicamente el 2 jun 2026 (Agreement + Scope of Work). Ciclo iniciado 15 mayo (~10 semanas). 3 sesiones por startup + taller.',
+     ficha:{
+       f1:'Sí — firmado electrónicamente el 02/06/2026: "Business Strategy Coaching Agreement" + "Scope of Work 2026". Firmantes: Simon Robredo, Santiago García Méndez y Andrés Romero.',
+       f2:'USD 6.300 para el ciclo 2026 (contrato firmado). Antecedente: ciclo 2025 fue USD 2.700 (asesorías + taller grupal). Condiciones específicas de pago (cuotas, plazos, moneda de cobro) no especificadas en el historial disponible.',
+       f3:'',
+       f4:'3 sesiones 1:1 por startup (asesorías comerciales) + 1 taller grupal, por ciclo. (Ciclo 2025: asesorías individuales + 1 taller grupal).',
+       f5:'3 sesiones 1:1 por startup + 1 taller grupal por ciclo. Objetivos específicos de cada sesión: no especificados en el historial disponible.',
+       f6:'Ciclo 2026 iniciado 15/05/2026 (~10 semanas). En curso: Embrace Diversity (Asesoría 1 realizada 09/06, Asesoría 2 agendada 23/06), Locufre (Asesoría 1, 10/06), INCLU+ (Asesoría 1 realizada 11/06, próxima 17/06), OtherAI (Asesoría 1 reagendada para 17/06, 17:00–18:15 CEST), AulaMind (RC reagendada, nueva fecha pendiente).',
+       f7:'',
+       f8:'Ciclo 2026: al menos 6 startups identificadas — Embrace Diversity, OtherAI, AulaMind, Locufre, INCLU+ (Inclumá, Paraguay) y Tiflo Maze. Procedencia: portafolio 2Gether-International (founders con discapacidad). Nivel de madurez/etapa: no especificado.',
+       f9:'',
+       f10:'2Gether-International: organización que apoya a fundadores con discapacidad, conectándolos con los recursos para hacer crecer sus startups. Desde su primer acelerador en 2019 ha apoyado a más de 700 startups, que en conjunto han levantado ~USD 84M en inversión, ingresos y adquisiciones.',
+       f11:'Simon Robredo (coordinador principal), Santiago García Méndez (cofirmante del contrato). Gabriela coordina temas de agenda (ej. reagendamiento RC AulaMind).',
+       f12:'Acelerador anual para founders con discapacidad — ciclo 2026 en curso (~10 semanas), con sesiones 1:1 + taller grupal.',
+       f13:'',
+       f14:'',
+       f15:'Asesorías comerciales 1:1 + taller grupal de ventas para founders con discapacidad del portafolio 2Gether.',
+       f16:'',
+       f17:'Considerar sensibilidad al comunicar públicamente sobre founders con discapacidad — confirmar con 2Gether antes de cualquier difusión externa.',
+       f18:'',
+       f19:'LinkedIn: linkedin.com/company/2gether-international · Instagram: @2gether_international · Web: 2gether-international.org',
+     }},
    ],
    historia:[
      {date:'2026-06-15',tag:'seguimiento',text:'Tiflo Maze (portafolio 2gether) envió materiales comerciales para ampliar la propuesta antes de la reunión.'},
@@ -773,7 +850,28 @@ const DEFAULT_DATA = [
    ]},
   {id:'chrysalis',name:'Chrysalis / Impulso Azul',tipo:'Aceleradora',status:'Activo',contacto:'Macarena / Ismael Rivera (PUCV)',pais:'Chile',hsId:'12378856952',
    modalidades:['Diagnósticos comerciales a startups','Potencial cierre directo con startups'],nextAction:'Avanzar cierres individuales con startups Impulso Azul',nextDate:'Pendiente',
-   contratos:[],
+   contratos:[{año:'2026',nombre:'Impulso Azul — diagnósticos + potencial cierre individual',monto:'Pendiente de cierre',detalle:'Sin contrato firmado. Propuesta en curso: $3.500.000 CLP + IVA por startup / 8 meses de acompañamiento, a cerrar individualmente con cada startup del programa (no es un contrato único con Chrysalis). Vía línea Corfo de "prospección comercial".',
+     ficha:{
+       f1:'No firmado. Relación en fase de diagnóstico/propuesta: Macarena retomó el contacto el 08/04/2026 para diagnósticos a ~40 startups; Ismael Rivera (PUCV) envió los diagnósticos iniciales el 13/04/2026. El 09/06/2026 se identificó un potencial de cierre, pero sin contrato firmado a la fecha (27/06/2026).',
+       f2:'Propuesta (no cerrada): $3.500.000 CLP + IVA por startup, por 8 meses de acompañamiento — cierre individual con cada startup del programa Impulso Azul, no un contrato único con Chrysalis. Mecanismo de financiamiento: línea Corfo de "prospección comercial", donde el fee de Kiltro se incorpora como ítem de presupuesto dentro del plan de trabajo Corfo de cada startup (no lo paga Chrysalis directamente).',
+       f3:'',
+       f4:'Diagnósticos comerciales a startups del programa Impulso Azul (~40 startups), con potencial de cierre directo e individual con cada startup post-diagnóstico.',
+       f5:'',
+       f6:'08/04/2026: retoma de contacto. 13/04/2026: recepción de diagnósticos iniciales de Ismael Rivera. 09/06/2026: identificación de potencial de cierre ($3.500.000 CLP+IVA / startup / 8 meses). Fecha de inicio efectivo del acompañamiento: pendiente.',
+       f7:'',
+       f8:'~40 startups del programa Impulso Azul (convocatoria de Chrysalis PUCV para proyectos de Economía Azul: acuicultura sustentable, biotecnología marina, logística portuaria, conservación, entre otros) en la Región de Valparaíso, Chile.',
+       f9:'Diagnósticos iniciales de cada startup ya enviados por Ismael Rivera (13/04/2026) — disponibles como insumo; contenido específico aún por sistematizar en esta ficha.',
+       f10:'Chrysalis es la Incubadora de Negocios de la Pontificia Universidad Católica de Valparaíso (PUCV), con más de 14 años de historia y +900 startups apoyadas; reconocida como una de las incubadoras más destacadas de Chile y Latinoamérica.',
+       f11:'Macarena (contacto principal de retoma de relación) e Ismael Rivera (PUCV, a cargo de diagnósticos).',
+       f12:'Impulso Azul — convocatoria para emprendimientos de Economía Azul en la Región de Valparaíso. Proyectos seleccionados acceden a asesoría de Chrysalis PUCV para postular a Corfo Semilla Expande (hasta $45M, o $51M si liderado por mujeres).',
+       f13:'Impulso Azul: programa de Chrysalis PUCV enfocado en soluciones de Economía Azul (acuicultura sustentable, biotecnología marina, logística portuaria, conservación). Alcance territorial: Región de Valparaíso, Chile. Beneficio asociado: cofinanciamiento Corfo Semilla Expande de hasta $45M ($51M si liderado por mujeres), mentorías, redes estratégicas, vitrinas comerciales y seguimiento de 24 meses.',
+       f14:'Corfo (vía instrumento Semilla Expande) y PUCV. Otros aliados: pendiente de completar.',
+       f15:'Diagnóstico comercial gratuito (provisto por Kiltro a las ~40 startups) + potencial acompañamiento comercial pagado de 8 meses para quienes cierren individualmente.',
+       f16:'',
+       f17:'',
+       f18:'',
+       f19:'Chrysalis PUCV — LinkedIn: linkedin.com/company/incubadora-chrysalis · Instagram: @incubadora_chrysalis · Web: chrysalis.cl. El programa Impulso Azul no tiene perfiles propios identificados — comunica a través de los canales de Chrysalis PUCV.',
+     }}],
    historia:[
      {date:'2026-04-08',tag:'reunion',text:'Macarena retoma contacto para diagnósticos (~40 startups).'},
      {date:'2026-04-13',tag:'programa',text:'Ismael envía diagnósticos iniciales de cada startup.'},
@@ -930,6 +1028,83 @@ function showToast(){
 let data = loadData();
 let activeFilter='todos', searchQ='', editMode=false;
 
+// ---- ficha detallada por acuerdo (19 campos / 5 bloques, solicitado por Operaciones) ----
+const FICHA_LABELS = {
+  f1:'1. Contrato firmado que marca el inicio operacional.',
+  f2:'2. Precio del servicio, condiciones y formas de pago.',
+  f3:'3. Claridad sobre si se habló o no con el aliado respecto a cuándo ofrecer la propuesta de acompañamiento de Kiltro.',
+  f4:'4. Tipo de servicio o servicios vendidos y/o acordados.',
+  f5:'5. Cantidad de encuentros por proyecto y los objetivos específicos de cada uno.',
+  f6:'6. Cronograma operativo con fechas establecidas para el inicio, la ejecución y los hitos clave.',
+  f7:'7. Listado de entregables acordados (reportes, informes u hojas de ruta).',
+  f8:'8. Cantidad exacta de proyectos participantes, procedencia, su nivel de madurez o etapa.',
+  f9:'9. Información técnica base de los proyectos (expedientes, PCI, diagnósticos previos o herramientas aplicadas).',
+  f10:'10. Descripción, procedencia, propósito y enfoque de la organización aliada.',
+  f11:'11. Roles clave dentro del equipo de la organización.',
+  f12:'12. Programas o líneas de trabajo activos del aliado.',
+  f13:'13. Descripción, tiempos de ejecución, alcance territorial y premios del programa donde se inserta la colaboración.',
+  f14:'14. Otras organizaciones o aliados vinculados al programa.',
+  f15:'15. Categorías de beneficio o trabajo con los fundadores dentro del programa.',
+  f16:'16. Permisos y derechos explícitos para difundir la colaboración de manera externa.',
+  f17:'17. Restricciones comunicacionales o temas sensibles acordados.',
+  f18:'18. Manuales de marca, logotipos en alta resolución y directrices de diseño.',
+  f19:'19. Perfiles oficiales en redes sociales de todas las organizaciones involucradas.',
+};
+const FICHA_BLOCKS = [
+  {title:'A · Acuerdo y contrato', fields:['f1','f2','f3']},
+  {title:'B · Servicio y alcance', fields:['f4','f5','f6','f7']},
+  {title:'C · Proyectos participantes', fields:['f8','f9']},
+  {title:'D · Sobre el aliado', fields:['f10','f11','f12','f13','f14']},
+  {title:'E · Comunicación y marca', fields:['f15','f16','f17','f18','f19']},
+];
+let fichaCtx={orgId:null, idx:null};
+function fichaProgress(c){
+  const f=(c&&c.ficha)||{};
+  let n=0;
+  for(let i=1;i<=19;i++){ if((f['f'+i]||'').trim()) n++; }
+  return n;
+}
+function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function openFichaModal(orgId, idx){
+  const org=data.find(d=>d.id===orgId);
+  if(!org||!org.contratos||!org.contratos[idx]) return;
+  const c=org.contratos[idx];
+  if(!c.ficha) c.ficha={};
+  fichaCtx={orgId,idx};
+  document.getElementById('fichaModalSub').textContent=`${org.name} — ${c.nombre} (${c.año})`;
+  document.getElementById('fichaModalBody').innerHTML = FICHA_BLOCKS.map(b=>`
+    <div class="fm-block">
+      <div class="fm-block-title">${b.title}</div>
+      ${b.fields.map(k=>{
+        const v=c.ficha[k]||'';
+        const pending=!v.trim();
+        return `<div class="fm-field">
+          <label class="fm-label">${FICHA_LABELS[k]}${pending?'<span class="fm-pending">⏳ Pendiente</span>':'<span class="fm-done">✓ Completo</span>'}</label>
+          <textarea class="fm-input" id="fm-${k}" placeholder="Completar información...">${esc(v)}</textarea>
+        </div>`;
+      }).join('')}
+    </div>`).join('');
+  document.getElementById('fichaModal').classList.add('open');
+}
+function closeFichaModal(){
+  document.getElementById('fichaModal').classList.remove('open');
+  fichaCtx={orgId:null,idx:null};
+}
+function saveFicha(){
+  if(!fichaCtx.orgId) return;
+  const org=data.find(d=>d.id===fichaCtx.orgId);
+  if(!org||!org.contratos||!org.contratos[fichaCtx.idx]) return;
+  const c=org.contratos[fichaCtx.idx];
+  if(!c.ficha) c.ficha={};
+  for(let i=1;i<=19;i++){
+    const el=document.getElementById('fm-f'+i);
+    if(el) c.ficha['f'+i]=el.value;
+  }
+  saveData();
+  renderGrid();
+  openFichaModal(fichaCtx.orgId, fichaCtx.idx);
+}
+
 // ---- helpers ----
 function stClass(s){return ST_CSS[s]||'frio';}
 function tcClass(t){return TIPO_CSS[t]||'acel';}
@@ -1021,10 +1196,15 @@ function renderGrid(){
     const contrBox=(d.contratos||[]).length?`
       <div><div class="sec-label">Contratos y acuerdos</div>
       <div class="contratos"><div class="contratos-head">📋 Historial económico</div>
-        ${d.contratos.map(c=>`<div class="contrato-row">
+        ${d.contratos.map((c,ci)=>{
+          const prog=fichaProgress(c);
+          const progBadge=prog>0?`<span class="ficha-prog${prog>=19?' full':''}">${prog}/19</span>`:'';
+          return `<div class="contrato-row">
           <div class="contrato-yr">${c.año}</div>
-          <div class="contrato-body"><span class="name">${c.nombre}</span>${c.monto&&c.monto!=='—'?`<span class="monto">${c.monto}</span>`:''}<div class="detail">${c.detalle}</div></div>
-        </div>`).join('')}
+          <div class="contrato-body"><span class="name">${c.nombre}</span>${c.monto&&c.monto!=='—'?`<span class="monto">${c.monto}</span>`:''}<div class="detail">${c.detalle}</div>
+            <button class="ficha-trigger-btn" onclick="event.stopPropagation();openFichaModal('${d.id}',${ci})">📄 Ficha completa${progBadge}</button>
+          </div>
+        </div>`;}).join('')}
       </div></div>`:'';
     const mods=(d.modalidades||[]).length?`<div><div class="sec-label">Cómo trabajamos juntos</div><div class="mods">${d.modalidades.map(m=>`<span class="mod">${m}</span>`).join('')}</div></div>`:'';
     const nd=fmtDate(d.nextDate);
