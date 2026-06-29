@@ -620,7 +620,7 @@ function applyODOverrides(){
         if(co.n!==undefined)c.n=co.n;
         if(co.sps!==undefined)c.sps=co.sps;
         if(co.ini!==undefined)c.ini=co.ini;
-        if(co.fin!==undefined)c.fin=co.fin;
+        if(co.fin!==undefined)c.fin=co.fin;if(co.tipo!==undefined)c.tipo=co.tipo;
       });
     });
   }catch(e){}
@@ -677,7 +677,7 @@ function renderCompromisos(){
         h+='<td class="op-cell" style="text-align:center">'+(c.sps||'—')+'</td>';
       }
       h+='<td class="op-cell" style="text-align:center;font-weight:700">'+(total!==null?total:'—')+'</td>';
-      h+='<td class="op-cell">'+(c.tipo||'—')+'</td>';
+      h+=(editMode?('<td class="op-cell"><input type="text" class="op-edit-input" value="'+(c.tipo||'')+'" data-oid="'+o.id+'" data-idx="'+idx+'" data-field="tipo" onchange="editODField(this)"></td>'):('<td class="op-cell">'+(c.tipo||'—')+'</td>'));
       if(editMode){
         h+='<td class="op-cell"><input type="date" class="op-edit-input" value="'+(c.ini||'')+'" data-oid="'+o.id+'" data-idx="'+idx+'" data-field="ini" onchange="editODField(this)"></td>';
         h+='<td class="op-cell"><input type="date" class="op-edit-input" value="'+(c.fin||'')+'" data-oid="'+o.id+'" data-idx="'+idx+'" data-field="fin" onchange="editODField(this)"></td>';
@@ -718,7 +718,7 @@ function renderProyeccion(){var d=computeProyeccion();var h='';h+='<div class="o
   h+='<div class="ops-kpi"><span class="ops-kpi-v" style="color:var(--conv)">'+OD.filter(d=>d.st==='c').length+'</span><div class="ops-kpi-l">En conv.</div></div>';
   h+='<div class="ops-kpi"><span class="ops-kpi-v" style="color:var(--seg)">'+OD.filter(d=>d.ug).length+'</span><div class="ops-kpi-l">⚠️ Urgentes</div></div>';
   h+='</div>';
-  h+=renderProyeccion();h+='<div class="ops-section"><div class="ops-section-title">📋 Resumen de acuerdos activos</div>';
+  h+=renderCompromisos();h+='<div class="ops-section"><div class="ops-section-title">📋 Resumen de acuerdos activos</div>';
   h+='<div class="ops-table-wrap"><table class="ops-table"><thead><tr><th>Institución</th><th>Estado</th><th>Startups</th><th>Período</th><th>Próxima acción</th></tr></thead><tbody>';
   OD.forEach(function(d){
     h+='<tr class="ops-row'+(d.ug?' ops-urgent':'')+'" onclick="toggleOpsCard(\''+d.id+'\')">';
