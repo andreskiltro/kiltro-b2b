@@ -12,19 +12,23 @@
   --conv:#7c3aed;--conv-bg:#ede9fe;--conv-border:#c4b5fd;
   --seg:#d97706;--seg-bg:#fef3c7;--seg-border:#fcd34d;
   --frio:#64748b;--frio-bg:#f1f5f9;--frio-border:#cbd5e1;
-  --text:#1e293b;--muted:#64748b;--border:#e2e8f0;--bg:#f1f5f9;--k:#1d4ed8;
+  --text:#1e293b;--muted:#64748b;--border:#e2e8f0;--bg:#f1f5f9;
+  --k:#5EC843;--k-dark:#4aad32;--k-bg:#f0fdf4;
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);}
 
 /* HEADER */
-.site-header{background:var(--k);color:#fff;padding:18px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
-.site-header h1{font-size:19px;font-weight:800;}
-.site-header .meta{font-size:12px;opacity:.7;margin-top:2px;}
+.site-header{background:#111111;color:#fff;padding:14px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;-webkit-print-color-adjust:exact;print-color-adjust:exact;border-bottom:3px solid var(--k);}
+.site-header-left{display:flex;align-items:center;gap:16px;}
+.site-header-logo{height:28px;filter:invert(1);flex-shrink:0;}
+.site-header-divider{width:1px;height:28px;background:rgba(255,255,255,.2);}
+.site-header h1{font-size:17px;font-weight:800;line-height:1.2;}
+.site-header .meta{font-size:12px;opacity:.6;margin-top:2px;}
 .header-actions{display:flex;gap:8px;}
-.btn-header{background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.35);color:#fff;padding:7px 14px;border-radius:7px;font-size:13px;cursor:pointer;font-weight:500;transition:background .15s;}
-.btn-header:hover{background:rgba(255,255,255,.3);}
-.btn-header.edit-mode-on{background:#fff;color:var(--k);}
+.btn-header{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);color:#fff;padding:7px 14px;border-radius:7px;font-size:13px;cursor:pointer;font-weight:500;transition:background .15s;}
+.btn-header:hover{background:rgba(255,255,255,.2);}
+.btn-header.edit-mode-on{background:var(--k);color:#111;border-color:var(--k);}
 
 /* SUMMARY */
 .summary{display:flex;background:#fff;border-bottom:2px solid var(--border);overflow-x:auto;}
@@ -38,14 +42,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .filters span{font-size:12px;color:var(--muted);font-weight:700;margin-right:2px;}
 .ftag{padding:5px 13px;border-radius:20px;border:1.5px solid var(--border);background:#fff;font-size:12px;cursor:pointer;font-weight:500;color:var(--muted);transition:all .15s;}
 .ftag.on{color:#fff;border-color:transparent;}
-.ftag.on.f-todos{background:var(--k);}
+.ftag.on.f-todos{background:#111;}
 .ftag.on.f-activo{background:var(--activo);}
 .ftag.on.f-proceso{background:var(--proceso);}
 .ftag.on.f-conv{background:var(--conv);}
 .ftag.on.f-seg{background:var(--seg);}
 .ftag.on.f-frio{background:var(--frio);}
 .search{margin-left:auto;padding:7px 14px;border:1.5px solid var(--border);border-radius:20px;font-size:13px;min-width:190px;outline:none;}
-.search:focus{border-color:var(--k);}
+.search:focus{border-color:var(--k);outline:none;}
 
 /* GRID */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(460px,1fr));gap:18px;padding:22px 32px;}
@@ -134,13 +138,71 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .ep-add-label{grid-column:1/-1;font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;display:flex;align-items:center;gap:6px;}
 .ep-add-label::after{content:'';flex:1;height:1px;background:var(--border);}
 .ep-actions{grid-column:1/-1;display:flex;gap:8px;justify-content:flex-end;margin-top:4px;}
-.btn-save{background:var(--k);color:#fff;border:none;padding:8px 18px;border-radius:7px;font-size:13px;font-weight:600;cursor:pointer;}
-.btn-save:hover{background:#1e40af;}
+.btn-save{background:#111;color:#fff;border:none;padding:8px 18px;border-radius:7px;font-size:13px;font-weight:600;cursor:pointer;}
+.btn-save:hover{background:#333;}
 .btn-cancel{background:#fff;border:1.5px solid var(--border);color:var(--text);padding:8px 14px;border-radius:7px;font-size:13px;font-weight:500;cursor:pointer;}
 .btn-cancel:hover{background:#f8fafc;}
 .saved-toast{display:none;position:fixed;bottom:24px;right:24px;background:#059669;color:#fff;padding:10px 20px;border-radius:10px;font-size:14px;font-weight:600;z-index:999;box-shadow:0 4px 12px rgba(0,0,0,.15);}
 .saved-toast.show{display:block;animation:fadeInOut 2.5s forwards;}
 @keyframes fadeInOut{0%{opacity:0;transform:translateY(8px)}10%{opacity:1;transform:translateY(0)}80%{opacity:1}100%{opacity:0}}
+
+/* ===== OPS PANEL ===== */
+.ops-panel{display:none;border-top:2px dashed #c7d2fe;background:#f5f3ff;padding:16px 18px;}
+.ops-panel.open{display:block;}
+.ops-panel h3{font-size:13px;font-weight:700;color:#4f46e5;margin-bottom:12px;display:flex;align-items:center;gap:6px;}
+.ops-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.ops-full{grid-column:1/-1;}
+.ops-group label{display:block;font-size:10px;font-weight:700;color:#6d28d9;text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px;}
+.ops-group select,.ops-group input,.ops-group textarea{width:100%;padding:7px 10px;border:1.5px solid #c4b5fd;border-radius:7px;font-size:13px;font-family:inherit;background:#fff;outline:none;transition:border-color .15s;}
+.ops-group select:focus,.ops-group input:focus,.ops-group textarea:focus{border-color:#6d28d9;}
+.ops-group textarea{min-height:60px;resize:vertical;}
+.ops-actions{grid-column:1/-1;display:flex;gap:8px;justify-content:flex-end;margin-top:4px;}
+.btn-ops-save{background:#4f46e5;color:#fff;border:none;padding:8px 18px;border-radius:7px;font-size:13px;font-weight:600;cursor:pointer;}
+.btn-ops-save:hover{background:#4338ca;}
+/* ops display (read mode, inside ficha-body) */
+.ops-display{background:#f5f3ff;border:1.5px solid #c4b5fd;border-radius:8px;padding:10px 13px;margin-top:2px;}
+.ops-display-head{font-size:10px;font-weight:700;color:#6d28d9;text-transform:uppercase;letter-spacing:.07em;margin-bottom:7px;display:flex;align-items:center;gap:5px;}
+.ops-display-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px 14px;}
+.ops-display-row{display:flex;flex-direction:column;gap:1px;}
+.ops-display-label{font-size:9px;font-weight:700;color:#7c3aed;text-transform:uppercase;letter-spacing:.06em;}
+.ops-display-val{font-size:12px;color:#1e293b;line-height:1.4;}
+.ops-display-full{grid-column:1/-1;}
+/* ops button in header */
+.ops-btn{background:#ede9fe;border:1.5px solid #c4b5fd;color:#5b21b6;padding:5px 10px;border-radius:8px;font-size:12px;cursor:pointer;font-weight:600;flex-shrink:0;}
+.ops-btn:hover{background:#ddd6fe;}
+
+/* ===== OPORTUNIDAD PANEL ===== */
+.oport-panel{display:none;border-top:2px dashed #86efac;background:#f0fdf4;padding:16px 18px;}
+.oport-panel.open{display:block;}
+.oport-panel h3{font-size:13px;font-weight:700;color:#166534;margin-bottom:12px;display:flex;align-items:center;gap:6px;}
+.oport-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.oport-full{grid-column:1/-1;}
+.oport-group label{display:block;font-size:10px;font-weight:700;color:#4d7c0f;text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px;}
+.oport-group select,.oport-group input[type=text],.oport-group input[type=number],.oport-group textarea{width:100%;padding:7px 10px;border:1.5px solid #86efac;border-radius:7px;font-size:13px;font-family:inherit;background:#fff;outline:none;transition:border-color .15s;}
+.oport-group select:focus,.oport-group input:focus{border-color:var(--k);}
+.oport-group input[type=range]{width:100%;accent-color:var(--k);cursor:pointer;margin-top:6px;}
+.oport-actions{grid-column:1/-1;display:flex;gap:8px;justify-content:flex-end;margin-top:4px;}
+.btn-oport-save{background:var(--k);color:#111;border:none;padding:8px 18px;border-radius:7px;font-size:13px;font-weight:700;cursor:pointer;}
+.btn-oport-save:hover{background:var(--k-dark);}
+/* oport button */
+.oport-btn{background:#f0fdf4;border:1.5px solid #86efac;color:#166534;padding:5px 10px;border-radius:8px;font-size:12px;cursor:pointer;font-weight:600;flex-shrink:0;}
+.oport-btn:hover{background:#dcfce7;}
+/* oport display in ficha body */
+.oport-display{background:#f0fdf4;border:1.5px solid #86efac;border-radius:8px;padding:10px 13px;}
+.oport-display-head{font-size:10px;font-weight:700;color:#166534;text-transform:uppercase;letter-spacing:.07em;margin-bottom:7px;display:flex;align-items:center;justify-content:space-between;}
+.oport-item{padding:7px 0;border-bottom:1px dashed #bbf7d0;}
+.oport-item:last-child{border-bottom:none;padding-bottom:0;}
+.oport-item-name{font-size:12px;font-weight:700;color:#14532d;line-height:1.3;}
+.oport-item-meta{display:flex;gap:6px;margin-top:4px;flex-wrap:wrap;}
+.oport-pill{font-size:10px;padding:1px 8px;border-radius:10px;font-weight:600;}
+.oport-pill-monto{background:#d1fae5;color:#065f46;}
+.oport-pill-prob{background:#fef9c3;color:#78350f;}
+.oport-pill-prob.high{background:#d1fae5;color:#065f46;}
+.oport-pill-prob.low{background:#fee2e2;color:#991b1b;}
+.oport-pill-mes{background:#f1f5f9;color:#475569;}
+/* Prob display */
+.prob-display{display:flex;align-items:center;gap:8px;margin-top:4px;}
+.prob-display span{font-size:13px;font-weight:700;color:#166534;min-width:38px;}
 
 /* no results */
 .no-res{grid-column:1/-1;text-align:center;padding:60px;color:var(--muted);}
@@ -173,27 +235,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .sum-item.clickable:hover{background:#f0fdf4;}
 .sum-item.clickable .sum-l::after{content:' ↗';font-size:9px;opacity:.6;}
 
-/* FICHA TRIGGER + DETALLE MODAL */
-.ficha-trigger-btn{margin-top:7px;background:#fff;border:1.5px solid #93c5fd;color:#1d4ed8;font-size:11px;font-weight:600;padding:4px 10px;border-radius:7px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:all .15s;}
-.ficha-trigger-btn:hover{background:#eff6ff;border-color:#60a5fa;}
-.ficha-prog{background:#f1f5f9;color:#475569;font-size:10px;font-weight:700;padding:1px 6px;border-radius:8px;}
-.ficha-prog.full{background:#d1fae5;color:#065f46;}
-.fm-modal{max-width:760px;}
-.fm-actions{padding:14px 24px 22px;display:flex;gap:8px;justify-content:flex-end;border-top:1px solid var(--border);position:sticky;bottom:0;background:#fff;}
-.fm-block{padding:16px 24px;border-bottom:1px solid var(--border);}
-.fm-block:last-child{border-bottom:none;}
-.fm-block-title{font-size:12px;font-weight:800;color:var(--k);text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px;}
-.fm-field{margin-bottom:13px;}
-.fm-field:last-child{margin-bottom:0;}
-.fm-label{display:block;font-size:12.5px;font-weight:600;color:var(--text);line-height:1.4;margin-bottom:5px;}
-.fm-pending{margin-left:8px;font-size:10px;font-weight:700;color:#92400e;background:#fef3c7;padding:1px 7px;border-radius:8px;white-space:nowrap;}
-.fm-done{margin-left:8px;font-size:10px;font-weight:700;color:#065f46;background:#d1fae5;padding:1px 7px;border-radius:8px;white-space:nowrap;}
-.fm-input{width:100%;padding:8px 11px;border:1.5px solid var(--border);border-radius:7px;font-size:13px;font-family:inherit;min-height:54px;resize:vertical;outline:none;line-height:1.5;}
-.fm-input:focus{border-color:var(--k);}
-
 /* PRINT */
 @media print{
-  .filters,.btn-header,.edit-btn,.edit-panel{display:none!important;}
+  .filters,.btn-header,.edit-btn,.edit-panel,.oport-panel,.oport-btn,.ops-btn{display:none!important;}
   body{background:#fff;}
   .grid{padding:12px;gap:14px;grid-template-columns:repeat(2,1fr);}
   .ficha{border:1.5px solid #ddd;box-shadow:none;}
@@ -268,206 +312,18 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .pb-mid{background:#fef3c7;color:#92400e;}
 .pb-low{background:#fee2e2;color:#991b1b;}
 .pb-vlow{background:#f1f5f9;color:#64748b;}
-
-/* ==TABS== */
-.tab-nav{background:#fff;border-bottom:2px solid #e2e8f0;padding:0 32px;display:flex;}
-.tab-btn{padding:13px 22px;border:none;background:none;font-size:14px;font-weight:700;color:#64748b;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;transition:color .15s,border-color .15s;display:flex;align-items:center;gap:6px;}
-.tab-btn:hover{color:#1e293b;}
-.tab-btn.t-on{color:#5EC843;border-bottom-color:#5EC843;}
-.tab-panel{display:none;}
-.tab-panel.t-on{display:block;}
-/* ==OPS== */
-.ops-kpis{display:flex;background:#fff;border-bottom:2px solid #e2e8f0;overflow-x:auto;}
-.ops-kpi{flex:1;min-width:100px;padding:16px;border-right:1px solid #e2e8f0;text-align:center;}
-.ops-kpi:last-child{border-right:none;}
-.ops-kpi-v{font-size:24px;font-weight:900;line-height:1;}
-.ops-kpi-v.g{color:#059669;}.ops-kpi-v.b{color:#3b82f6;}.ops-kpi-v.r{color:#ef4444;}
-.ops-kpi-l{font-size:10px;color:#64748b;text-transform:uppercase;letter-spacing:.06em;margin-top:4px;font-weight:600;}
-.ops-wrap{padding:24px 32px;}
-.ops-sec{font-size:15px;font-weight:800;color:#111;margin-bottom:16px;}
-.ops-tbl{overflow-x:auto;border-radius:10px;border:1px solid #e2e8f0;margin-bottom:28px;}
-table.ot{width:100%;border-collapse:collapse;background:#fff;font-size:12.5px;}
-.ot th{background:#f8fafc;padding:10px 14px;text-align:left;font-weight:700;color:#64748b;font-size:10px;text-transform:uppercase;letter-spacing:.06em;border-bottom:2px solid #e2e8f0;white-space:nowrap;}
-.ot td{padding:10px 14px;border-bottom:1px solid #f8fafc;vertical-align:middle;}
-.ot tbody tr:last-child td{border-bottom:none;}
-.ot tbody tr:hover td{background:#fafffe;}
-.ops-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(420px,1fr));gap:16px;margin-bottom:28px;}
-.oc{background:#fff;border-radius:12px;border:1.5px solid #e2e8f0;overflow:hidden;}
-.oc-hd{padding:14px 18px 12px;display:flex;gap:12px;}
-.oc-hd.sta{border-left:5px solid #059669;background:#d1fae5;}
-.oc-hd.stp{border-left:5px solid #0891b2;background:#e0f2fe;}
-.oc-bd{padding:14px 18px;display:flex;flex-direction:column;gap:9px;}
-.oc-ico{width:42px;height:42px;border-radius:10px;background:#fff;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;box-shadow:0 1px 4px rgba(0,0,0,.1);}
-.oc-nm{font-size:15px;font-weight:800;line-height:1.2;}
-.oc-mt{font-size:11px;color:#64748b;margin-top:3px;}
-.or{display:grid;grid-template-columns:120px 1fr;gap:6px;font-size:12.5px;align-items:start;}
-.ol{font-size:10px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:.07em;padding-top:1px;}
-.ov{color:#1e293b;line-height:1.4;}
-.och{display:inline-block;font-size:10px;padding:2px 8px;border-radius:8px;background:#f1f5f9;color:#475569;border:1px solid #e2e8f0;font-weight:500;margin:1px;}
-.on{background:#f0fdf4;border:1.5px solid #86efac;border-radius:8px;padding:9px 13px;margin-top:4px;}
-.on.ug{background:#fef2f2;border-color:#fecaca;}
-.on-l{font-size:9px;font-weight:700;color:#166534;text-transform:uppercase;letter-spacing:.08em;margin-bottom:3px;}
-.on.ug .on-l{color:#991b1b;}
-.on-t{font-size:12.5px;font-weight:600;color:#1e293b;line-height:1.4;}
-.on-d{font-size:11px;color:#059669;margin-top:2px;font-weight:600;}
-.on.ug .on-d{color:#ef4444;}
-.ocx{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:9px 13px;font-size:11.5px;color:#64748b;line-height:1.5;}
-.ocx strong{color:#1e293b;}
-.oal{background:#fffbeb;border:1px solid #fcd34d;border-radius:6px;padding:6px 10px;font-size:11.5px;color:#78350f;}
-.oqa{background:linear-gradient(135deg,#ede9fe,#f5f3ff);border-radius:16px;padding:28px 32px;margin-bottom:28px;}
-.oqa h3{font-size:17px;font-weight:800;color:#3730a3;margin:0 0 4px;}
-.oqa p{font-size:13px;color:#5b21b6;margin:0 0 20px;}
-.oqa-g{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
-.oqa-full{grid-column:1/-1;}
-.oqa-g label{display:block;font-size:10px;font-weight:700;color:#6d28d9;text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px;}
-.oqa-g select,.oqa-g input,.oqa-g textarea{width:100%;padding:9px 12px;border:1.5px solid #c4b5fd;border-radius:8px;font-size:13px;font-family:inherit;background:#fff;box-sizing:border-box;outline:none;}
-.oqa-g textarea{min-height:80px;resize:vertical;}
-.oqa-btn{grid-column:1/-1;display:flex;justify-content:flex-end;}
-.btn-qa{background:#6d28d9;color:#fff;border:none;padding:10px 24px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;}
-.btn-qa:hover{background:#5b21b6;}
-.qa-ok{display:none;background:#f0fdf4;border:1.5px solid #86efac;border-radius:8px;padding:14px;text-align:center;color:#166534;font-weight:600;margin-bottom:16px;}
-@media(max-width:600px){.ops-cards{grid-template-columns:1fr;}.oqa-g{grid-template-columns:1fr;}.or{grid-template-columns:1fr;gap:2px;}}
-
-/* ===== OPS EXTRAS ===== */
-.ops-alerts-bar{background:#fef3c7;border-bottom:2px solid var(--seg-border);padding:10px 24px;display:flex;flex-wrap:wrap;gap:8px;}
-.ops-alert-pill{background:#fff;border:1px solid var(--seg-border);border-radius:20px;padding:4px 12px;font-size:12px;color:#92400e;}
-.ops-kpi-bar{display:flex;background:#fff;border-bottom:1px solid var(--border);padding:0;}
-.ops-kpi{flex:1;text-align:center;padding:14px 8px;border-right:1px solid var(--border);}
-.ops-kpi:last-child{border-right:none;}
-.ops-kpi-v{font-size:26px;font-weight:800;display:block;}
-.ops-kpi-l{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-top:2px;}
-.ops-section{background:#fff;margin:16px;border-radius:12px;border:1px solid var(--border);overflow:hidden;}
-.ops-section-title{font-size:14px;font-weight:700;padding:14px 18px;border-bottom:1px solid var(--border);color:var(--text);}
-.ops-table-wrap{overflow-x:auto;}
-.ops-table{width:100%;border-collapse:collapse;font-size:13px;}
-.ops-table th{text-align:left;padding:8px 14px;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.06em;border-bottom:2px solid var(--border);white-space:nowrap;}
-.ops-compr-wrap{margin-bottom:18px}
-.op-compr-title{font-weight:700;margin:6px 0 10px;color:#1d4d3d}
-.op-badge-ok{background:#e3f3ea;color:#1d7a4c;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:600;white-space:nowrap}
-.op-badge-pend{background:#fff3da;color:#8a6d1f;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:600;white-space:nowrap}.ops-proy-kpis{display:flex;gap:12px;flex-wrap:wrap;margin:10px 0 14px}.ops-proy-kpi{flex:1;min-width:140px;background:#f7f9fb;border:1px solid #e2e8ef;border-radius:8px;padding:10px 14px;text-align:center}.ops-proy-v{font-size:22px;font-weight:700;color:#1d4d3d}.ops-proy-l{font-size:11px;color:#677;margin-top:2px}.ops-proy-table{width:100%;border-collapse:collapse;font-size:13px}.ops-proy-table th{position:sticky;top:0;background:#1d4d3d;color:#fff;text-align:left;padding:8px 10px;font-weight:600;font-size:12px}.op-cell{padding:8px 10px;border-bottom:1px solid #e9edf1;vertical-align:top}.op-cell-total{padding:8px 10px;border-bottom:1px solid #e9edf1;font-weight:700;text-align:right;white-space:nowrap}.op-foot{font-weight:700;background:#f7f9fb}.op-prog{font-weight:600;color:#1d4d3d}.op-est{color:#8893a0;font-size:11px}.ops-proy-empty{padding:14px;color:#677;font-size:13px}.ops-proy-skipped{margin-top:14px;background:#fff8e6;border:1px solid #f0deA0;border-radius:8px;padding:10px 14px;font-size:12px}.op-skip-title{font-weight:700;margin-bottom:6px;color:#8a6d1f}.op-skip-item{margin:3px 0;color:#5a5a4a}
-.op-edit-input{width:100%;box-sizing:border-box;padding:4px 6px;border:1px solid #cdd6dd;border-radius:5px;font-size:12px}
-.op-edit-num{width:64px}
-.op-compr-hint{background:#eef5ff;border:1px solid #cfe0f5;color:#2c5a8a;font-size:12px;padding:6px 10px;border-radius:6px;margin-bottom:8px}
-.op-reset-btn{border:1px solid #cdd6dd;background:#fff;border-radius:5px;cursor:pointer;padding:2px 6px;font-size:13px}
-.op-reset-btn:hover{background:#f3f5f7}.ops-proy-note{margin-top:10px;font-size:11px;color:#8893a0;font-style:italic}
-.ops-row{cursor:pointer;border-bottom:1px solid var(--border);transition:background .15s;}
-.ops-row:hover,.ops-row-open{background:#f0fdf4;}
-.ops-row.ops-urgent>td:first-child{border-left:3px solid #ef4444;}
-.ops-row td{padding:10px 14px;vertical-align:top;}
-.od-ic{font-size:15px;margin-right:4px;}
-.od-st{display:inline-block;padding:2px 9px;border-radius:20px;font-size:11px;font-weight:600;}
-.od-st-activo{background:var(--activo-bg);color:var(--activo);}
-.od-st-proceso{background:var(--proceso-bg);color:var(--proceso);}
-.od-st-conv{background:var(--conv-bg);color:var(--conv);}
-.od-st-seg{background:var(--seg-bg);color:var(--seg);}
-.od-su{font-size:12px;color:var(--muted);max-width:160px;}
-.od-periodo{font-size:12px;color:var(--muted);white-space:nowrap;}
-.od-pr{max-width:200px;font-size:13px;}
-.od-pd{display:block;font-size:11px;color:var(--muted);margin-top:2px;}
-.ops-card-row>td{padding:0!important;border-bottom:2px solid var(--k)!important;}
-.ops-card{padding:18px 20px;background:#f8fafc;}
-.ops-card-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
-@media(max-width:640px){.ops-card-grid{grid-template-columns:1fr;}}
-.od-cx{color:var(--muted);font-size:13px;margin-bottom:12px;line-height:1.55;}
-.od-fields{font-size:12px;}
-.od-fields>div{display:flex;gap:10px;padding:5px 0;border-bottom:1px solid #f1f5f9;}
-.od-fl{color:var(--muted);min-width:72px;font-size:10px;text-transform:uppercase;letter-spacing:.06em;padding-top:1px;}
-.od-alerts{margin-top:12px;display:flex;flex-direction:column;gap:4px;}
-.od-alert{background:#fef3c7;border:1px solid var(--seg-border);border-radius:6px;padding:6px 10px;font-size:12px;color:#92400e;}
-.od-stages-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:10px;}
-.od-stages{display:flex;flex-direction:column;gap:2px;}
-.od-stage{display:flex;align-items:flex-start;gap:10px;padding:6px 0;border-bottom:1px solid #f1f5f9;}
-.od-stage-dot{font-size:15px;flex-shrink:0;margin-top:1px;}
-.od-stage-nm{font-size:13px;font-weight:500;color:var(--text);}
-.od-stage-dt{font-size:11px;color:var(--muted);margin-top:1px;}
-.od-stage-done .od-stage-nm{color:var(--activo);}
-.od-stage-active .od-stage-nm{color:var(--proceso);font-weight:700;}
-.od-stage-empty{color:var(--muted);font-size:12px;font-style:italic;padding:8px 0;}
-.ops-qa-wrap{margin-top:0;}
-.ops-qa-row{display:flex;gap:10px;margin-bottom:10px;}
-.ops-qa-sel,.ops-qa-inp{padding:8px 12px;border:1px solid var(--border);border-radius:8px;font-size:13px;flex:1;background:#fff;}
-.ops-qa-ta{width:100%;padding:9px 12px;border:1px solid var(--border);border-radius:8px;font-size:13px;resize:vertical;font-family:inherit;background:#fff;}
-.ops-qa-btn{margin-top:10px;background:var(--k);color:#111;border:none;padding:10px 24px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;display:inline-block;}
-.ops-qa-btn:hover{background:var(--k-dark);color:#fff;}
-.inst-resumen{margin:0 0 14px}.inst-resumen-wrap{background:#fff;border:1px solid #e0e4ef;border-radius:10px;padding:12px 16px}.inst-resumen-title{font-size:13px;font-weight:700;color:#333;margin:0 0 9px}.inst-resumen-table{width:100%;border-collapse:collapse;font-size:11.5px}.inst-resumen-table th{background:#f0f4ff;padding:5px 8px;text-align:left;border-bottom:2px solid #c8d0e8;font-weight:600;color:#444;white-space:nowrap}.inst-resumen-table td{padding:5px 8px;border-bottom:1px solid #eef0f6;vertical-align:top}.inst-resumen-table tr:last-child td{border-bottom:none}.inst-resumen-table td:first-child{font-weight:600}.ci-inst{color:#1a7f5a}.ci-su{color:#0055c8}.ci-ambas{color:#a45c00}.ci-alianza{color:#888}
-/* Chat ops */
-#ops-chat-wrap{margin:20px 0 0}.chat-box{background:#fff;border:1px solid #e0e4ef;border-radius:12px;overflow:hidden}.chat-header{background:#3b5bdb;color:#fff;padding:10px 16px;font-size:13px;font-weight:700;letter-spacing:.02em}.chat-setup{padding:16px}.chat-setup p{font-size:13px;color:#555;margin:0 0 8px}.chat-setup input{width:100%;box-sizing:border-box;padding:8px 10px;border:1px solid #ccc;border-radius:6px;font-size:13px;margin-bottom:8px}.chat-setup button{padding:7px 18px;background:#3b5bdb;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:13px;font-weight:600}.chat-msgs{padding:12px 16px;max-height:340px;overflow-y:auto;display:flex;flex-direction:column;gap:10px}.chat-empty{color:#aaa;font-size:13px;text-align:center;margin:24px 0}.chat-msg{display:flex;flex-direction:column;gap:3px}.chat-msg-user{align-items:flex-end}.chat-msg-assistant{align-items:flex-start}.chat-role{font-size:11px;color:#aaa;font-weight:600;padding:0 4px}.chat-text{padding:9px 13px;border-radius:10px;font-size:13px;line-height:1.55;max-width:85%}.chat-msg-user .chat-text{background:#3b5bdb;color:#fff;border-radius:10px 10px 2px 10px}.chat-msg-assistant .chat-text{background:#f0f4ff;color:#333;border-radius:10px 10px 10px 2px}.chat-input-row{display:flex;gap:8px;padding:10px 16px;border-top:1px solid #eee;align-items:flex-end}.chat-input-row textarea{flex:1;padding:8px 10px;border:1px solid #ccc;border-radius:8px;font-size:13px;resize:none;font-family:inherit;line-height:1.4}.chat-input-row button{padding:9px 18px;background:#3b5bdb;color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;white-space:nowrap}.chat-input-row button:disabled{opacity:.45;cursor:default}.chat-actions{padding:6px 16px 10px;display:flex;gap:8px;flex-wrap:wrap}.chat-actions button{font-size:11.5px;padding:4px 11px;border:1px solid #dde;border-radius:6px;background:#fafafa;cursor:pointer;color:#555}.chat-actions button:hover{background:#f0f0f0}
-
-/* Nueva oportunidad comercial */
-.proj-add-btn{background:#1a7f5a;color:#fff;border:none;border-radius:6px;padding:7px 14px;font-size:.78rem;cursor:pointer;font-weight:600;margin-left:8px}
-.proj-add-btn:hover{background:#155f43}
-.new-proj-form{background:#f6fff9;border:1px solid #b2d8c2;border-radius:10px;padding:16px 18px;margin-bottom:16px}
-.npf-title{font-size:13px;font-weight:700;color:#1a7f5a;margin:0 0 12px}
-.npf-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px 14px;margin-bottom:12px}
-.npf-full{margin-bottom:12px}
-.npf-grid label,.npf-full label{font-size:11.5px;color:#555;display:block;margin-bottom:3px;font-weight:600}
-.npf-grid input,.npf-full input{width:100%;box-sizing:border-box;padding:6px 8px;border:1px solid #ccc;border-radius:5px;font-size:12px}
-.npf-actions{display:flex;gap:8px}
-.npf-save{background:#1a7f5a;color:#fff;border:none;border-radius:6px;padding:7px 16px;font-size:12.5px;cursor:pointer;font-weight:600}
-.npf-cancel{background:#fff;border:1px solid #ccc;border-radius:6px;padding:7px 12px;font-size:12.5px;cursor:pointer;color:#555}
-/* Nueva iniciativa (Ops) */
-.ops-nueva-wrap{background:#fff;border:1px solid #e0e4ef;border-radius:10px;overflow:hidden;margin-top:20px}
-.ops-nueva-header{background:#f5f7ff;padding:10px 16px;border-bottom:1px solid #e0e4ef;display:flex;justify-content:space-between;align-items:center}
-.ops-nueva-title{font-size:13px;font-weight:700;color:#3b5bdb}
-.ops-nueva-body{padding:16px}
-.oni-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 14px;margin-bottom:12px}
-.oni-full{margin-bottom:12px}
-.oni-grid label,.oni-full label{font-size:11.5px;color:#555;display:block;margin-bottom:3px;font-weight:600}
-.oni-grid select,.oni-grid input,.oni-full input,.oni-full select{width:100%;box-sizing:border-box;padding:7px 8px;border:1px solid #ccc;border-radius:5px;font-size:12.5px}
-.oni-alert{background:#fff8e6;border:1px solid #f0c040;border-radius:7px;padding:10px 12px;font-size:12px;color:#7a5800;margin-bottom:10px;display:none}
-.oni-save{background:#3b5bdb;color:#fff;border:none;border-radius:6px;padding:8px 18px;font-size:12.5px;cursor:pointer;font-weight:600}
-.oni-cancel{background:#fff;border:1px solid #ccc;border-radius:6px;padding:8px 12px;font-size:12.5px;cursor:pointer;color:#555}
-.ops-nueva-list{padding:0 16px 14px}
-.oni-item{background:#f0f4ff;border-radius:7px;padding:8px 12px;margin-bottom:6px;font-size:12.5px;display:flex;justify-content:space-between;align-items:center}
-.oni-item-left{flex:1}
-.oni-item-org{font-weight:700;color:#3b5bdb}
-.oni-item-desc{color:#444;margin-top:2px}
-.oni-item-del{background:none;border:none;color:#aaa;cursor:pointer;font-size:14px;padding:0 4px}
-.oni-item-del:hover{color:#e53e3e}
-.oni-new-msg{background:#fff8e6;border:1px solid #f0c040;border-radius:7px;padding:10px 14px;font-size:12px;color:#7a5800;margin-bottom:8px}
-.ops-chat-box{background:#fff;border:1px solid #e0e4ef;border-radius:10px;overflow:hidden;margin-top:20px}
-.ops-chat-header{background:#f0f4ff;padding:10px 16px;border-bottom:1px solid #e0e4ef;font-size:13px;font-weight:700;color:#3b5bdb;display:flex;justify-content:space-between;align-items:center}
-.ops-chat-key-row{padding:10px 16px;background:#fff8e6;border-bottom:1px solid #f0c040;font-size:12px}
-.ops-chat-key-row input{padding:5px 8px;border:1px solid #ccc;border-radius:5px;font-size:12px;width:260px;margin-right:8px}
-.ops-chat-key-row button{background:#3b5bdb;color:#fff;border:none;border-radius:5px;padding:5px 10px;font-size:12px;cursor:pointer}
-.ops-chat-msgs{height:240px;overflow-y:auto;padding:14px 16px;display:flex;flex-direction:column;gap:10px}
-.ops-chat-msg-user{align-self:flex-end;background:#3b5bdb;color:#fff;border-radius:10px 10px 2px 10px;padding:8px 12px;font-size:12.5px;max-width:75%}
-.ops-chat-msg-ai{align-self:flex-start;background:#f0f4ff;color:#222;border-radius:10px 10px 10px 2px;padding:8px 12px;font-size:12.5px;max-width:80%;white-space:pre-wrap}
-.ops-chat-msg-sys{align-self:center;color:#999;font-size:11px;font-style:italic}
-.ops-chat-input-row{display:flex;padding:10px 16px;border-top:1px solid #e0e4ef;gap:8px}
-.ops-chat-input{flex:1;padding:8px 10px;border:1px solid #ccc;border-radius:6px;font-size:12.5px}
-.ops-chat-send{background:#3b5bdb;color:#fff;border:none;border-radius:6px;padding:8px 14px;font-size:12.5px;cursor:pointer;font-weight:600}
-.hist-link-bar{text-align:right;padding:2px 6px 8px;margin-top:-4px}
-.hist-link-btn{background:none;border:none;color:#94a3b8;font-size:11px;cursor:pointer;padding:2px 6px;border-radius:4px;text-decoration:underline;text-underline-offset:2px}
-.hist-link-btn:hover{color:#475569}
-.proj-input{scroll-margin:0!important}
-.proj-table-wrap{overflow-anchor:none}
-.su-section{margin-top:24px}
-.su-section-title{font-size:13px;font-weight:700;color:#1e293b;padding:0 0 10px;border-bottom:2px solid #e2e8f0;margin-bottom:14px}
-.su-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
-.su-card{background:#fff;border:1px solid #e2e8f0;border-radius:10px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.04)}
-.su-card-head{display:flex;align-items:center;gap:8px;padding:10px 14px;border-bottom:1px solid #f1f5f9;background:#f8fafc}
-.su-card-ic{font-size:20px;line-height:1}
-.su-card-nm{font-size:12.5px;font-weight:700;color:#1e293b;flex:1}
-.su-card-st{font-size:10px;padding:2px 7px;border-radius:10px;font-weight:600;white-space:nowrap}
-.su-card-st.activo{background:#dcfce7;color:#166534}
-.su-card-st.proceso{background:#dbeafe;color:#1e40af}
-.su-card-st.conv{background:#f3e8ff;color:#6b21a8}
-.su-card-st.seg{background:#fef9c3;color:#713f12}
-.su-card-st.frio{background:#f1f5f9;color:#64748b}
-.su-card-body{padding:10px 14px}
-.su-pills{display:flex;flex-wrap:wrap;gap:5px}
-.su-pill{background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe;border-radius:12px;padding:3px 9px;font-size:11px;font-weight:500}
-.su-pill-note{background:#f8fafc;color:#64748b;border:1px solid #e2e8f0;border-radius:12px;padding:3px 9px;font-size:11px;font-style:italic}
-.su-empty{color:#94a3b8;font-size:12px;font-style:italic}
 </style>
 </head>
 <body>
 
 <div class="site-header">
-  <div>
-    <h1>🏛️ Instituciones B2B · Kiltro</h1>
-    <div class="meta">Alianzas y programas · <span id="fecha"></span></div>
+  <div class="site-header-left">
+    <img src="https://www.kiltro.es/assets/kiltro-logo-black-BoguXKBa.png" alt="Kiltro" class="site-header-logo">
+    <div class="site-header-divider"></div>
+    <div>
+      <h1>Instituciones B2B</h1>
+      <div class="meta">Alianzas y programas · <span id="fecha"></span></div>
+    </div>
   </div>
   <div class="header-actions">
     <button class="btn-header" id="toggleEdit" onclick="toggleEditMode()">✏️ Modo edición</button>
@@ -475,13 +331,9 @@ table.ot{width:100%;border-collapse:collapse;background:#fff;font-size:12.5px;}
   </div>
 </div>
 
-<div class="tab-nav"><button class="tab-btn t-on" onclick="showTab('comercial',this)"><span>🏛️</span> Comercial</button><button class="tab-btn" onclick="showTab('operaciones',this)"><span>🔧</span> Operaciones</button></div>
-<div id="tab-comercial" class="tab-panel t-on">
 <div class="summary" id="summary"></div>
-<div id="inst-resumen" class="inst-resumen"></div>
 
 <!-- SALES MODAL -->
-<div class="hist-link-bar"><button class="hist-link-btn" onclick="openSalesModal()">📊 Ver historial de ventas completo →</button></div>
 <div id="salesModal" class="sales-modal-overlay" onclick="if(event.target===this)closeSalesModal()">
   <div class="sales-modal">
     <div class="sales-modal-header">
@@ -495,25 +347,11 @@ table.ot{width:100%;border-collapse:collapse;background:#fff;font-size:12.5px;}
   </div>
 </div>
 
-<!-- FICHA DETALLADA MODAL (por acuerdo) -->
-<div id="fichaModal" class="sales-modal-overlay" onclick="if(event.target===this)closeFichaModal()">
-  <div class="sales-modal fm-modal">
-    <div class="sales-modal-header">
-      <div>
-        <h2 id="fichaModalTitle">📄 Ficha completa del acuerdo</h2>
-        <div class="sales-modal-sub" id="fichaModalSub"></div>
-      </div>
-      <button class="sales-modal-close" onclick="closeFichaModal()">✕</button>
-    </div>
-    <div id="fichaModalBody"></div>
-    <div class="fm-actions">
-      <button class="btn-cancel" onclick="closeFichaModal()">Cerrar</button>
-      <button class="btn-save" onclick="saveFicha()">💾 Guardar ficha</button>
-    </div>
-  </div>
+
+<div class="alerts-bar" id="alertsBar">
+  <button class="alerts-toggle" id="alertsToggle" onclick="toggleAlerts()">⚠️ Alianzas sin actividad <span class="al-badge" id="alertsBadge">0</span> <span class="al-arrow">▼</span></button>
+  <div class="alerts-body" id="alertsBody"></div>
 </div>
-
-
 <div class="filters">
   <span>Filtrar:</span>
   <button class="ftag on f-todos" data-f="todos">Todos</button>
@@ -533,24 +371,7 @@ table.ot{width:100%;border-collapse:collapse;background:#fff;font-size:12.5px;}
       <div class="proj-title">📊 Proyección Pipeline B2B — Próximos 6 Meses</div>
       <div class="proj-sub">Potencial de cierre y valor esperado ponderado por probabilidad. Editable. Actualizado al <span id="proj-fecha"></span></div>
     </div>
-    <button class="proj-reset-btn" onclick="resetProj()">↺ Restaurar por defecto</button><button class="proj-add-btn" onclick="openNewProjForm()">+ Nueva oportunidad</button>
-
-  <div id="new-proj-form" class="new-proj-form" style="display:none">
-    <div class="npf-title">+ Nueva oportunidad comercial</div>
-    <div class="npf-grid">
-      <div><label>Organización *</label><input id="npf-org" type="text" placeholder="Nombre institución"></div>
-      <div><label>Sesiones objetivo</label><input id="npf-meta" type="number" value="5" min="1"></div>
-      <div><label>Duración (meses)</label><input id="npf-meses" type="number" value="3" min="1"></div>
-      <div><label>Monto/mes (CLP)</label><input id="npf-monto" type="number" placeholder="400000"></div>
-      <div><label>Probabilidad (%)</label><input id="npf-prob" type="number" value="50" min="0" max="100"></div>
-      <div><label>Mes estimado cierre</label><input id="npf-mes" type="text" placeholder="Sep 2026"></div>
-    </div>
-    <div class="npf-full"><label>Próxima acción</label><input id="npf-next" type="text" placeholder="Describe el próximo paso..."></div>
-    <div class="npf-actions">
-      <button class="npf-save" onclick="saveNewProj()">Guardar oportunidad</button>
-      <button class="npf-cancel" onclick="document.getElementById('new-proj-form').style.display='none'">Cancelar</button>
-    </div>
-  </div>
+    <button class="proj-reset-btn" onclick="resetProj()">↺ Restaurar por defecto</button>
   </div>
   <div class="proj-kpi-bar" id="projKpis"></div>
   <div class="proj-table-wrap">
@@ -559,239 +380,9 @@ table.ot{width:100%;border-collapse:collapse;background:#fff;font-size:12.5px;}
   <div class="proj-actions-section" id="projActions"></div>
 </section>
 
-<div class="alerts-bar" id="alertsBar">
-  <button class="alerts-toggle" id="alertsToggle" onclick="toggleAlerts()">⚠️ Alianzas sin actividad <span class="al-badge" id="alertsBadge">0</span> <span class="al-arrow">▼</span></button>
-  <div class="alerts-body" id="alertsBody"></div>
-</div>
-</div><!-- /tab-comercial -->
-
-<div id="tab-operaciones" class="tab-panel"><div id="ops-root"></div><div id="ops-nueva-container"></div><div id="ops-chat-wrap"></div></div>
 <div class="saved-toast" id="toast">✅ Guardado</div>
 
 <script>
-function showTab(n,b){
-  document.querySelectorAll(".tab-panel").forEach(function(p){p.classList.remove("t-on");});
-  document.querySelectorAll(".tab-btn").forEach(function(x){x.classList.remove("t-on");});
-  document.getElementById("tab-"+n).classList.add("t-on");
-  b.classList.add("t-on");
-  if(n==="operaciones"&&!window.__opsOk){renderOps();window.__opsOk=true;
-  applyODOverrides();}
-}
-var OD=[{id:'ship2b-tiina',nm:'Ship2B — Programa Tiina',ic:'🚀',st:'a',pa:'España',tp:'Aceleradora',ac:'Activo · calendario acordado jun–oct 2026',su:['8 startups financiadas (artes + alimentación)'],se:'Mentoría 0 · semana 29 jun 2026',co:'John Burgana (jburgana@ship2b.org)',cx:'Ship2B España — 8 startups con temática artes y alimentación, recién financiadas. Entregables: reporte por startup + informe institucional. Sin vinculación CORFO.',pr:'Ejecutar Mentoría 0 (semana 29 jun) · programa 5 etapas hasta oct 2026',pd:'Semana 29 jun 2026',periodo:'Jun – Oct 2026',al:['⚠️ Inicio: semana 29 jun (Mentoría 0)','Taller 1: lun 20 jul · Mentorías de valor: sep–oct 2026'],et:[{nm:'Mentoría 0 — conocer startups y objetivos',st:'active',dt:'Semana 29 jun 2026'},{nm:'Taller comercial 1 (+ post-work)',st:'pending',dt:'Lun 20 jul 12:00–13:30h'},{nm:'Mentoría 1 — 1ª asesoría de valor',st:'pending',dt:'Semana 7 sep 2026'},{nm:'Taller comercial 2',st:'pending',dt:'Lun 21 sep 12:00–13:30h'},{nm:'Mentoría 2 — 2ª asesoría de valor',st:'pending',dt:'Semana 5 oct 2026'},{nm:'Reportes por startup + informe institucional',st:'pending',dt:'Oct 2026'}],ci:'inst',ug:false,proy:[{nombre:'Tiina Fase 2 (8 startups)',n:8,sps:3,tipo:'Mentoria 1:1',ini:'2026-06-29',fin:'2026-10-09',nota:'Sesion 0 + 2 asesorias de valor 1:1 por startup. No incluye 2 talleres grupales (20 jul, 21 sep), que no se multiplican por startup. Fechas de semana estimadas al lunes de esa semana.',confirmado:true},{nombre:'Tiina Fase 1 (15 startups)',n:15,sps:null,tipo:'Por definir',ini:null,fin:null,nota:'Esquema de sesiones y fechas aun sin confirmar con Ship2B, pendiente de definicion.',confirmado:false}]},{id:'scale4impact',nm:'Ship2B — Scale4Impact',ic:'🚀',st:'a',pa:'Portugal / España',tp:'Aceleradora',ac:'EUR 8.000 · contrato activo',su:['8 startups activas'],se:'Sesiones semanales en curso',co:'John Burgana (jburgana@ship2b.org) / Guillem Bargalló (gbargallo@ship2b.org)',cx:'Scale4Impact: aceleradora inclusión social (educación y empleo), 4ª ed. Fondo VP €150k. 8 startups activas (una rechazó la plaza). ⚠️ Verificar fechas reales del programa con John.',pr:'Sesiones semanales en curso · verificar fechas cierre del programa con John',pd:'Jul 2026',periodo:'May – Jul 2026',al:['⚠️ Verificar fechas reales del programa (posible extensión)'],et:[{nm:'Asesorías 01 (diagnósticos iniciales)',st:'done',dt:'May 2026'},{nm:'Sesiones semanales en curso',st:'active',dt:'Jun–Jul 2026'},{nm:'Cierre programa',st:'pending',dt:'Jul 2026'}],ci:'inst',ug:false,proy:[{nombre:'Scale4Impact (8 startups)',n:8,sps:2,tipo:'Asesoría comercial 1:1',ini:'2026-05-01',fin:'2026-07-31',nota:'Mínimo 2 asesorías 1:1/startup. Diagnósticos iniciales ya completados en mayo. Fecha de cierre por verificar con John (posible extensión).',confirmado:false}]},{id:'2gether',nm:'2Gether International',ic:'🌍',st:'a',pa:'Internacional',tp:'Aceleradora',ac:'USD 6.300 · contrato firmado 2 jun 2026',su:['16 startups · Sesión 1 ✓: Tiflo Maze, Almafuertelab, Sol. Inclusivas, Embrace Diversity, LAT Bionics, AulaMind, INCLU+, Diversojob, LevTech+ · Pendientes: OtherAI, T.P.Ayudar + 5 más'],se:'3 ses/startup + taller grupal · deadline 10 jul',co:'Simon Robredo (simon@2gether-international.org) / Santiago García',cx:'2GI aceleradora negocios internacionales. Iniciado 9 jun. 3 sesiones/startup → deadline 10 jul. Taller grupal semana 15 jul. 9 de 16 startups con sesión 1 completada. Definir modalidad del programa (¿finalistas? ¿inversión?).',pr:'Completar 3 ses/startup para todas (deadline 10 jul) · taller grupal semana 15 jul',pd:'10 jul 2026',periodo:'9 jun – 24 jul 2026',al:['⚠️ Deadline 3 ses/startup: 10 jul · Taller semana 15 jul','⚠️ Definir modalidad: ¿finalistas? ¿inversión para ganadores?'],et:[{nm:'Contrato firmado',st:'done',dt:'2 jun 2026'},{nm:'Sesiones 1 — 9 de 16 completadas',st:'active',dt:'9–13 jun 2026'},{nm:'Completar sesiones 1 (7 pendientes)',st:'active',dt:'Jun–10 jul 2026'},{nm:'Sesiones 2 y 3 por startup',st:'pending',dt:'Jun–10 jul 2026'},{nm:'Taller grupal de ventas',st:'pending',dt:'Semana 15 jul 2026'},{nm:'Informe final + cierre',st:'pending',dt:'Jul 2026'}],ci:'inst',ug:true,proy:[{nombre:'2Gether — ciclo 2026 (16 startups)',n:16,sps:3,tipo:'Asesoría 1:1',ini:'2026-06-09',fin:'2026-07-24',nota:'3 sesiones 1:1/startup (9 de 16 ya con sesión 1). + 1 taller grupal (semana 15 jul) no multiplicado por startup.',confirmado:true}]},{id:'knowhub',nm:'KnowHub',ic:'🎓',st:'p',pa:'Chile',tp:'Aceleradora',ac:'En negociación · cotización enviada 11 jun 2026',su:['VitaGreen (Andrés)','RedOcean (Andrés)','City Bloom (Andrés)','Rema / MOV (Maga)'],se:'5 ses/startup propuestas · negociando programa nov 2026',co:'Alonso Ureta (alonso.ureta@knowhub.cl)',cx:'Aceleradora Corfo Chile. 4 startups activas: 3 con Andrés (VitaGreen, RedOcean, City Bloom) y 1 con Maga (Rema/MOV). En negociación: programa desde nov 2026 para 4 nuevas startups + posible apoyo en selección.',pr:'Esperar respuesta KnowHub · confirmar arranque + cerrar propuesta nov 2026',pd:'Jun–Jul 2026',periodo:'Activo + negociación nov 2026',al:['Propuesta bajo revisión del equipo KnowHub','Negociando programa nov 2026 (4 startups + posible selección)'],et:[{nm:'Reunión inicial y cotización enviada',st:'done',dt:'11 jun 2026'},{nm:'Revisión interna KnowHub',st:'active',dt:'Jun 2026'},{nm:'Confirmación y arranque sesiones',st:'pending',dt:'Jul 2026'},{nm:'Negociación programa nov 2026',st:'active',dt:'En curso'}],ci:'ambas',ug:true,proy:[{nombre:'KnowHub — 4 startups activas',n:4,sps:null,tipo:'Por definir',ini:null,fin:null,nota:'En negociación — cotización enviada 11 jun, sin respuesta. Propuesta paralela: 5 ses/startup desde nov 2026 para 4 startups adicionales.',confirmado:false}]},{id:'genialis',nm:'Genialis / EcoXcale',ic:'🌱',st:'a',pa:'Chile',tp:'Aceleradora',ac:'$5.4M CLP · Corfo Escalonado',su:['Sonner (Álvaro semanal)','Hidrobytes (Andrés directorio)'],se:'Directorio Estratégico mensual · Álvaro semanal con Sonner',co:'Daniela Mardones (daniela.mardones@genialis.cl) / Andrés Vega (andres@genialis.cl)',cx:'Genialis administra Corfo Escalonado. Kiltro actúa como Director Estratégico de 2 startups: Sonner (Álvaro sesiones semanales + Andrés directorio mensual) e Hidrobytes (Andrés directorio mensual).',pr:'Directorios mensuales en curso · 4to directorio 8 jul (Hidrobytes 5pm · Sonner 6pm CEST)',pd:'8 jul 2026',periodo:'2026 · directorios mensuales',al:['Preparar preguntas directorio antes del 8 jul','Revisar avance Hidrobytes'],et:[{nm:'3er Directorio Sonner',st:'done',dt:'6 may 2026'},{nm:'3er Directorio Hidrobytes',st:'done',dt:'13 may 2026'},{nm:'4to Directorio Hidrobytes (5pm CEST)',st:'pending',dt:'8 jul 2026'},{nm:'4to Directorio Sonner (6pm CEST)',st:'pending',dt:'8 jul 2026'}],ci:'inst',ug:false,proy:[{nombre:'Genialis — Directorio Estratégico (2 startups)',n:2,sps:null,tipo:'Directorio mensual (no semanal)',ini:null,fin:null,nota:'Cadencia mensual, no semanal — modelo incompatible con el cálculo de sesiones/semana. Próximo directorio: 8 jul 2026.',confirmado:false}]},{id:'agora',nm:'Agora Partnerships',ic:'🌎',st:'a',pa:'Latam / EEUU',tp:'ONG / Fundación',ac:'Módulos 2 y 3 impartidos · cobros pendientes · reporte pendiente',su:['TELL','VIVESANO 360 / Años Dorados','VITA SENIOR SAS','Zuustento','Talana','Casa Causa','Kuskakids / Legacy','UNAVOZUNALUZ','Telemed Vida','Kuidda','ETAM EAS / MIVA','(Panjam — contactar más adelante)'],se:'Asesorías activas con 11 startups (Taller Agora)',co:'Raquel Durón (rduron@agora2030.org) / Esmeralda Ospina (eospina@agora2030.org)',cx:'Programa Región Plateada (silver economy). Módulos 2 y 3 impartidos por Álvaro. Taller Agora — 19 contactadas: 11 con asesoría agendada, 1 para más adelante (Panjam), 7 no se presentaron o no calificaron (BondUP, Plataforma AM, COORYC, Metazero, GERO SILVER, Ciclo, ConSentido). Pendiente: reporte a Agora + selección 10 finalistas.',pr:'Asesorías activas con 11 startups · enviar reporte a Agora · cobros pendientes · atento a 10 finalistas',pd:'Urgente',periodo:'Mar–abr 2026 (módulos) · May–jun 2026 (Taller Agora)',al:['⚠️ Pagos Módulos 2 y 3 posiblemente sin confirmar','⚠️ Reporte a Agora pendiente · atento a 10 finalistas'],et:[{nm:'Módulo 2',st:'done',dt:'~9–20 mar 2026'},{nm:'Módulo 3',st:'done',dt:'~abr 2026'},{nm:'Taller Agora — RCs (19 startups contactadas)',st:'done',dt:'Abr–jun 2026'},{nm:'Asesorías con 11 startups',st:'active',dt:'May–jun 2026'},{nm:'Cobro Módulo 2',st:'active',dt:'Dentro 30 días hábiles de mar 20'},{nm:'Cobro Módulo 3',st:'active',dt:'Dentro 30 días hábiles de abr 17'},{nm:'Reporte a Agora (proceso Taller)',st:'active',dt:'Urgente'},{nm:'Selección 10 finalistas',st:'pending',dt:'Por confirmar'},{nm:'Nueva propuesta / continuidad',st:'pending',dt:'Por definir'}],ci:'ambas',ug:true,proy:[{nombre:'Agora — Taller Agora (11 startups)',n:11,sps:null,tipo:'Asesoría (en curso)',ini:null,fin:null,nota:'Ciclo actual de asesorías termina jun 2026 sin próximo ciclo confirmado. Pendiente reporte y selección de 10 finalistas.',confirmado:false}]},{id:'chrysalis',nm:'Chrysalis / Impulso Azul',ic:'🦋',st:'p',pa:'Chile',tp:'Aceleradora',ac:'Fase 1 completa · esperando confirmación financiamiento Corfo',su:['9 startups Impulso Azul (PUCV) — 1ª sesión completada · pendiente: 2ª sesión y confirmación Corfo'],se:'Diagnósticos completados · programa 8 meses pendiente de financiamiento',co:'Macarena Cornejo (macarena@chrysalis.cl) / Ismael Rivera (ismael.rivera.v@pucv.cl)',cx:'Incubadora PUCV — Programa Impulso Azul. Fase 1: 9 startups con primera sesión. Verificar cuáles ya tienen 2ª sesión. Esperando confirmación de cuáles startups reciben financiamiento Corfo para arrancar programa de acompañamiento de 8 meses.',pr:'Esperando confirmación financiamiento Corfo → arrancar programa 8 meses con startups seleccionadas',pd:'Urgente · confirmar',periodo:'Abr–jun 2026 (fase 1) · programa 8 meses pendiente',al:['⚠️ Confirmar startups con financiamiento Corfo → programa 8 meses','Verificar cuáles startups ya tienen 2ª sesión'],et:[{nm:'Coordinación inicial',st:'done',dt:'8 abr 2026'},{nm:'Fase 1: primeras sesiones (9 startups)',st:'done',dt:'Abr–jun 2026'},{nm:'Verificar 2das sesiones por startup',st:'active',dt:'Jun 2026'},{nm:'Confirmar startups con financiamiento Corfo',st:'active',dt:'Urgente'},{nm:'Propuesta y arranque programa 8 meses',st:'pending',dt:'Post-confirmación'}],ci:'ambas',ug:true,proy:[{nombre:'Impulso Azul — Fase 1 (9 startups)',n:9,sps:null,tipo:'Diagnóstico (1ª/2ª sesión)',ini:null,fin:null,nota:'Esperando confirmación financiamiento Corfo. El programa de 8 meses (startups seleccionadas, ~40 en el pool total) aún no tiene fecha de inicio.',confirmado:false}]},{id:'nesst',nm:'NESsT',ic:'🌿',st:'p',pa:'Colombia / Latam',tp:'ONG / Fundación',ac:'Por definir · primera etapa: coordinar RCs con 2 proyectos',su:['Bioincos (Colombia)','Chunaki (Colombia)'],se:'Coordinar RC con Bioincos y Chunaki (Colombia)',co:'Diana Alejandra Ramírez Loaiza / Juan Pablo Manrique (referido)',cx:'NESsT: inversión en empresas sociales. South America Accelerator (IKEA). Reunión inicial 12 jun ✓. Primera etapa: coordinar RC con Bioincos y Chunaki (Colombia) para evaluar si aplica ofrecer primer acompañamiento gratuito. Diana introduce a Andrés con Juan Pablo Manrique.',pr:'Coordinar RCs con Bioincos y Chunaki (Colombia) vía Juan Pablo Manrique',pd:'Esta semana',periodo:'Jun 2026 – por definir',al:['Reunión realizada 12 jun 2026 ✓','Coordinar RC con Bioincos y Chunaki (vía Juan Pablo)'],et:[{nm:'Primera reunión Kiltro–NESsT',st:'done',dt:'12 jun 2026'},{nm:'RC con Bioincos (Colombia)',st:'active',dt:'Por coordinar'},{nm:'RC con Chunaki (Colombia)',st:'active',dt:'Por coordinar'},{nm:'Evaluación: ofrecer acomp. gratuito',st:'pending',dt:'Post-RC'},{nm:'Propuesta formal NESsT',st:'pending',dt:'Por definir'}],ci:'su',ug:false,proy:[{nombre:'NESsT — evaluación inicial (2 proyectos)',n:2,sps:null,tipo:'RC (por coordinar)',ini:null,fin:null,nota:'Aún en etapa de Reunión de Conocimiento, sin acompañamiento comercial confirmado.',confirmado:false}]},{id:'openb',nm:'Open Beaucheff (U. Chile)',ic:'🎓',st:'p',pa:'Chile',tp:'Universidad',ac:'5 talleres mensuales desde jul 2026',su:['Proyectos OpenSenior (adultos mayores 60+)'],se:'5 talleres híbridos jul–nov 2026 · asesorías por definir',co:'Fernando Nowajewski (fernando.nowajewski@uchile.cl) / Álvaro',cx:'OpenBeauchef — U. de Chile. Programa OpenSenior. 5 talleres híbridos mensuales jul–nov 2026. Certificación conjunta U. Chile + Kiltro. Álvaro viaja a Santiago.',pr:'5 talleres jul–nov 2026 · definir modelo asesorías 1:1 con Fernando',pd:'Jul 2026',periodo:'Jul – Nov 2026',al:['Reunión con Fernando pendiente de confirmar','Álvaro debe enviar documentos a Fernando'],et:[{nm:'Acuerdo inicial',st:'done',dt:'15 may 2026'},{nm:'Reunión modelo asesorías con Fernando',st:'active',dt:'Esta semana'},{nm:'Taller 1',st:'pending',dt:'Jul 2026'},{nm:'Talleres 2–5',st:'pending',dt:'Ago–nov 2026'}],ci:'inst',ug:false,proy:[{nombre:'OpenBeauchef — talleres OpenSenior',n:null,sps:null,tipo:'Taller grupal mensual (no 1:1)',ini:'2026-07-01',fin:'2026-11-30',nota:'5 talleres híbridos grupales jul–nov 2026, no por startup — no incluido en el cálculo de sesiones 1:1.',confirmado:true}]},{id:'kunan',nm:'Kunan',ic:'⭐',st:'c',pa:'Perú',tp:'ONG / Fundación',ac:'USD 3.800 referencial · por formalizar',su:['8 ganadores Desafío Kunan 2026'],se:'~3 meses acompañamiento · por confirmar',co:'Marlith Quiroz (mquiroz@perusostenible.org)',cx:'Kunan — Plataforma Peruana de Emprendimiento Social y Ambiental. Interés en acompañamiento técnico post-Desafío Kunan 2026 para 8 ganadores. Presupuesto referencial: USD 3.800.',pr:'Elaborar y enviar propuesta formal para 8 ganadores Desafío Kunan',pd:'Esta semana',periodo:'Por confirmar (~ago–oct 2026)',al:['⚠️ Propuesta formal PENDIENTE','Dirección Ejecutiva confirmó interés 12 jun'],et:[{nm:'Interés confirmado por Dirección Ejecutiva',st:'done',dt:'12 jun 2026'},{nm:'Elaborar propuesta formal',st:'active',dt:'Esta semana'},{nm:'Enviar y negociar propuesta',st:'pending',dt:'Jun 2026'},{nm:'Arranque acompañamiento',st:'pending',dt:'~ago 2026'}],ci:'inst',ug:true,proy:[{nombre:'Kunan — 8 ganadores Desafío 2026',n:8,sps:null,tipo:'Por definir',ini:null,fin:null,nota:'Propuesta formal aún no enviada. Arranque estimado ~agosto 2026, ~3 meses de duración.',confirmado:false}]},{id:'lucha',nm:'Lucha (LIFT 3ª ed.)',ic:'💪',st:'a',pa:'Perú',tp:'ONG / Fundación',ac:'Colaboración alianza (sin costo fijo)',su:['PanQAyuda (RC ✓)','WiseMed (RC ✓ · Asesorías en progreso con Andrés)','COOL EXPERIENCES (RC ✓)','⚠️ Verificar listado completo en Excel agenda'],se:'Masterclass + RCs completados · asesorías 1:1 en curso',co:'Bruno Bambarén (bruno@luchala.org / +51 920 104 508)',cx:'Programa LIFT 3ª ed. (Lima, Perú). Masterclass ejecutada. RCs completados: PanQAyuda, WiseMed, COOL EXPERIENCES. WiseMed en proceso de asesoría con Andrés. Verificar Excel agenda para listado completo de startups y estado.',pr:'Asesorías 1:1 en curso (WiseMed) · coordinar seguimiento PanQAyuda y COOL EXPERIENCES',pd:'Jun 2026',periodo:'7 abr 2026 – en curso',al:['Confirmar fechas sesiones de seguimiento','⚠️ Verificar listado completo en Excel agenda (no disponible en esta sesión)'],et:[{nm:'Masterclass ejecutada',st:'done',dt:'May 2026'},{nm:'RC PanQAyuda',st:'done',dt:'May 2026'},{nm:'RC + Asesorías WiseMed (en curso)',st:'active',dt:'May–jun 2026'},{nm:'RC COOL EXPERIENCES',st:'done',dt:'May–jun 2026'},{nm:'Asesorías 1:1 Alumni (Lucha)',st:'active',dt:'Jun 2026'}],ci:'alianza',ug:false,proy:[{nombre:'Lucha/LIFT — asesorías alumni',n:null,sps:null,tipo:'Asesoría 1:1 (en curso)',ini:null,fin:null,nota:'Sin listado completo de startups confirmado (pendiente Excel agenda). Asesorías 1:1 en curso con WiseMed.',confirmado:false}]},{id:'hubapta',nm:'HubApta',ic:'🏗️',st:'c',pa:'Chile',tp:'Aceleradora',ac:'Por definir — diagnóstico gratuito (20) + plan personalizado (5)',su:['Builder: 20 startups seleccionadas → 5 finalistas (demo day 7 ago)'],se:'3 semanas diagnóstico (20) + 3-4 meses etapa personalizada (5)',co:'Pablo Torrejón / Felipe Cabezas',cx:'HubApta — aceleradora chilena, programa Builder con 20 startups seleccionadas (demo day 7 agosto). Propuesta: diagnóstico gratuito a los 20 (insumo de selección) + acceso a red España (Ship2B activo) para los 5 finalistas.',pr:'Seguimiento si no hay respuesta del directorio antes de fin de junio',pd:'2026-06-24',periodo:'Jul – sept/oct 2026 (post demo day)',al:['⚠️ Pendiente respuesta del directorio','Reunión 17 jun realizada — propuesta presentada'],et:[{nm:'RC y primer contacto (Felipe Cabezas)',st:'done',dt:'5 may 2026'},{nm:'Presentación Builder (Pablo Torrejón)',st:'done',dt:'18 may 2026'},{nm:'Propuesta formal enviada',st:'done',dt:'27 may 2026'},{nm:'Reunión de revisión de propuesta',st:'done',dt:'17 jun 2026'},{nm:'Respuesta del directorio',st:'active',dt:'Antes de fin jun 2026'}],ci:'ambas',ug:true,proy:[{nombre:'HubApta — Builder (5 finalistas)',n:5,sps:null,tipo:'Plan personalizado (por definir)',ini:null,fin:null,nota:'Etapa personalizada (3–4 meses) inicia solo tras demo day (7 ago) y respuesta del directorio, aún pendiente.',confirmado:false}]},
-{id:'technoserve',nm:'TechnoServe / VerdeXcelerate',ic:'🌾',st:'c',pa:'Centroamérica / México',tp:'ONG / Fundación',ac:'Por definir — propuesta pendiente de envío',su:['AgriFood Tech startups (VerdeXcelerate)'],se:'Por definir',co:'Giselle Barrera',cx:'TechnoServe — programa VerdeXcelerate enfocado en startups de AgriFood Tech en Centroamérica y México.',pr:'Enviar propuesta a Giselle Barrera',pd:'Por definir',periodo:'Por definir',al:['⚠️ Propuesta pendiente de envío'],et:[{nm:'Primer contacto',st:'done',dt:'—'},{nm:'Enviar propuesta a Giselle Barrera',st:'active',dt:'Pendiente'}],ci:'ambas',ug:false,proy:[]},
-{id:'socialnest',nm:'Social Nest Foundation',ic:'🤝',st:'a',pa:'España',tp:'ONG / Fundación',ac:'Strategic Partner (sin cobro — matchmaking + diffusion)',su:['50 finalistas (Startup Challenge, anuncio fin ago.)'],se:'Matchmaking 20 oct · taller finalistas en sept.',co:'Paola de la Huerta / Sandra Mediavilla',cx:'Social Nest Foundation — fundación española de emprendimiento de impacto. Evento insignia "The Gap in Between" (20 oct). Kiltro cierra rol de Partner Comercial del Startup Challenge: lidera matchmaking del evento + taller de diagnóstico para las 50 finalistas en septiembre.',pr:'Matchmaking confirmado 20 oct — definir con Maga evaluación finalistas',pd:'Septiembre 2026',periodo:'Sept – Oct 2026',al:['Acuerdo cerrado 15 jun — Partner Comercial del Startup Challenge'],et:[{nm:'RC inicial',st:'done',dt:'2 jun 2026'},{nm:'Reunión con Karina y Sandra',st:'done',dt:'2 jun 2026'},{nm:'Cierre acuerdo Partner Comercial',st:'done',dt:'15 jun 2026'},{nm:'Taller diagnóstico 50 finalistas',st:'pending',dt:'Sept 2026'},{nm:'Matchmaking — The Gap in Between',st:'pending',dt:'20 oct 2026'}],ci:'ambas',ug:false,proy:[{nombre:'Social Nest — taller 50 finalistas',n:50,sps:null,tipo:'Taller grupal diagnóstico (no 1:1)',ini:'2026-09-01',fin:'2026-09-30',nota:'Taller grupal único en sept. (no sesiones 1:1 por startup) + matchmaking 20 oct (evento puntual).',confirmado:true}]}];
-function renderStartupsGrid(){
-  var STC={a:"activo",p:"proceso",c:"conv",s:"seg",f:"frio"};
-  var STL={a:"Activo",p:"En proceso",c:"En conv.",s:"Seguimiento",f:"Frío"};
-  var cards=OD.filter(function(d){return d.su&&d.su.length>0;}).map(function(d){
-    var stcls=STC[d.st]||"frio";
-    var stlbl=STL[d.st]||d.st;
-    var pills=d.su.map(function(s){
-      if(s.match(/^\d+\s/)){
-        return '<span class="su-pill-note">'+s+'</span>';
-      }
-      var parts=s.split(",").map(function(p){return p.trim();});
-      if(parts.length>1||!s.includes(":")){
-        return parts.map(function(p){return '<span class="su-pill">'+p+'</span>';}).join("");
-      }
-      var after=s.split(":")[1]||s;
-      return after.split(",").map(function(p){return '<span class="su-pill">'+p.trim()+'</span>';}).join("");
-    }).join("");
-    return '<div class="su-card">'+ 
-      '<div class="su-card-head"><span class="su-card-ic">'+d.ic+'</span>'+
-      '<span class="su-card-nm">'+d.nm+'</span>'+
-      '<span class="su-card-st '+stcls+'">'+stlbl+'</span></div>'+
-      '<div class="su-card-body"><div class="su-pills">'+pills+'</div></div></div>';
-  }).join("");
-  return '<div class="su-section"><div class="ops-section-title">🌱 Startups por organización</div><div class="su-grid">'+cards+'</div></div>';
-}
-function pISO_(s){var p=s.split('-');return new Date(+p[0],+p[1]-1,+p[2]);}function mondayOf_(d){var x=new Date(d);var wd=x.getDay();var diff=(wd===0?-6:1-wd);x.setDate(x.getDate()+diff);x.setHours(0,0,0,0);return x;}function addDays_(d,n){var x=new Date(d);x.setDate(x.getDate()+n);return x;}function fmtWk_(d){var dd=String(d.getDate()).padStart(2,'0');var mm=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'][d.getMonth()];return dd+' '+mm;}function wkKey_(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}function computeProyeccion(){var hoy=new Date();hoy.setHours(0,0,0,0);var hoyMon=mondayOf_(hoy);var semanas={};var orden=[];var skipped=[];var totalGeneral=0;OD.forEach(function(o){var cohortes=o.proy||[];cohortes.forEach(function(c){if(c.n&&c.sps&&c.ini&&c.fin){var total=c.n*c.sps;var ini=pISO_(c.ini);var fin=pISO_(c.fin);var wMon=mondayOf_(ini);var wks=[];while(wMon<=fin){wks.push(new Date(wMon));wMon=addDays_(wMon,7);}if(wks.length===0)wks.push(mondayOf_(ini));var rate=total/wks.length;totalGeneral+=total;wks.forEach(function(wm){var wEnd=addDays_(wm,6);if(wEnd<hoyMon)return;var key=wkKey_(wm);if(!semanas[key]){semanas[key]={ini:wm,fin:wEnd,items:[],total:0};orden.push(key);}semanas[key].items.push({org:o.nm,tipo:c.tipo,nombre:c.nombre,valor:rate});semanas[key].total+=rate;});}else{skipped.push({org:o.nm,nombre:c.nombre,nota:c.nota||'Sin fecha/cifras confirmadas.'});}});});orden.sort();var sem=orden.map(function(k){return semanas[k];});return{semanas:sem,skipped:skipped,totalGeneral:totalGeneral};}function fmtFecha_(s){if(!s)return '—';var p=s.split('-');var meses=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];return p[2]+' '+meses[+p[1]-1]+' '+p[0];}
-function applyODOverrides(){
-  try{
-    var raw=localStorage.getItem('kiltro_od_proy_v1');
-    if(!raw)return;
-    var ov=JSON.parse(raw);
-    OD.forEach(function(o){
-      var orec=ov[o.id];
-      if(!orec)return;
-      (o.proy||[]).forEach(function(c,idx){
-        var co=orec[idx];
-        if(!co)return;
-        if(co.n!==undefined)c.n=co.n;
-        if(co.sps!==undefined)c.sps=co.sps;
-        if(co.ini!==undefined)c.ini=co.ini;
-        if(co.fin!==undefined)c.fin=co.fin;if(co.tipo!==undefined)c.tipo=co.tipo;
-      });
-    });
-  }catch(e){}
-}
-function saveODOverride(oid,idx,field,value){
-  try{
-    var raw=localStorage.getItem('kiltro_od_proy_v1');
-    var ov=raw?JSON.parse(raw):{};
-    if(!ov[oid])ov[oid]={};
-    if(!ov[oid][idx])ov[oid][idx]={};
-    if(field==='n'||field==='sps'){
-      var num=parseInt(value,10);
-      ov[oid][idx][field]=(value===''||isNaN(num))?null:num;
-    }else{
-      ov[oid][idx][field]=value||null;
-    }
-    localStorage.setItem('kiltro_od_proy_v1',JSON.stringify(ov));
-  }catch(e){}
-  applyODOverrides();
-  window.__opsOk=false;
-  renderOps();
-}
-function editODField(el){
-  saveODOverride(el.getAttribute('data-oid'),parseInt(el.getAttribute('data-idx'),10),el.getAttribute('data-field'),el.value);
-}
-function resetODOverride(oid,idx){
-  try{
-    var raw=localStorage.getItem('kiltro_od_proy_v1');
-    if(raw){
-      var ov=JSON.parse(raw);
-      if(ov[oid]){delete ov[oid][idx];localStorage.setItem('kiltro_od_proy_v1',JSON.stringify(ov));}
-    }
-  }catch(e){}
-  location.reload();
-}
-function resetODOverrideBtn(el){
-  resetODOverride(el.getAttribute('data-oid'),parseInt(el.getAttribute('data-idx'),10));
-}
-function renderCompromisos(){
-  var h='';
-  h+='<div class="ops-compr-wrap"><div class="op-compr-title">📊 Compromisos por organización y programa</div>';
-  if(editMode){h+='<div class="op-compr-hint">Modo edición activo: edita startups, sesiones/startup o fechas — se guarda automáticamente en este navegador.</div>';}
-  h+='<div style="overflow-x:auto"><table class="ops-proy-table ops-compr-table"><thead><tr><th>Organización</th><th>Programa / Cohorte</th><th>Startups</th><th>Sesiones/startup</th><th>Total</th><th>Tipo</th><th>Inicio</th><th>Término</th><th>Estado</th>'+(editMode?'<th></th>':'')+'</tr></thead><tbody>';
-  OD.forEach(function(o){
-    (o.proy||[]).forEach(function(c,idx){
-      var total=(c.n&&c.sps)?(c.n*c.sps):null;
-      var listo=!!(c.n&&c.sps&&c.ini&&c.fin);
-      h+='<tr><td class="op-cell">'+o.nm+'</td><td class="op-cell">'+c.nombre+'</td>';
-      if(editMode){
-        h+='<td class="op-cell"><input type="number" min="0" class="op-edit-input op-edit-num" value="'+(c.n||'')+'" data-oid="'+o.id+'" data-idx="'+idx+'" data-field="n" onchange="editODField(this)"></td>';
-        h+='<td class="op-cell"><input type="number" min="0" class="op-edit-input op-edit-num" value="'+(c.sps||'')+'" data-oid="'+o.id+'" data-idx="'+idx+'" data-field="sps" onchange="editODField(this)"></td>';
-      }else{
-        h+='<td class="op-cell" style="text-align:center">'+(c.n||'—')+'</td>';
-        h+='<td class="op-cell" style="text-align:center">'+(c.sps||'—')+'</td>';
-      }
-      h+='<td class="op-cell" style="text-align:center;font-weight:700">'+(total!==null?total:'—')+'</td>';
-      h+=(editMode?('<td class="op-cell"><input type="text" class="op-edit-input" value="'+(c.tipo||'')+'" data-oid="'+o.id+'" data-idx="'+idx+'" data-field="tipo" onchange="editODField(this)"></td>'):('<td class="op-cell">'+(c.tipo||'—')+'</td>'));
-      if(editMode){
-        h+='<td class="op-cell"><input type="date" class="op-edit-input" value="'+(c.ini||'')+'" data-oid="'+o.id+'" data-idx="'+idx+'" data-field="ini" onchange="editODField(this)"></td>';
-        h+='<td class="op-cell"><input type="date" class="op-edit-input" value="'+(c.fin||'')+'" data-oid="'+o.id+'" data-idx="'+idx+'" data-field="fin" onchange="editODField(this)"></td>';
-      }else{
-        h+='<td class="op-cell">'+fmtFecha_(c.ini)+'</td>';
-        h+='<td class="op-cell">'+fmtFecha_(c.fin)+'</td>';
-      }
-      h+='<td class="op-cell">'+(listo?'<span class="op-badge-ok">Confirmado</span>':'<span class="op-badge-pend">Por confirmar</span>')+'</td>';
-      if(editMode){
-        h+='<td class="op-cell"><button class="op-reset-btn" data-oid="'+o.id+'" data-idx="'+idx+'" onclick="resetODOverrideBtn(this)" title="Restaurar valores originales">↺</button></td>';
-      }
-      h+='</tr>';
-    });
-  });
-  h+='</tbody></table></div></div>';
-  return h;
-}
-
-function renderProyeccion(){var d=computeProyeccion();var h='';h+='<div class="ops-section">';h+='<div class="ops-section-title">\uD83D\uDCC8 Proyecci\u00f3n semanal de sesiones comprometidas</div>';
-  h+=renderCompromisos();if(d.semanas.length===0){h+='<div class="ops-proy-empty">No hay cohortes con cifras y fechas confirmadas para proyectar a futuro.</div>';}else{var totalSemanas=d.semanas.length;var promedioSemanal=d.totalGeneral/totalSemanas;h+='<div class="ops-proy-kpis">';h+='<div class="ops-proy-kpi"><div class="ops-proy-v">'+d.totalGeneral.toFixed(1)+'</div><div class="ops-proy-l">Sesiones proyectadas (desde hoy)</div></div>';h+='<div class="ops-proy-kpi"><div class="ops-proy-v">'+promedioSemanal.toFixed(1)+'</div><div class="ops-proy-l">Promedio semanal</div></div>';h+='<div class="ops-proy-kpi"><div class="ops-proy-v">'+totalSemanas+'</div><div class="ops-proy-l">Semanas con carga proyectada</div></div>';h+='</div>';h+='<div style="overflow-x:auto"><table class="ops-proy-table"><thead><tr><th>Semana</th><th>Detalle por organizaci\u00f3n / cohorte</th><th>Total</th></tr></thead><tbody>';d.semanas.forEach(function(s){h+='<tr><td class="op-cell">'+fmtWk_(s.ini)+' - '+fmtWk_(s.fin)+'</td><td class="op-cell">';s.items.forEach(function(it){h+='<div><span class="op-prog">'+it.org+'</span> \u2014 '+it.nombre+' <span class="op-est">('+it.tipo+')</span>: <b>'+it.valor.toFixed(2)+'</b></div>';});h+='</td><td class="op-cell-total">'+s.total.toFixed(1)+'</td></tr>';});h+='</tbody></table></div>';}if(d.skipped.length>0){h+='<div class="ops-proy-skipped"><div class="op-skip-title">\u26a0\ufe0f Cohortes sin proyecci\u00f3n cuantitativa (datos pendientes de confirmar)</div>';d.skipped.forEach(function(s){h+='<div class="op-skip-item"><b>'+s.org+'</b> \u2014 '+s.nombre+': '+s.nota+'</div>';});h+='</div>';}h+='<div class="ops-proy-note">La proyecci\u00f3n distribuye sesiones de forma pareja entre la fecha de inicio y t\u00e9rmino de cada cohorte. Cifras sin fecha/cantidad confirmada no se incluyen en el c\u00e1lculo.</div>';h+='</div>';return h;}function renderOps(){
-  if(window.__opsOk)return;
-  window.__opsOk=true;
-  const wrap=document.getElementById('ops-root');
-  if(!wrap)return;
-  const ST={a:'Activo',p:'En proceso',c:'En conversación',s:'Seguimiento',f:'Frío'};
-  const STC={a:'activo',p:'proceso',c:'conv',s:'seg',f:'frio'};
-  const DOT={done:'✅',active:'🔵',pending:'⬜'};
-  const urgent=OD.filter(d=>d.ug);
-  let h='';
-  if(urgent.length){
-    h+='<div class="ops-alerts-bar">';
-    urgent.forEach(d=>{h+='<div class="ops-alert-pill oa-'+STC[d.st]+'">🔴 <strong>'+d.nm+'</strong>: '+d.pr+'</div>';});
-    h+='</div>';
-  }
-  h+='<div class="ops-kpi-bar">';
-  h+='<div class="ops-kpi"><span class="ops-kpi-v" style="color:var(--activo)">'+OD.filter(d=>d.st==='a').length+'</span><div class="ops-kpi-l">Activas</div></div>';
-  h+='<div class="ops-kpi"><span class="ops-kpi-v" style="color:var(--proceso)">'+OD.filter(d=>d.st==='p').length+'</span><div class="ops-kpi-l">En proceso</div></div>';
-  h+='<div class="ops-kpi"><span class="ops-kpi-v" style="color:var(--conv)">'+OD.filter(d=>d.st==='c').length+'</span><div class="ops-kpi-l">En conv.</div></div>';
-  h+='<div class="ops-kpi"><span class="ops-kpi-v" style="color:var(--seg)">'+OD.filter(d=>d.ug).length+'</span><div class="ops-kpi-l">⚠️ Urgentes</div></div>';
-  h+='</div>';
-  h+=renderCompromisos();h+='<div class="ops-section"><div class="ops-section-title">📋 Resumen de acuerdos activos</div>';
-  h+='<div class="ops-table-wrap"><table class="ops-table"><thead><tr><th>Institución</th><th>Estado</th><th>Startups</th><th>Período</th><th>Próxima acción</th></tr></thead><tbody>';
-  OD.forEach(function(d){
-    h+='<tr class="ops-row'+(d.ug?' ops-urgent':'')+'" onclick="toggleOpsCard(\''+d.id+'\')">';
-    h+='<td><span class="od-ic">'+d.ic+'</span> <strong>'+d.nm+'</strong></td>';
-    h+='<td><span class="od-st od-st-'+STC[d.st]+'">'+ST[d.st]+'</span></td>';
-    h+='<td class="od-su">'+d.su.join('<br>')+'</td>';
-    h+='<td class="od-periodo">'+d.periodo+'</td>';
-    h+='<td class="od-pr">'+d.pr+'<span class="od-pd">'+d.pd+'</span></td>';
-    h+='</tr>';
-    h+='<tr id="card-'+d.id+'" class="ops-card-row" style="display:none"><td colspan="5">';
-    h+='<div class="ops-card"><div class="ops-card-grid">';
-    h+='<div class="ops-card-left">';
-    if(d.cx) h+='<div class="od-cx">'+d.cx+'</div>';
-    h+='<div class="od-fields">';
-    h+='<div><span class="od-fl">Contacto</span><span>'+d.co+'</span></div>';
-    h+='<div><span class="od-fl">Acuerdo</span><span>'+d.ac+'</span></div>';
-    h+='<div><span class="od-fl">Sesiones</span><span>'+d.se+'</span></div>';
-    h+='</div>';
-    if(d.al&&d.al.length){
-      h+='<div class="od-alerts">';
-      d.al.forEach(function(a){h+='<div class="od-alert">'+a+'</div>';});
-      h+='</div>';
-    }
-    h+='</div>';
-    h+='<div class="ops-card-right">';
-    h+='<div class="od-stages-title">Etapas del programa</div>';
-    if(d.et&&d.et.length){
-      h+='<div class="od-stages">';
-      d.et.forEach(function(e){
-        h+='<div class="od-stage od-stage-'+e.st+'">';
-        h+='<span class="od-stage-dot">'+DOT[e.st]+'</span>';
-        h+='<div><div class="od-stage-nm">'+e.nm+'</div><div class="od-stage-dt">'+e.dt+'</div></div>';
-        h+='</div>';
-      });
-      h+='</div>';
-    } else {
-      h+='<div class="od-stage-empty">Sin etapas definidas</div>';
-    }
-    h+='</div></div></div></td></tr>';
-  });
-  h+='</tbody></table></div></div>';
-  h+='<div class="ops-section ops-qa-wrap"><div class="ops-section-title">💬 Consultas para el área comercial</div>';
-  h+='<form name="ops-qa" data-netlify="true" netlify-honeypot="bot-field" onsubmit="sendQA(event)">';
-  h+='<input type="hidden" name="form-name" value="ops-qa"><p hidden><input name="bot-field"></p>';
-  h+='<div class="ops-qa-row">';
-  h+='<select name="institucion" class="ops-qa-sel"><option value="">— Selecciona institución —</option>';
-  OD.forEach(function(d){h+='<option value="'+d.id+'">'+d.nm+'</option>';});
-  h+='</select>';
-  h+='<input type="text" name="quien" placeholder="Tu nombre" class="ops-qa-inp"></div>';
-  h+='<textarea name="consulta" placeholder="Escribe tu consulta..." class="ops-qa-ta" rows="3"></textarea>';
-  h+='<button type="submit" class="ops-qa-btn">Enviar consulta ✉️</button>';
-  h+='</form></div>';
-  h+=renderStartupsGrid();
-  wrap.innerHTML=h;
-}
-function toggleOpsCard(id){
-  const row=document.getElementById('card-'+id);
-  if(!row)return;
-  const vis=row.style.display!=='none';
-  document.querySelectorAll('.ops-card-row').forEach(function(r){r.style.display='none';});
-  document.querySelectorAll('.ops-row').forEach(function(r){r.classList.remove('ops-row-open');});
-  if(!vis){row.style.display='table-row';row.previousElementSibling.classList.add('ops-row-open');}
-}
-function sendQA(e){
-  e.preventDefault();
-  var fd=new FormData(e.target);
-  fd.append("form-name","ops-pregunta");
-  fetch("/",{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:new URLSearchParams(fd).toString()})
-    .then(function(){document.getElementById("qaOk").style.display="block";e.target.reset();setTimeout(function(){document.getElementById("qaOk").style.display="none";},5000);})
-    .catch(function(){alert("Error al enviar. Intenta nuevamente.");});
-}
-
-const IS_PUBLIC = window.location.hostname.includes('netlify.app') || window.location.search.includes('public=1');
 const TAG_LABEL={reunion:'Reunión',taller:'Taller',rc:'RC',propuesta:'Propuesta',contrato:'Contrato',dinero:'💰 Pago',programa:'Programa',email:'Email',linkedin:'LinkedIn'};
 const TIPO_ICON={Aceleradora:'🚀','ONG/Fundación':'🌍','Red/Ecosistema':'🕸️',Corporativo:'🏢',Universidad:'🎓'};
 const TIPO_CSS={Aceleradora:'acel','ONG/Fundación':'ong','Red/Ecosistema':'red',Corporativo:'corp',Universidad:'corp'};
@@ -806,16 +397,6 @@ const DEFAULT_DATA = [
      {año:'2026',nombre:'Talleres Región Plateada (BID Lab)',monto:'USD 1.000',detalle:'Talleres de ventas en Colombia para el programa Región Plateada.'},
    ],
    historia:[
-     {date:'2026-07-20',tag:'seguimiento',text:'Resumen ejecutivo de cierre listo para enviar a 2gether International.'},
-     {date:'2026-07-13',tag:'seguimiento',text:'Cierre asesorías Embrace Diversity: informe comercial enviado y agradecimiento de la CEO Jeanette.'},
-     {date:'2026-07-13',tag:'seguimiento',text:'Embrace Diversity agradece el informe comercial Kiltro-2Gether y manifiesta interés en seguir en contacto.'},
-     {date:'2026-07-13',tag:'programa',text:'Cierre del Programa de Aceleración 2GI + BID Lab; agradecimiento de Simon a mentores Kiltro.'},
-     {date:'2026-06-30',tag:'reunion',text:'Asesoría 03 con Inclu+ Paraguay (Teo Urbieta) dentro del programa 2Gether.'},
-     {date:'2026-06-30',tag:'reunion',text:'Reunión de coordinación con Enzo Pantoja para definir próximos pasos del programa.'},
-     {date:'2026-06-17',tag:'seguimiento',text:'OtherAI (Néstor) faltó a Asesoría 1; se reagenda tras disculpas.'},
-     {date:'2026-06-17',tag:'reunion',text:'Asesoría 02 realizada con Inclu+.'},
-     {date:'2026-06-17',tag:'reunion',text:'Asesoría 02 realizada con Tiflo Waze.'},
-     {date:'2026-06-15',tag:'seguimiento',text:'Alonso Ureta de vacaciones hasta el 17 jun; retomará contacto al volver.'},
      {date:'2024-01-01',tag:'dinero',text:'💰 Contrato Kinesis con USAID: USD 45.000. NPS 93%.'},
      {date:'2026-03-17',tag:'taller',text:'Taller 1 — Programa Región Plateada (BID Lab). Colombia.'},
      {date:'2026-03-18',tag:'taller',text:'Taller 2 — Programa Región Plateada.'},
@@ -831,14 +412,12 @@ const DEFAULT_DATA = [
      {date:'2026-05-26',tag:'rc',text:'RCs: WiseMed, Cool Experiences, PanQAyuda vía Lucha.'},
    ]},
   {id:'knowhub',name:'KnowHub Chile',tipo:'Aceleradora',status:'Activo',contacto:'Alonso Ureta / Jovanka Trebotich',pais:'Chile',hsId:'12084598985',
-   modalidades:['Sesiones 1:1 con startups','Informes de cierre'],nextAction:'Reunión propuesta nuevo ciclo con Alonso — jue 11 jun 3pm',nextDate:'2026-06-11',
+   modalidades:['Sesiones 1:1 con startups','Informes de cierre'],nextAction:'Esperar respuesta equipo KnowHub post-propuesta. Enviar propuesta alternativa VitaGreen.',nextDate:'Esta semana',
    contratos:[
      {año:'2025',nombre:'3 startups KnowHub — Bioproc, Umov, Mov',monto:'$16.200.000 CLP',detalle:'KnowHub financia $5.400.000 CLP por startup. 3 startups en 2025: Bioproc, Umov, Mov. Total: $16.200.000 CLP (~USD 17.683 al cambio oficial SII dic 2025: $916,16/USD).'},
      {año:'2026',nombre:'Bluera (KnowHub)',monto:'$5.400.000 CLP',detalle:'KnowHub financia $5.400.000 CLP por startup. 1 startup en 2026: Bluera. (~USD 6.109 al cambio oficial SII ene 2026: $883,97/USD).'},
    ],
    historia:[
-     {date:'2026-06-22',tag:'seguimiento',text:'Enzo Pantoja recibió cotización servicio noviembre; reunión a agendar martes.'},
-     {date:'2026-06-15',tag:'seguimiento',text:'Alonso Ureta (KnowHub) de vacaciones hasta el 17/06; retoma contacto a su regreso.'},
      {date:'2025-01-01',tag:'dinero',text:'💰 KnowHub financia $5.400.000 CLP POR STARTUP. 2025: 3 startups (Bioproc, Umov, Mov) = $16.200.000 CLP (~USD 17.683, cambio SII dic 2025: $916,16/USD). 2026: Bluera = $5.400.000 CLP (~USD 6.109, cambio SII ene 2026: $883,97/USD).'},
      {date:'2025-12-01',tag:'dinero',text:'💰 Venta diciembre 2025: $4.500.000 CLP + IVA por acompañamiento a startups KnowHub.'},
      {date:'2026-04-02',tag:'programa',text:'Entrega de informes de cierre: Umov, Bioproc, Bluera.'},
@@ -846,51 +425,27 @@ const DEFAULT_DATA = [
      {date:'2026-06-03',tag:'reunion',text:'Gestión acceso a Patricia (VitaGreen) para Asesoría 01.'},
      {date:'2026-06-10',tag:'email',text:'📧 Alonso Ureta rechaza sesión uMov-Kiltro del 15 jun: vacaciones del 15 al 17 jun. Sesión pendiente de reagendar.'},
      {date:'2026-06-11',tag:'reunion',text:'Reunión "Propuesta KnowHub-Kiltro" con Alonso Ureta — jue 11 jun 3pm. Potencial nuevo ciclo.'},
+     {date:'2026-06-11',tag:'propuesta',text:'📋 Propuesta enviada post-reunión: programa aceleración 5 sesiones (incluye ítem selección de equipos), conexiones con startups portafolio (RedOcean, City Bloom, Rema), y propuesta alternativa 3 meses para Patricia/VitaGreen como "secretarios comerciales".'},
+     {date:'2026-06-11',tag:'correo',text:'📧 Alonso Ureta responde: "Muchas gracias por la propuesta. Lo revisaré con el equipo y te voy contando cuales son los próximos pasos." (CC: Jovanka Trebotich, Taky Parvex)'},
      {date:'2026-06-16',tag:'programa',text:'Sesión BioProc con Gabriela Villouta — mar 16 jun 3pm.'},
+     {date:'2026-06-30',tag:'email',text:'📧 Andrés escribe a Alonso antes de reunión con Enzo para alinear propuesta KnowHub.'},
+     {date:'2026-07-09',tag:'email',text:'📧 Andrés actualiza a Alonso: reunión con Enzo realizada (EBCT/INRIA). Propuesta de acompañamiento enviada. Sinergia BioProc-VitaGreen activa.'},
    ]},
   {id:'ship2b',name:'Ship2b',tipo:'Aceleradora',status:'Activo',contacto:'Guillem Bargallo / John Burgana',pais:'España / Latam',hsId:'382543952110',
-   modalidades:['Sesiones 1:1 con startups','Talleres','Referidos'],nextAction:'Sesiones Scale4impact — 23, 24 y 25 jun',nextDate:'2026-06-23',
-   contratos:[{año:'2026',nombre:'Scale4impact + Ship2be',monto:'EUR 8.000',detalle:'Sesiones 1:1 con startups en el segundo semestre 2026.',
-     ficha:{
-       f1:'Pendiente de firma. El borrador de Contrato Marco Kiltro–Ship2B (Scale4Impact y Tiina 2026) fue enviado a John Burgana y Guillem Bargalló el 18/06/2026 para revisión final; el 22/06/2026 se hicieron ajustes tras comentarios de John y se agendó coordinación para el 25/06/2026. A la fecha (27/06/2026) no hay registro de firma, aunque el servicio ya está operando en paralelo (sesiones Scale4Impact iniciadas 23–25 jun).',
-       f2:'EUR 8.000 netos (exento de IVA por exportación de servicios). Forma de pago: 50% anticipo (EUR 4.000) previo al inicio efectivo + 50% final (EUR 4.000) al finalizar. Plazo de pago por factura: 14 días corridos desde el envío. Datos de facturación del cliente: aún no completados en el contrato. Fuente: borrador de Contrato Marco (cláusula tercera), aún sin firmar.',
-       f3:'',
-       f4:'Sesiones de acompañamiento comercial 1:1 a tres cohortes de startups: Scale4Impact (7 entidades), Tiina Fase 2 / financiadas (8 entidades) y Tiina Fase 1 / nueva 5ª edición (15 entidades) — 30 entidades en total. Equipo ejecutor Kiltro: Andrés Romero, Magali Akerman y Álvaro Bravo.',
-       f5:'Scale4Impact: mínimo 2 sesiones 1:1 por entidad. Tiina Fase 2: 1 Sesión 0 (diagnóstico) + 2 Asesorías Comerciales de Valor (60–75 min) + 2 Talleres grupales (90 min) por entidad. Tiina Fase 1: esquema a definir, misma metodología que Fase 2, calendario pendiente de confirmación escrita.',
-       f6:'Inicio estimado: 15/06/2026. Scale4Impact: primeras sesiones 15–26 jun (ya realizadas: Lantxotegi, Lexiway; agendadas: NegoBide 23 jun, TERRALab 25 jun, Proyecto Arraigo 26 jun). Tiina Fase 2: Sesión 0 semana del 29 jun; Taller 1 — 20 jul (12:00–13:30 CEST); Asesoría 1 — semana del 7 sep; Taller 2 — 21 sep (12:00–13:30 CEST); Asesoría 2 — semana del 5 oct. Tiina Fase 1: calendario a confirmar. Cierre estimado: 31/12/2026.',
-       f7:'Informe de cierre con resultados y aprendizajes al finalizar cada programa (Scale4Impact y Tiina), según el borrador de Contrato Marco. Formato/plantilla específica: aún no acordada con Ship2B.',
-       f8:'30 entidades en total: 7 de Scale4Impact, 8 de Tiina Fase 2 (financiadas) y 15 de Tiina Fase 1 (nueva 5ª edición). Startups de Scale4Impact seleccionadas el 15/05/2026.',
-       f9:'',
-       f10:'Ship2B Foundation: fundación española (Barcelona) dedicada a acelerar la economía de impacto — aceleración y financiamiento de startups de impacto, estrategias de innovación para grandes empresas e inversión de impacto. Opera, entre otros, los programas Tiina y Scale4Impact.',
-       f11:'Guillem Bargalló y John Burgana — contactos/coordinadores principales del lado de Ship2B. Magali Akerman incorporada como coordinadora del lado de Kiltro (10/06/2026).',
-       f12:'Scale4Impact y Tiina (Fase 1 y Fase 2) — programas de aceleración para startups de impacto bajo el alero de Ship2B.',
-       f13:'',
-       f14:'',
-       f15:'Sesiones de acompañamiento comercial 1:1, talleres grupales y derivación de referidos (ej. Luz de Esperanza, derivado por Guillem el 02/06/2026).',
-       f16:'',
-       f17:'',
-       f18:'',
-       f19:'LinkedIn: linkedin.com/company/ship2bfoundation · Instagram: @ship2bfoundation · X/Twitter: @Ship2BFound · Web: ship2b.org',
-     }}],
+   modalidades:['Sesiones 1:1 con startups','Talleres','Referidos'],nextAction:'Ciclo TiinaF2 en curso. Pendiente asesoría Empower Cultura y cierre entregables con John.',nextDate:'2026-07-20',
+   contratos:[{año:'2026',nombre:'Scale4impact + Ship2be',monto:'EUR 8.000',detalle:'Sesiones 1:1 con startups en el segundo semestre 2026.'}],
    historia:[
-     {date:'2026-07-20',tag:'reunion',text:'Empower Cultura confirma Asesoría 1 (programa Ship2B - TiinaF2).'},
-     {date:'2026-07-14',tag:'seguimiento',text:'Envío de entregables del programa Scale4Impact (informe y presentación) a Ship2B.'},
-     {date:'2026-07-13',tag:'reunion',text:'Comité Scale4Impact (Tiina) con Guillem y John Mikel para revisar avance del programa. Revisión fase 2 agendada 24 jul.'},
-     {date:'2026-07-14',tag:'seguimiento',text:'Envío de entregables Scale4Impact: informe resumen de asesorías y presentación a Guillem, John y Rocío.'},
-     {date:'2026-07-13',tag:'reunion',text:'Comité Scale4Impact/Tiina F2 con Guillem Bargalló y John Burgaña; revisión informe Fase 2 agendada para el 24/07.'},
-     {date:'2026-06-30',tag:'reunion',text:'Asesoría 2 con Lantxotegi vía programa Scale4Impact / Ship2B.'},
-     {date:'2026-06-22',tag:'contrato',text:'Ajustes finales al contrato tras comentarios de John; coordinación agendada 25/06.'},
-     {date:'2026-06-18',tag:'programa',text:'Nuevas asesorías agendadas: NegoBide (23 jun), TERRALab (25 jun), Proyecto Arraigo (26 jun).'},
-     {date:'2026-06-18',tag:'reunion',text:'Asesoría 1 realizada con Lantxotegi (Scale4Impact).'},
-     {date:'2026-06-18',tag:'contrato',text:'Draft de contrato Kiltro-Ship2B enviado a John Burgana y Guillem Bargalló para revisión final.'},
-     {date:'2026-06-18',tag:'reunion',text:'Asesoría 1 con Lexiway (Scale4Impact) agendada hoy 18/6, 13:00 CEST.'},
-     {date:'2026-06-18',tag:'contrato',text:'Andrés respondió a Magali con el detalle de servicios (Tiina fases 1/2 y Scale4Impact: 2 sesiones 1:1 + taller por programa) para cerrar el contrato y gestionar el pago.'},
-     {date:'2026-06-16',tag:'contrato',text:'Revisión final de contrato Ship2B junto a Magali; coordinando últimos detalles antes de firma.'},
      {date:'2026-01-01',tag:'dinero',text:'💰 Acuerdo H2 2026: EUR 8.000 para sesiones en Scale4impact y Ship2be.'},
      {date:'2026-05-15',tag:'programa',text:'Startups Scale4impact seleccionadas.'},
      {date:'2026-06-02',tag:'reunion',text:'Referido: Luz de Esperanza → Kiltro (vía Guillem).'},
      {date:'2026-06-08',tag:'programa',text:'Sesiones agendadas: 23, 24 y 25 jun.'},
      {date:'2026-06-10',tag:'reunion',text:'Magali incorporada como coordinadora. John Burgana (Ship2b) confirma coordinación de fechas por correo.'},
+     {date:'2026-06-11',tag:'correo',text:'📧 Magali envía horarios confirmados para ambos programas (Scale4impact y Ship2be). Nota: todas las organizaciones son de España — se corrigen horarios muy desfasados para varios participantes.'},
+     {date:'2026-07-08',tag:'programa',text:'Asesoría 1 Plant On Demand (Ship2B TiinaF2).'},
+     {date:'2026-07-10',tag:'programa',text:'Asesoría 1 Urban Green Club (Ship2B TiinaF2).'},
+     {date:'2026-07-13',tag:'reunion',text:'Reunión con Guillem Bargallo, John Burgana y Rocio (Ship2B). Entrega informe resumen Scale4impact.'},
+     {date:'2026-07-17',tag:'email',text:'📧 John Burgana: pendiente asesoría con startup faltante antes de cerrar entregables.'},
+     {date:'2026-07-20',tag:'programa',text:'Asesoría 1: Empower Cultura (Ship2B TiinaF2).'},
    ]},
   {id:'hubtec',name:'HubTec Chile',tipo:'ONG/Fundación',status:'Activo',contacto:'—',pais:'Chile',hsId:'9261748181',
    modalidades:['Financiamiento de acompañamiento a startups'],nextAction:'Retomar relación para nuevas cohortes',nextDate:'Pendiente',
@@ -903,16 +458,15 @@ const DEFAULT_DATA = [
      {date:'2024-01-01',tag:'dinero',text:'💰 Contrato 2024: acompañamiento de PIC / Plataforma Circular.'},
    ]},
   {id:'hubapta',name:'HubApta',tipo:'Aceleradora',status:'En conversación',contacto:'Pablo Torrejon / Felipe Cabezas',pais:'Chile',hsId:'429380193529',
-   modalidades:['Acompañamiento a startups del portafolio'],nextAction:'Reunión 17 jun realizada — propuesta enviada, pendiente respuesta del directorio',nextDate:'2026-06-24',
+   modalidades:['Acompañamiento a startups del portafolio'],nextAction:'Aguardar respuesta directorio HubApta post-demo day (7 ago)',nextDate:'2026-08-07',
    contratos:[],
    historia:[
-     {date:'2026-06-17',tag:'reunion',text:'Reunión de revisión de propuesta realizada con Pablo Torrejón. Se presenta propuesta final: diagnóstico gratuito a los 20 (insumo de selección) + acceso a red España (Ship2B activo) para los 5 finalistas. Pablo se compromete a llevarlo al directorio — respuesta esperada antes de fin de junio.'},
-     {date:'2026-06-17',tag:'propuesta',text:'Reunión de revisión de propuesta HubApta-Kiltro confirmada con Pablo Torrejón.'},
-     {date:'2026-06-15',tag:'reunion',text:'Pablo confirma reunión "Revisión Propuesta HubApta-Kiltro" para el 17 jun, 18:00 CEST.'},
      {date:'2026-05-05',tag:'reunion',text:'Reunión con Felipe Cabezas. Presentación enviada.'},
      {date:'2026-05-27',tag:'propuesta',text:'Propuesta formal enviada a Pablo Torrejon.'},
      {date:'2026-06-08',tag:'email',text:'Pablo responde: "Quedo atento."'},
      {date:'2026-06-09',tag:'email',text:'Andrés propone reunión: jue 11 jun a las 9am o lun 15 jun a las 13:00. Pendiente confirmación.'},
+     {date:'2026-06-15',tag:'email',text:'📧 Pablo Torrejon confirma reunión mié 17 jun a las 11am.'},
+     {date:'2026-06-17',tag:'reunion',text:'Revisión Propuesta HubApta-Kiltro con Pablo Torrejon. Decisión pendiente del directorio (antes demo day 7 ago).'},
    ]},
   {id:'genialis',name:'Genialis / EcoXcale',tipo:'Aceleradora',status:'Activo',contacto:'Andrés Vega (CEO) / Daniela Mardones',pais:'Chile',hsId:'34948082881',
    modalidades:['Directorio Estratégico','Habilitador de contratos vía Corfo'],nextAction:'4to Directorio — jul 8: Hidrobytes y Sonner',nextDate:'2026-07-08',
@@ -922,37 +476,16 @@ const DEFAULT_DATA = [
      {date:'2026-01-01',tag:'dinero',text:'💰 Contrato Sonner confirmado: $5.400.000 CLP (~USD 6.109 al cambio SII ene 2026: $883,97/USD) via instrumento Corfo.'},
      {date:'2026-05-13',tag:'programa',text:'3er Directorio Estratégico Hidrobytes.'},
      {date:'2026-06-08',tag:'programa',text:'4to Directorio confirmado: jul 8. Sonner 5pm, Hidrobytes 6pm.'},
+     {date:'2026-06-24',tag:'email',text:'📧 Daniela Mardones envía Plan de Negocios Sonner para revisión previa al Directorio.'},
+     {date:'2026-07-08',tag:'programa',text:'4° Directorio Estratégico EcoXcale realizado — Sonner (11:00) e Hidrobytes (12:00).'},
    ]},
   {id:'2gether',name:'2Gether-International',tipo:'Aceleradora',status:'Activo',contacto:'Simon (coordinador)',pais:'Internacional',hsId:'167704596694',
-   modalidades:['Sesiones 1:1','Talleres grupales'],nextAction:'Asesoría 1 OtherAI — mié 17 jun 5pm. Asesoría 2 Embrace — 23 jun.',nextDate:'2026-06-17',
+   modalidades:['Sesiones 1:1','Talleres grupales'],nextAction:'Ciclo 2026 completado — informes enviados. Coordinar próximo ciclo con Simon.',nextDate:'Pendiente',
    contratos:[
      {año:'2025',nombre:'Asesorías + Taller',monto:'USD 2.700',detalle:'Sesiones individuales a startups + taller grupal.'},
-     {año:'2026',nombre:'Nuevo ciclo — contrato firmado',monto:'USD 6.300',detalle:'Contrato firmado electrónicamente el 2 jun 2026 (Agreement + Scope of Work). Ciclo iniciado 15 mayo (~10 semanas). 3 sesiones por startup + taller.',
-     ficha:{
-       f1:'Sí — firmado electrónicamente el 02/06/2026: "Business Strategy Coaching Agreement" + "Scope of Work 2026". Firmantes: Simon Robredo, Santiago García Méndez y Andrés Romero.',
-       f2:'USD 6.300 para el ciclo 2026 (contrato firmado). Antecedente: ciclo 2025 fue USD 2.700 (asesorías + taller grupal). Condiciones específicas de pago (cuotas, plazos, moneda de cobro) no especificadas en el historial disponible.',
-       f3:'',
-       f4:'3 sesiones 1:1 por startup (asesorías comerciales) + 1 taller grupal, por ciclo. (Ciclo 2025: asesorías individuales + 1 taller grupal).',
-       f5:'3 sesiones 1:1 por startup + 1 taller grupal por ciclo. Objetivos específicos de cada sesión: no especificados en el historial disponible.',
-       f6:'Ciclo 2026 iniciado 15/05/2026 (~10 semanas). En curso: Embrace Diversity (Asesoría 1 realizada 09/06, Asesoría 2 agendada 23/06), Locufre (Asesoría 1, 10/06), INCLU+ (Asesoría 1 realizada 11/06, próxima 17/06), OtherAI (Asesoría 1 reagendada para 17/06, 17:00–18:15 CEST), AulaMind (RC reagendada, nueva fecha pendiente).',
-       f7:'',
-       f8:'Ciclo 2026: al menos 6 startups identificadas — Embrace Diversity, OtherAI, AulaMind, Locufre, INCLU+ (Inclumá, Paraguay) y Tiflo Maze. Procedencia: portafolio 2Gether-International (founders con discapacidad). Nivel de madurez/etapa: no especificado.',
-       f9:'',
-       f10:'2Gether-International: organización que apoya a fundadores con discapacidad, conectándolos con los recursos para hacer crecer sus startups. Desde su primer acelerador en 2019 ha apoyado a más de 700 startups, que en conjunto han levantado ~USD 84M en inversión, ingresos y adquisiciones.',
-       f11:'Simon Robredo (coordinador principal), Santiago García Méndez (cofirmante del contrato). Gabriela coordina temas de agenda (ej. reagendamiento RC AulaMind).',
-       f12:'Acelerador anual para founders con discapacidad — ciclo 2026 en curso (~10 semanas), con sesiones 1:1 + taller grupal.',
-       f13:'',
-       f14:'',
-       f15:'Asesorías comerciales 1:1 + taller grupal de ventas para founders con discapacidad del portafolio 2Gether.',
-       f16:'',
-       f17:'Considerar sensibilidad al comunicar públicamente sobre founders con discapacidad — confirmar con 2Gether antes de cualquier difusión externa.',
-       f18:'',
-       f19:'LinkedIn: linkedin.com/company/2gether-international · Instagram: @2gether_international · Web: 2gether-international.org',
-     }},
+     {año:'2026',nombre:'Nuevo ciclo — contrato firmado',monto:'USD 6.300',detalle:'Contrato firmado electrónicamente el 2 jun 2026 (Agreement + Scope of Work). Ciclo iniciado 15 mayo (~10 semanas). 3 sesiones por startup + taller.'},
    ],
    historia:[
-     {date:'2026-07-15',tag:'programa',text:'Invitación a la Gran Final del Pitch Competition 2GI + BID Lab (viernes 17 jul).'},
-     {date:'2026-06-15',tag:'seguimiento',text:'Tiflo Maze (portafolio 2gether) envió materiales comerciales para ampliar la propuesta antes de la reunión.'},
      {date:'2025-01-01',tag:'dinero',text:'💰 Contrato 2025: asesorías + taller grupal. USD 2.700.'},
      {date:'2026-05-15',tag:'programa',text:'Inicio nuevo ciclo 2026 (~10 semanas). Startups: Embrace Diversity, OtherAI, AulaMind, Locufre, INCLU+ y más.'},
      {date:'2026-06-02',tag:'contrato',text:'💰 Contratos firmados electrónicamente: "Business Strategy Coaching Agreement" y "Scope of Work 2026". Firmas: Simon Robredo, Santiago Garcia Mendez y Andrés.'},
@@ -962,31 +495,13 @@ const DEFAULT_DATA = [
      {date:'2026-06-10',tag:'email',text:'📧 OtherAI (Nestor Ldrete): disculpa por confusión de horario. Asesoría 1 reagendada para 17 jun.'},
      {date:'2026-06-11',tag:'reunion',text:'Asesoría 1 realizada con INCLU+ (Inclumá - Paraguay). Fundador: Teo Urbieta. Próxima sesión: mié 17 jun 10am.'},
      {date:'2026-06-17',tag:'reunion',text:'Asesoría 1 con OtherAI agendada — mié 17 jun 5pm-6:15pm.'},
+     {date:'2026-07-08',tag:'email',text:'📧 Jeanette (Embrace Diversity) solicita material de sesiones anteriores.'},
+     {date:'2026-07-10',tag:'programa',text:'Informes de cierre enviados a startups del ciclo: Tiflo Maze, Inclu+, Embrace Diversity, Levtech (CC: Simon y Santiago).'},
+     {date:'2026-07-13',tag:'email',text:'📧 Jeanette responde informe Embrace Diversity — agradece ciclo. Ciclo 2026 completado.'},
    ]},
   {id:'chrysalis',name:'Chrysalis / Impulso Azul',tipo:'Aceleradora',status:'Activo',contacto:'Macarena / Ismael Rivera (PUCV)',pais:'Chile',hsId:'12378856952',
    modalidades:['Diagnósticos comerciales a startups','Potencial cierre directo con startups'],nextAction:'Avanzar cierres individuales con startups Impulso Azul',nextDate:'Pendiente',
-   contratos:[{año:'2026',nombre:'Impulso Azul — diagnósticos + potencial cierre individual',monto:'Pendiente de cierre',detalle:'Sin contrato firmado. Propuesta en curso: $3.500.000 CLP + IVA por startup / 8 meses de acompañamiento, a cerrar individualmente con cada startup del programa (no es un contrato único con Chrysalis). Vía línea Corfo de "prospección comercial".',
-     ficha:{
-       f1:'No firmado. Relación en fase de diagnóstico/propuesta: Macarena retomó el contacto el 08/04/2026 para diagnósticos a ~40 startups; Ismael Rivera (PUCV) envió los diagnósticos iniciales el 13/04/2026. El 09/06/2026 se identificó un potencial de cierre, pero sin contrato firmado a la fecha (27/06/2026).',
-       f2:'Propuesta (no cerrada): $3.500.000 CLP + IVA por startup, por 8 meses de acompañamiento — cierre individual con cada startup del programa Impulso Azul, no un contrato único con Chrysalis. Mecanismo de financiamiento: línea Corfo de "prospección comercial", donde el fee de Kiltro se incorpora como ítem de presupuesto dentro del plan de trabajo Corfo de cada startup (no lo paga Chrysalis directamente).',
-       f3:'',
-       f4:'Diagnósticos comerciales a startups del programa Impulso Azul (~40 startups), con potencial de cierre directo e individual con cada startup post-diagnóstico.',
-       f5:'',
-       f6:'08/04/2026: retoma de contacto. 13/04/2026: recepción de diagnósticos iniciales de Ismael Rivera. 09/06/2026: identificación de potencial de cierre ($3.500.000 CLP+IVA / startup / 8 meses). Fecha de inicio efectivo del acompañamiento: pendiente.',
-       f7:'',
-       f8:'~40 startups del programa Impulso Azul (convocatoria de Chrysalis PUCV para proyectos de Economía Azul: acuicultura sustentable, biotecnología marina, logística portuaria, conservación, entre otros) en la Región de Valparaíso, Chile.',
-       f9:'Diagnósticos iniciales de cada startup ya enviados por Ismael Rivera (13/04/2026) — disponibles como insumo; contenido específico aún por sistematizar en esta ficha.',
-       f10:'Chrysalis es la Incubadora de Negocios de la Pontificia Universidad Católica de Valparaíso (PUCV), con más de 14 años de historia y +900 startups apoyadas; reconocida como una de las incubadoras más destacadas de Chile y Latinoamérica.',
-       f11:'Macarena (contacto principal de retoma de relación) e Ismael Rivera (PUCV, a cargo de diagnósticos).',
-       f12:'Impulso Azul — convocatoria para emprendimientos de Economía Azul en la Región de Valparaíso. Proyectos seleccionados acceden a asesoría de Chrysalis PUCV para postular a Corfo Semilla Expande (hasta $45M, o $51M si liderado por mujeres).',
-       f13:'Impulso Azul: programa de Chrysalis PUCV enfocado en soluciones de Economía Azul (acuicultura sustentable, biotecnología marina, logística portuaria, conservación). Alcance territorial: Región de Valparaíso, Chile. Beneficio asociado: cofinanciamiento Corfo Semilla Expande de hasta $45M ($51M si liderado por mujeres), mentorías, redes estratégicas, vitrinas comerciales y seguimiento de 24 meses.',
-       f14:'Corfo (vía instrumento Semilla Expande) y PUCV. Otros aliados: pendiente de completar.',
-       f15:'Diagnóstico comercial gratuito (provisto por Kiltro a las ~40 startups) + potencial acompañamiento comercial pagado de 8 meses para quienes cierren individualmente.',
-       f16:'',
-       f17:'',
-       f18:'',
-       f19:'Chrysalis PUCV — LinkedIn: linkedin.com/company/incubadora-chrysalis · Instagram: @incubadora_chrysalis · Web: chrysalis.cl. El programa Impulso Azul no tiene perfiles propios identificados — comunica a través de los canales de Chrysalis PUCV.',
-     }}],
+   contratos:[],
    historia:[
      {date:'2026-04-08',tag:'reunion',text:'Macarena retoma contacto para diagnósticos (~40 startups).'},
      {date:'2026-04-13',tag:'programa',text:'Ismael envía diagnósticos iniciales de cada startup.'},
@@ -999,22 +514,28 @@ const DEFAULT_DATA = [
      {date:'2026-03-02',tag:'reunion',text:'Marjorie conecta a Andrés con Fernando — Perk UDDV.'},
      {date:'2026-03-03',tag:'reunion',text:'Reunión Andrés + Fernando realizada.'},
    ]},
-  {id:'nesst',name:'NESsT',tipo:'ONG/Fundación',status:'En proceso',contacto:'Alejandra Ramírez (Country Dir Colombia)',pais:'Colombia / Latam',hsId:'429817934030',
-   modalidades:['Por definir — apoyo a red de startups'],nextAction:'Seguimiento post-reunión — enviar propuesta a Alejandra',nextDate:'Esta semana',
+  {id:'nesst',name:'NESsT',tipo:'ONG/Fundación',status:'Activo',contacto:'JP Manrique / Alejandra Ramírez',pais:'Colombia / Latam',hsId:'429817934030',
+   modalidades:['Piloto activo — sesiones 1:1 startups NESsT'],nextAction:'Coordinar próxima sesión Bioincos y avanzar en estructura del piloto',nextDate:'En curso',
    contratos:[],
    historia:[
      {date:'2026-05-12',tag:'email',text:'Primer contacto a Ricardo Díaz y Alejandra Ramírez.'},
      {date:'2026-06-04',tag:'email',text:'Alejandra confirma reunión vie 12 jun 8am Colombia.'},
      {date:'2026-06-12',tag:'reunion',text:'Reunión realizada con Alejandra Ramírez (Country Dir Colombia). Próximo paso: propuesta.'},
+     {date:'2026-06-23',tag:'reunion',text:'Reunión con JP Manrique (NESsT) — inicio piloto.'},
+     {date:'2026-07-10',tag:'programa',text:'Asesoría 02 Bioincos-Kiltro (NESsT) — JP Manrique presente. Startup: BioIngredientes Amazónicos (Oscar).'},
+     {date:'2026-07-15',tag:'reunion',text:'Follow-up Piloto Kiltro/NESsT — Teams con JP Manrique, dsantana, mmartinez, aramirez.'},
    ]},
-  {id:'socialnest',name:'Social Nest Foundation',tipo:'ONG/Fundación',status:'Activo',contacto:'Paola de la Huerta / Sandra Mediavilla',pais:'España',hsId:'9041793749',
-   modalidades:['Partner Comercial — Startup Challenge (matchmaking + taller finalistas)'],nextAction:'Matchmaking confirmado 20 oct — definir con Paola fecha del taller de diagnóstico para las 50 finalistas (sept.)',nextDate:'2026-09-01',
+  {id:'socialnest',name:'Social Nest Foundation',tipo:'ONG/Fundación',status:'Activo',contacto:'Sandra Mediavilla / Paola de la Huerta',pais:'España',hsId:'9041793749',
+   modalidades:['Workshop sept','Matchmaking 20 oct'],nextAction:'Avanzar contenido taller sept + matchmaking oct 20',nextDate:'Pendiente',
    contratos:[],
    historia:[
      {date:'2026-05-13',tag:'email',text:'Presentación enviada a Pablo Perales.'},
      {date:'2026-06-02',tag:'reunion',text:'Reunión realizada con Karina y Sandra Mediavilla.'},
      {date:'2026-06-10',tag:'email',text:'Paola de la Huerta y Sandra Mediavilla aceptan invitación — reunión confirmada lun 15 jun 10am.'},
-     {date:'2026-06-15',tag:'propuesta',text:'Reunión con Paola de la Huerta y Sandra Mediavilla — se presenta y cierra el paquete "Partner Comercial del Startup Challenge": Kiltro lidera el matchmaking del evento (20 oct) + taller de diagnóstico comercial para las 50 finalistas en septiembre. Social Nest confirma mención como Partner Comercial, slot de septiembre y acceso a la base de datos de participantes.'},
+     {date:'2026-06-15',tag:'reunion',text:'Reunión con Paola de la Huerta y Sandra Mediavilla — lun 15 jun 10am.'},
+     {date:'2026-07-13',tag:'email',text:'📧 Sandra escribe sobre contenido Matchmaking y Startup Challenge. Pide reunión esta semana.'},
+     {date:'2026-07-15',tag:'email',text:'📧 Sandra confirma reunión vie 17 jul 11h.'},
+     {date:'2026-07-17',tag:'reunion',text:'Reunión con Sandra Mediavilla — coordinación Workshop sept y Matchmaking 20 oct.'},
    ]},
   {id:'ashoka',name:'Ashoka',tipo:'ONG/Fundación',status:'Seguimiento',contacto:'Maria Fonseca / Felipe Urbas',pais:'Latam',hsId:'429960057049',
    modalidades:['Potencial programa Latam'],nextAction:'Recontactar — sin respuesta desde mayo 27',nextDate:'Urgente',
@@ -1042,877 +563,4 @@ const DEFAULT_DATA = [
    modalidades:['Membresía','Networking','Visibilidad'],nextAction:'Participar reunión mensual',nextDate:'—',
    contratos:[],
    historia:[
-     {date:'2026-02-10',tag:'programa',text:'Primera reunión del año 2026.'},
-     {date:'2026-06-03',tag:'programa',text:'Reunión mensual: "Herramientas que generan impacto".'},
-   ]},
-  {id:'kunan',name:'Kunan / Perú Sostenible',tipo:'Red/Ecosistema',status:'Seguimiento',contacto:'Marlith Quiroz',pais:'Perú',hsId:'8673711299',
-   modalidades:['Por definir'],nextAction:'Seguimiento — info enviada may 27',nextDate:'Pendiente',
-   contratos:[],
-   historia:[
-     {date:'2026-06-22',tag:'propuesta',text:'Enviada 1ª versión de propuesta de acompañamiento: 5+ sesiones 1a1 por startup.'},
-     {date:'2026-06-16',tag:'propuesta',text:'Kunan evalúa con su Dirección Ejecutiva sumar a Kiltro para acompañar a los 8 ganadores del programa.'},{date:'2026-05-27',tag:'email',text:'Info de colaboración enviada.'}]},
-  {id:'4ichile',name:'4i Chile / CDI Chile',tipo:'ONG/Fundación',status:'En conversación',contacto:'Marcia Cortez / Cecilia Daroch',pais:'Chile',hsId:'8970754534',
-   modalidades:['Implementación corporativa','Talleres'],nextAction:'Seguimiento post-reunión may 22',nextDate:'Esta semana',
-   contratos:[],
-   historia:[
-     {date:'2026-05-18',tag:'email',text:'Presentación enviada.'},
-     {date:'2026-05-22',tag:'reunion',text:'Reunión realizada.'},
-   ]},
-  {id:'alive',name:'ALIVE Ventures',tipo:'Aceleradora',status:'Frío',contacto:'Cristina Martínez',pais:'—',hsId:'429293895890',
-   modalidades:['Por definir'],nextAction:'Último intento o cerrar',nextDate:'Urgente',
-   contratos:[],
-   historia:[
-     {date:'2026-05-05',tag:'email',text:'Presentación enviada.'},
-     {date:'2026-05-20',tag:'email',text:'Follow-up 2 — sin respuesta.'},
-   ]},
-  {id:'startuplab01',name:'Startuplab 01',tipo:'Aceleradora',status:'En conversación',contacto:'Consuelo Monje Pinto / Francisca Contreras Vera',pais:'Chile',
-   modalidades:['Programa de aceleración'],nextAction:'1ª reunión confirmada — jue 25 jun, 10:00 (Chile) con Consuelo Monje',nextDate:'2026-06-25',
-   contratos:[],
-   historia:[
-     {date:'2026-04-17',tag:'linkedin',text:'Mensaje enviado a Francisca Contreras Vera vía LinkedIn. Sin respuesta.'},
-     {date:'2026-04-28',tag:'linkedin',text:'Consuelo Monje Pinto responde positivo a propuesta de reunión. Email de seguimiento enviado.'},
-     {date:'2026-06-20',tag:'reunion',text:'Consuelo Monje confirma primera reunión para el jue 25 jun, 10:00 (hora Chile).'},
-     {date:'2026-06-20',tag:'seguimiento',text:'2 startups del portafolio de Startuplab 01 (Soquimat, Bluera) ya son clientes activos de Kiltro de forma independiente — punto a mencionar en la reunión del 25 jun.'},
-   ]},
-  {id:'aceleralatam',name:'AceleraLatam',tipo:'Aceleradora',status:'En conversación',contacto:'Eugenio Cantuarias',pais:'Colombia',
-   modalidades:['Programa de aceleración'],nextAction:'Agendar reunión vía Calendly de Eugenio',nextDate:'Esta semana',
-   contratos:[],
-   historia:[
-     {date:'2026-02-16',tag:'linkedin',text:'Eugenio Cantuarias comparte link de Calendly para agendar reunión. Pendiente de concretar.'},
-   ]},
-  {id:'kodea',name:'Kodea',tipo:'ONG/Fundación',status:'Seguimiento',contacto:'Monica Retamal (mretamal@kodea.org)',pais:'Chile',
-   modalidades:['Educación / Empleabilidad digital'],nextAction:'Recontactar a Monica — reunión de enero nunca ocurrió',nextDate:'Urgente',
-   contratos:[],
-   historia:[
-     {date:'2025-12-11',tag:'linkedin',text:'Monica Retamal: "Feliz de juntarnos en enero." Acuerdo verbal de reunión en enero.'},
-     {date:'2026-02-01',tag:'email',text:'Enero terminó sin reunión concretada. Sin seguimiento posterior. Requiere reactivación urgente.'},
-   ]},
-  {id:'impacthub',name:'Impact Hub',tipo:'Red/Ecosistema',status:'En conversación',contacto:'Alberto Alonso de la Fuente / Irene Tarradellas',pais:'España',
-   modalidades:['Programa de aceleración','Red global de innovación'],nextAction:'Proponer fecha concreta de reunión a Alberto',nextDate:'Esta semana',
-   contratos:[],
-   historia:[
-     {date:'2019-01-01',tag:'reunion',text:'Relación previa con Alberto Alonso de la Fuente desde 2019.'},
-     {date:'2026-05-15',tag:'linkedin',text:'Mensaje de co-creación enviado a Alberto Alonso de la Fuente. Sin respuesta.'},
-     {date:'2026-05-15',tag:'linkedin',text:'Irene Tarradellas reacciona con 👍 a contenido publicado. Señal positiva de interés.'},
-   ]},
-  {id:'ciuc',name:'Centro Innovación UC',tipo:'Universidad',status:'Seguimiento',contacto:'Por identificar',pais:'Chile',
-   modalidades:['Ecosistema universitario'],nextAction:'Identificar contacto clave e iniciar acercamiento',nextDate:'Próximos 15 días',
-   contratos:[],
-   historia:[
-     {date:'2026-06-01',tag:'email',text:'Institución identificada como prioritaria en el pipeline. Contacto aún por determinar.'},
-   ]},
-  {id:'openbeaucheff',name:'Open Beaucheff',tipo:'Universidad',status:'En proceso',contacto:'Fernando Nowajewski (fernando.nowajewski@uchile.cl)',pais:'Chile',
-   modalidades:['Ecosistema universitario'],nextAction:'Confirmar reunión semana del 16-19 jun (Magali: mié 11-17hrs o jue post 15hrs) + Álvaro enviar docs para boleta de honorarios',nextDate:'Esta semana',
-   contratos:[],
-   historia:[
-     {date:'2026-05-15',tag:'email',text:'Álvaro confirma a Fernando el visto bueno del equipo (Seba, Alejandro y Hub Metropolitano) para alianza Kiltro / OpenSenior — Talleres y Asesorías.'},
-     {date:'2026-05-20',tag:'email',text:'Fernando confirma acuerdo y procede a revisar contenidos de talleres. Sugiere coordinar sesión para mostrar modelo de asesorías a Alejandro.'},
-     {date:'2026-05-28',tag:'email',text:'Magali propone reunión jue 4/6 a las 12:00 Chile para definir gestión de asesorías del programa OpenSenior.'},
-     {date:'2026-06-11',tag:'email',text:'📧 Fernando confirma disponibilidad del equipo. Propone reunirse mié 18/6 (11-17hrs) o jue 19/6 (post 15hrs). Confirma interés en 5 talleres del Área 1 y 3 (uno mensual desde julio). Solicita a Álvaro cédula de identidad, CV y certificado de título para gestionar pago por boleta de honorarios.'},
-   ]},
-  {id:'b4b',name:'Bridge for Billions',tipo:'Red/Ecosistema',status:'Seguimiento',contacto:'Por identificar',pais:'España',
-   modalidades:['Programa de emprendimiento global'],nextAction:'Identificar equipo de partnerships e iniciar acercamiento',nextDate:'Próximos 15 días',
-   contratos:[],
-   historia:[
-     {date:'2026-06-01',tag:'email',text:'Institución identificada como prioritaria en el pipeline. Contacto aún por determinar.'},
-   ]},
-];
-
-// ---- storage ----
-const LS_KEY = 'kiltro_fichas_v7';
-function loadData(){
-  if(IS_PUBLIC) return JSON.parse(JSON.stringify(DEFAULT_DATA));
-
-  try{const s=localStorage.getItem(LS_KEY);if(s){const p=JSON.parse(s);if(p&&p.length)return p;}}catch(e){}
-  return JSON.parse(JSON.stringify(DEFAULT_DATA));
-}
-function saveData(){
-  if(IS_PUBLIC){showToast();return;}
-
-  localStorage.setItem(LS_KEY,JSON.stringify(data));
-  showToast();
-}
-function showToast(){
-  const t=document.getElementById('toast');
-  t.classList.remove('show');
-  void t.offsetWidth;
-  t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),2600);
-}
-
-let data = loadData();
-let activeFilter='todos', searchQ='', editMode=false;
-
-// ---- ficha detallada por acuerdo (19 campos / 5 bloques, solicitado por Operaciones) ----
-const FICHA_LABELS = {
-  f1:'1. Contrato firmado que marca el inicio operacional.',
-  f2:'2. Precio del servicio, condiciones y formas de pago.',
-  f3:'3. Claridad sobre si se habló o no con el aliado respecto a cuándo ofrecer la propuesta de acompañamiento de Kiltro.',
-  f4:'4. Tipo de servicio o servicios vendidos y/o acordados.',
-  f5:'5. Cantidad de encuentros por proyecto y los objetivos específicos de cada uno.',
-  f6:'6. Cronograma operativo con fechas establecidas para el inicio, la ejecución y los hitos clave.',
-  f7:'7. Listado de entregables acordados (reportes, informes u hojas de ruta).',
-  f8:'8. Cantidad exacta de proyectos participantes, procedencia, su nivel de madurez o etapa.',
-  f9:'9. Información técnica base de los proyectos (expedientes, PCI, diagnósticos previos o herramientas aplicadas).',
-  f10:'10. Descripción, procedencia, propósito y enfoque de la organización aliada.',
-  f11:'11. Roles clave dentro del equipo de la organización.',
-  f12:'12. Programas o líneas de trabajo activos del aliado.',
-  f13:'13. Descripción, tiempos de ejecución, alcance territorial y premios del programa donde se inserta la colaboración.',
-  f14:'14. Otras organizaciones o aliados vinculados al programa.',
-  f15:'15. Categorías de beneficio o trabajo con los fundadores dentro del programa.',
-  f16:'16. Permisos y derechos explícitos para difundir la colaboración de manera externa.',
-  f17:'17. Restricciones comunicacionales o temas sensibles acordados.',
-  f18:'18. Manuales de marca, logotipos en alta resolución y directrices de diseño.',
-  f19:'19. Perfiles oficiales en redes sociales de todas las organizaciones involucradas.',
-};
-const FICHA_BLOCKS = [
-  {title:'A · Acuerdo y contrato', fields:['f1','f2','f3']},
-  {title:'B · Servicio y alcance', fields:['f4','f5','f6','f7']},
-  {title:'C · Proyectos participantes', fields:['f8','f9']},
-  {title:'D · Sobre el aliado', fields:['f10','f11','f12','f13','f14']},
-  {title:'E · Comunicación y marca', fields:['f15','f16','f17','f18','f19']},
-];
-let fichaCtx={orgId:null, idx:null};
-function fichaProgress(c){
-  const f=(c&&c.ficha)||{};
-  let n=0;
-  for(let i=1;i<=19;i++){ if((f['f'+i]||'').trim()) n++; }
-  return n;
-}
-function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
-function openFichaModal(orgId, idx){
-  const org=data.find(d=>d.id===orgId);
-  if(!org||!org.contratos||!org.contratos[idx]) return;
-  const c=org.contratos[idx];
-  if(!c.ficha) c.ficha={};
-  fichaCtx={orgId,idx};
-  document.getElementById('fichaModalSub').textContent=`${org.name} — ${c.nombre} (${c.año})`;
-  document.getElementById('fichaModalBody').innerHTML = FICHA_BLOCKS.map(b=>`
-    <div class="fm-block">
-      <div class="fm-block-title">${b.title}</div>
-      ${b.fields.map(k=>{
-        const v=c.ficha[k]||'';
-        const pending=!v.trim();
-        return `<div class="fm-field">
-          <label class="fm-label">${FICHA_LABELS[k]}${pending?'<span class="fm-pending">⏳ Pendiente</span>':'<span class="fm-done">✓ Completo</span>'}</label>
-          <textarea class="fm-input" id="fm-${k}" placeholder="Completar información...">${esc(v)}</textarea>
-        </div>`;
-      }).join('')}
-    </div>`).join('');
-  document.getElementById('fichaModal').classList.add('open');
-}
-function closeFichaModal(){
-  document.getElementById('fichaModal').classList.remove('open');
-  fichaCtx={orgId:null,idx:null};
-}
-function saveFicha(){
-  if(!fichaCtx.orgId) return;
-  const org=data.find(d=>d.id===fichaCtx.orgId);
-  if(!org||!org.contratos||!org.contratos[fichaCtx.idx]) return;
-  const c=org.contratos[fichaCtx.idx];
-  if(!c.ficha) c.ficha={};
-  for(let i=1;i<=19;i++){
-    const el=document.getElementById('fm-f'+i);
-    if(el) c.ficha['f'+i]=el.value;
-  }
-  saveData();
-  renderGrid();
-  openFichaModal(fichaCtx.orgId, fichaCtx.idx);
-}
-
-// ---- helpers ----
-function stClass(s){return ST_CSS[s]||'frio';}
-function tcClass(t){return TIPO_CSS[t]||'acel';}
-function fmtDate(d){
-  if(!d||d==='—') return null;
-  if(['Urgente','Esta semana','Pendiente'].includes(d)) return d;
-  try{const dt=new Date(d);if(isNaN(dt))return d;
-    const diff=(dt-new Date())/86400000;
-    if(diff<-1) return dt.toLocaleDateString('es-ES',{day:'numeric',month:'short',year:'numeric'});
-    if(diff<0) return 'Ayer'; if(diff<1) return 'Hoy'; if(diff<2) return 'Mañana';
-    if(diff<7) return `En ${Math.round(diff)} días`;
-    return dt.toLocaleDateString('es-ES',{day:'numeric',month:'short'});
-  }catch(e){return d;}
-}
-function isUrgent(d){if(!d)return false;if(d==='Urgente')return true;try{const diff=(new Date(d)-new Date())/86400000;return !isNaN(diff)&&diff<=2;}catch(e){return false;}}
-
-// ---- summary ----
-function renderInstResumen(){
-  var el=document.getElementById('inst-resumen');
-  if(!el)return;
-  var stL={a:'🟢 Activo',p:'🔵 En proceso',c:'⭐ En conv.',f:'❄️ Frío'};
-  var ciL={inst:'<span class="ci-inst">Con institución</span>',su:'<span class="ci-su">Con startups</span>',ambas:'<span class="ci-ambas">Inst. + Startups</span>',alianza:'<span class="ci-alianza">Alianza</span>'};
-  var rows=OD.map(function(o){
-    return '<tr><td>'+o.nm+'</td><td style="color:#666">'+o.pa+'</td><td>'+
-      (stL[o.st]||o.st)+'</td><td style="color:#555;font-size:11px">'+o.ac+'</td><td>'+
-      (ciL[o.ci||'inst']||'')+'</td></tr>';
-  }).join('');
-  el.innerHTML='<div class="inst-resumen-wrap"><p class="inst-resumen-title">📋 Resumen institucional</p>'+
-    '<table class="inst-resumen-table"><thead><tr>'+
-    '<th>Institución</th><th>País/Región</th><th>Estado</th><th>Acuerdo</th>'+
-    '<th>Cierre posible</th></tr></thead>'+
-    '<tbody>'+rows+'</tbody></table></div>';
-}
-function renderSummary(){
-  const a=data.filter(d=>d.status==='Activo').length;
-  const p=data.filter(d=>d.status==='En proceso').length;
-  const c=data.filter(d=>d.status==='En conversación').length;
-
-  let usdHistTotal=0, usd2026=0;
-  data.forEach(o=>{
-    (o.contratos||[]).forEach(ct=>{
-      const yr=parseInt(ct.año)||0;
-      const {usd}=parseMonto(ct.monto||'');
-      usdHistTotal+=usd;
-      if(yr>=2026) usd2026+=usd;
-    });
-  });
-
-  const activeProj=(typeof projData!=='undefined'?projData:[]).filter(r=>r.active!==false);
-  const usd2026Proj=activeProj.reduce((s,r)=>s+r.meta*r.meses*r.montoMes*r.prob/100,0)/(typeof PROJ_USD_RATE!=='undefined'?PROJ_USD_RATE:900);
-
-  function fmtK(n){return n>=1000?'~$'+Math.round(n/1000)+'k USD':'~$'+Math.round(n)+' USD';}
-
-  document.getElementById('summary').innerHTML=`
-    <div class="sum-item"><div class="sum-v" style="color:var(--activo)">${a}</div><div class="sum-l">Activos</div></div>
-    <div class="sum-item"><div class="sum-v" style="color:var(--proceso)">${p}</div><div class="sum-l">En proceso</div></div>
-    <div class="sum-item"><div class="sum-v" style="color:var(--conv)">${c}</div><div class="sum-l">Conversación</div></div>
-
-    <div class="sum-item" style="border-left:3px solid #7dd3fc">
-      <div class="sum-v" style="color:#0891b2;font-size:1.2rem">${fmtK(usd2026)}</div>
-      <div class="sum-l">2026 en curso</div>
-      <div style="font-size:9px;color:#94a3b8;margin-top:1px">contratos firmados</div>
-    </div>
-    <div class="sum-item" style="border-left:3px solid #6ee7b7">
-      <div class="sum-v" style="color:#059669;font-size:1.2rem">${fmtK(usd2026Proj)}</div>
-      <div class="sum-l">2026 proyectado</div>
-      <div style="font-size:9px;color:#94a3b8;margin-top:1px">pipeline ponderado activo</div>
-    </div>
-  `;
-}
-
-// ---- grid ----
-function renderGrid(){
-  const grid=document.getElementById('grid');
-  const q=searchQ.toLowerCase();
-  let filtered=data.filter(d=>{
-    const sc=stClass(d.status);
-    if(activeFilter!=='todos'&&sc!==activeFilter) return false;
-    if(q) return (d.name||'').toLowerCase().includes(q)||(d.contacto||'').toLowerCase().includes(q)||(d.pais||'').toLowerCase().includes(q)||(d.modalidades||[]).join(' ').toLowerCase().includes(q);
-    return true;
-  }).sort((a,b)=>{const ai=SO.indexOf(a.status),bi=SO.indexOf(b.status);return ai!==bi?ai-bi:(a.name||'').localeCompare(b.name||'');});
-
-  if(!filtered.length){grid.innerHTML='<div class="no-res">Sin resultados.</div>';return;}
-
-  grid.innerHTML=filtered.map(d=>{
-    const sc=stClass(d.status),tc=tcClass(d.tipo),urg=isUrgent(d.nextDate);
-    const icon=TIPO_ICON[d.tipo]||'🏛️';
-    const hsLink=d.hsId?`<a href="https://app.hubspot.com/contacts/26074131/record/0-2/${d.hsId}" target="_blank" class="hs-link" onclick="event.stopPropagation()">🔶 HS</a>`:'';
-    const contrBox=(d.contratos||[]).length?`
-      <div><div class="sec-label">Contratos y acuerdos</div>
-      <div class="contratos"><div class="contratos-head">📋 Historial económico</div>
-        ${d.contratos.map((c,ci)=>{
-          const prog=fichaProgress(c);
-          const progBadge=prog>0?`<span class="ficha-prog${prog>=19?' full':''}">${prog}/19</span>`:'';
-          return `<div class="contrato-row">
-          <div class="contrato-yr">${c.año}</div>
-          <div class="contrato-body"><span class="name">${c.nombre}</span>${c.monto&&c.monto!=='—'?`<span class="monto">${c.monto}</span>`:''}<div class="detail">${c.detalle}</div>
-            <button class="ficha-trigger-btn" onclick="event.stopPropagation();openFichaModal('${d.id}',${ci})">📄 Ficha completa${progBadge}</button>
-          </div>
-        </div>`;}).join('')}
-      </div></div>`:'';
-    const mods=(d.modalidades||[]).length?`<div><div class="sec-label">Cómo trabajamos juntos</div><div class="mods">${d.modalidades.map(m=>`<span class="mod">${m}</span>`).join('')}</div></div>`:'';
-    const nd=fmtDate(d.nextDate);
-    const nextBox=d.nextAction?`<div><div class="sec-label">Próxima acción</div><div class="next-box${urg?' urgent':''}"><div class="next-main">${d.nextAction}</div>${nd?`<div class="next-date">${nd}</div>`:''}</div></div>`:'';
-    const hist=(d.historia||[]).slice(-4).reverse();
-    const tlItems=hist.map(h=>`<div class="tl-item"><div class="tl-dot ${h.tag||'email'}"></div><div class="tl-date">${fmtDate(h.date)||''}</div><div class="tl-text"><span class="tl-tag tt-${h.tag||'email'}">${TAG_LABEL[h.tag]||h.tag}</span>${h.text}</div></div>`).join('');
-    const tlBox=tlItems?`<div><div class="sec-label">Últimas interacciones</div><div class="timeline">${tlItems}</div></div>`:'';
-
-    return `
-    <div class="ficha st-${sc}" id="ficha-${d.id}">
-      <div class="ficha-header">
-        <div class="ficha-icon">${icon}</div>
-        <div class="ficha-title-wrap">
-          <div class="ficha-name">${d.name}</div>
-          <div class="ficha-tags">
-            <span class="tag tag-st-${sc}">${d.status}</span>
-            <span class="tag tag-tipo-${tc}">${d.tipo}</span>
-            ${d.pais&&d.pais!=='—'?`<span class="tag tag-pais">📍 ${d.pais}</span>`:''}
-            ${hsLink}
-          </div>
-        </div>
-        <button class="edit-btn" onclick="togglePanel('${d.id}')">✏️ Editar</button>
-      </div>
-      <div class="ficha-body">
-        ${d.contacto&&d.contacto!=='—'?`<div><div class="sec-label">Contacto</div><div class="sec-val">👤 ${d.contacto}</div></div>`:''}
-        ${mods}
-        ${contrBox}
-        ${nextBox}
-        ${tlBox}
-      </div>
-      <div class="edit-panel" id="ep-${d.id}">
-        <h3>✏️ Editar — ${d.name}</h3>
-        <div class="ep-grid">
-          <div class="ep-group">
-            <label>Estado</label>
-            <select id="es-${d.id}">
-              <option${d.status==='Activo'?' selected':''}>Activo</option>
-              <option${d.status==='En proceso'?' selected':''}>En proceso</option>
-              <option${d.status==='En conversación'?' selected':''}>En conversación</option>
-              <option${d.status==='Seguimiento'?' selected':''}>Seguimiento</option>
-              <option${d.status==='Frío'?' selected':''}>Frío</option>
-            </select>
-          </div>
-          <div class="ep-group">
-            <label>Último contacto</label>
-            <input type="date" id="elc-${d.id}" value="${d.lastContact||''}">
-          </div>
-          <div class="ep-group ep-full">
-            <label>Contacto(s)</label>
-            <input type="text" id="eco-${d.id}" value="${d.contacto||''}">
-          </div>
-          <div class="ep-group ep-full">
-            <label>Próxima acción</label>
-            <input type="text" id="ena-${d.id}" value="${d.nextAction||''}">
-          </div>
-          <div class="ep-group">
-            <label>Fecha / plazo</label>
-            <input type="text" id="end-${d.id}" value="${d.nextDate||''}" placeholder="Ej: 2026-06-20 o 'Urgente'">
-          </div>
-          <div class="ep-group">
-            <label>Notas</label>
-            <input type="text" id="eno-${d.id}" value="${(d.notes||'').replace(/"/g,'&quot;')}" placeholder="Nota breve...">
-          </div>
-          <div class="ep-divider"></div>
-          <div class="ep-add-label">Agregar al historial</div>
-          <div class="ep-group">
-            <label>Fecha</label>
-            <input type="date" id="ehd-${d.id}" value="${new Date().toISOString().slice(0,10)}">
-          </div>
-          <div class="ep-group">
-            <label>Tipo</label>
-            <select id="eht-${d.id}">
-              <option value="reunion">Reunión</option>
-              <option value="taller">Taller</option>
-              <option value="rc">RC/Diagnóstico</option>
-              <option value="propuesta">Propuesta</option>
-              <option value="contrato">Contrato</option>
-              <option value="dinero">💰 Pago/Contrato $</option>
-              <option value="programa">Programa</option>
-              <option value="email">Email/Seguimiento</option>
-            </select>
-          </div>
-          <div class="ep-group ep-full">
-            <label>Descripción del evento</label>
-            <textarea id="ehx-${d.id}" placeholder="¿Qué pasó?..."></textarea>
-          </div>
-          <div class="ep-actions">
-            <button class="btn-cancel" onclick="togglePanel('${d.id}')">Cancelar</button>
-            <button class="btn-save" onclick="saveCard('${d.id}')">Guardar cambios</button>
-          </div>
-        </div>
-      </div>
-    </div>`;
-  }).join('');
-}
-
-
-// ---- alerts ----
-function daysSince(dateStr){
-  if(!dateStr) return 9999;
-  try{const d=new Date(dateStr);if(isNaN(d))return 9999;return Math.floor((new Date()-d)/86400000);}catch(e){return 9999;}
-}
-function lastActivity(org){
-  const hist=org.historia||[];
-  if(!hist.length) return null;
-  return hist.reduce((best,h)=>(!best||h.date>best)?h.date:best, null);
-}
-function renderAlerts(){
-  const THRESHOLD=10;
-  const bar=document.getElementById('alertsBar');
-  const body=document.getElementById('alertsBody');
-  const badge=document.getElementById('alertsBadge');
-  const btn=document.getElementById('alertsToggle');
-  const flagged=data.map(org=>{
-    const last=lastActivity(org);
-    const days=daysSince(last);
-    return {org,last,days};
-  }).filter(x=>x.days>=THRESHOLD).sort((a,b)=>b.days-a.days);
-
-  badge.textContent=flagged.length;
-  if(!flagged.length){bar.classList.add('empty');return;}
-  bar.classList.remove('empty');
-
-  body.innerHTML=flagged.map(({org,last,days})=>{
-    const medium=days<20;
-    const lastFmt=last?new Date(last).toLocaleDateString('es-ES',{day:'numeric',month:'short',year:'numeric'}):'Sin registro';
-    const daysText=days>=9999?'Sin actividad registrada':`${days} días sin actividad`;
-    return `<div class="alert-card${medium?' warn-medium':''}">
-      <div class="alert-icon">${medium?'🟡':'🔴'}</div>
-      <div class="alert-info">
-        <div class="alert-name">${org.name}</div>
-        <div class="alert-days">${daysText}</div>
-        <div class="alert-last">Último registro: ${lastFmt}</div>
-        <span class="alert-jump" onclick="jumpToCard('${org.id}')">→ Ver ficha</span>
-      </div>
-    </div>`;
-  }).join('');
-}
-function toggleAlerts(){
-  const bar=document.getElementById('alertsBar');
-  const btn=document.getElementById('alertsToggle');
-  bar.classList.toggle('collapsed');
-  btn.classList.toggle('open');
-}
-function jumpToCard(id){
-  activeFilter='todos';
-  searchQ='';
-  document.getElementById('q').value='';
-  document.querySelectorAll('.ftag').forEach(x=>x.classList.remove('on'));
-  document.querySelector('.ftag.f-todos').classList.add('on');
-  render();
-  setTimeout(()=>{
-    const el=document.getElementById('ficha-'+id);
-    if(el){el.scrollIntoView({behavior:'smooth',block:'center'});el.style.outline='3px solid #ef4444';setTimeout(()=>el.style.outline='',2000);}
-  },100);
-}
-
-// ---- sales modal ----
-function parseMonto(m){
-  if(!m) return {usd:0};
-  let n;
-  if(m.includes('CLP')){
-    n=parseFloat(m.replace(/[^0-9]/g,''));
-    return {usd:isNaN(n)?0:Math.round(n/916)};
-  } else {
-    n=parseFloat(m.replace(/[^0-9]/g,''));
-    if(isNaN(n)||n===0) return {usd:0};
-    return {usd:m.includes('EUR')?Math.round(n*1.08):n};
-  }
-}
-function openSalesModal(){
-  const byYear={};
-  let grandTotal=0;
-  data.forEach(org=>{
-    (org.contratos||[]).forEach(ct=>{
-      const yr=String(ct.año||'Sin año');
-      const {usd}=parseMonto(ct.monto||'');
-      const sortKey=yr.match(/\d{4}/)?yr.match(/\d{4}/)[0]:'0000';
-      if(!byYear[yr]) byYear[yr]={rows:[],total:0,sortKey};
-      byYear[yr].rows.push({org:org.name,nombre:ct.nombre,orig:ct.monto||'—',usd});
-      byYear[yr].total+=usd;
-      grandTotal+=usd;
-    });
-  });
-
-  const years=Object.keys(byYear).sort((a,b)=>byYear[b].sortKey.localeCompare(byYear[a].sortKey));
-  const fmt=n=>n>0?'USD '+n.toLocaleString('en-US'):'—';
-
-  const html=years.map(yr=>{
-    const {rows,total}=byYear[yr];
-    const rowsHTML=rows.map(r=>`
-      <div class="sm-row">
-        <div>
-          <div class="sm-org">${r.org}</div>
-          <div class="sm-nombre">${r.nombre}</div>
-        </div>
-        <div class="sm-orig">${r.orig}</div>
-        <div class="sm-usd">${fmt(r.usd)}</div>
-      </div>`).join('');
-    return `<div class="sm-year">
-      <div class="sm-year-header">
-        <div class="sm-year-title">📅 ${yr}</div>
-        <div class="sm-year-total">${fmt(total)}</div>
-      </div>
-      ${rowsHTML}
-    </div>
-    <div class="sm-spacer"></div>`;
-  }).join('');
-
-  document.getElementById('salesModalBody').innerHTML=html+`
-    <div class="sm-grand">
-      <div class="sm-grand-label">💰 Total histórico acumulado</div>
-      <div class="sm-grand-val">~${fmt(grandTotal)}</div>
-    </div>
-    <div class="sm-note">Conversión aprox.: CLP → USD a $916/USD (SII promedio dic 2025). EUR → USD a $1,08. Montos en CLP con "+IVA" incluyen el bruto. HubTec y otros sin datos cuantitativos no se incluyen.</div>`;
-
-  document.getElementById('salesModal').classList.add('open');
-}
-function closeSalesModal(){
-  document.getElementById('salesModal').classList.remove('open');
-}
-
-
-function initOpsChat(){
-  var wrap=document.getElementById('ops-chat-wrap');
-  if(!wrap)return;
-  var LS_KEY='kiltro_ant_key';
-  if(!window._chatMsgs)window._chatMsgs=[];
-  var msgs=window._chatMsgs;
-  function buildCtx(){
-    var ctx='Eres un asistente del equipo comercial de Kiltro (empresa de acompañamiento comercial para startups). Responde consultas sobre el estado del pipeline B2B institucional con precisión y brevedad.\n\nDATA ACTUALIZADA:\n\n';
-    OD.forEach(function(o){
-      var st={a:'Activo',p:'En proceso',c:'En conversación',f:'Frío'}[o.st]||o.st;
-      ctx+='### '+o.nm+' ('+o.pa+') — '+st+'\n';
-      if(o.ac)ctx+='Acuerdo: '+o.ac+'\n';
-      if(o.co)ctx+='Contexto: '+o.co+'\n';
-      if(o.pr)ctx+='Próximo paso: '+o.pr+'\n';
-      if(o.se)ctx+='Seguimiento: '+o.se+'\n';
-      if(o.su&&o.su.length)ctx+='Startups asociadas: '+o.su.join(' · ')+'\n';
-      ctx+='\n';
-    });
-    return ctx;
-  }
-  function getKey(){return localStorage.getItem(LS_KEY);}
-  function renderChat(){
-    var key=getKey();
-    if(!key){
-      wrap.innerHTML='<div class="chat-box"><div class="chat-header">💬 Consulta al equipo comercial</div>'+
-        '<div class="chat-setup"><p>Ingresa tu API key de Anthropic para activar el chat interno:</p>'+
-        '<input id="ck-inp" type="password" placeholder="sk-ant-api03-...">'+
-        '<button onclick="(function(){var k=document.getElementById(\'ck-inp\').value.trim();if(k){localStorage.setItem(\'kiltro_ant_key\',k);initOpsChat();}})()">Activar</button>'+
-        '</div></div>';
-      return;
-    }
-    var msgsHtml=msgs.length===0
-      ?'<p class="chat-empty">Pregunta sobre instituciones, próximos pasos, o pide un borrador de comunicación.</p>'
-      :msgs.map(function(m){
-        return '<div class="chat-msg chat-msg-'+m.role+'">'+
-          '<span class="chat-role">'+(m.role==='user'?'Tú':'🤖 Kiltro')+'</span>'+
-          '<div class="chat-text">'+m.content.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/\n/g,'<br>')+'</div>'+
-          '</div>';
-      }).join('');
-    wrap.innerHTML='<div class="chat-box">'+
-      '<div class="chat-header">💬 Consulta al equipo comercial</div>'+
-      '<div id="chat-msgs" class="chat-msgs">'+msgsHtml+'</div>'+
-      '<div class="chat-input-row">'+
-      '<textarea id="chat-inp" placeholder="Escribe tu consulta... (Ctrl+Enter para enviar)" rows="2"></textarea>'+
-      '<button id="chat-send-btn">Enviar</button>'+
-      '</div>'+
-      '<div class="chat-actions">'+
-      '<button id="chat-clr-btn">🗑 Nueva conversación</button>'+
-      (msgs.length>0?'<button id="chat-email-btn">📋 Copiar como borrador</button>':'')+
-      '<button id="chat-key-btn">🔑 Cambiar key</button>'+
-      '</div></div>';
-    var me=document.getElementById('chat-msgs');
-    if(me)me.scrollTop=me.scrollHeight;
-    document.getElementById('chat-send-btn').onclick=sendMsg;
-    document.getElementById('chat-inp').addEventListener('keydown',function(e){
-      if(e.key==='Enter'&&(e.ctrlKey||e.metaKey)){e.preventDefault();sendMsg();}
-    });
-    document.getElementById('chat-clr-btn').onclick=function(){window._chatMsgs=[];msgs.length=0;renderChat();};
-    document.getElementById('chat-key-btn').onclick=function(){localStorage.removeItem(LS_KEY);window._chatMsgs=[];msgs.length=0;initOpsChat();};
-    var eb=document.getElementById('chat-email-btn');
-    if(eb)eb.onclick=function(){
-      var txt=msgs.map(function(m){return(m.role==='user'?'CONSULTA:\n':'RESPUESTA:\n')+m.content;}).join('\n\n---\n\n');
-      navigator.clipboard.writeText(txt).then(function(){eb.textContent='✓ Copiado';setTimeout(function(){eb.textContent='📋 Copiar como borrador';},2000);});
-    };
-  }
-  async function sendMsg(){
-    var inp=document.getElementById('chat-inp');
-    var txt=inp?inp.value.trim():'';
-    if(!txt)return;
-    inp.value='';
-    msgs.push({role:'user',content:txt});
-    var btn=document.getElementById('chat-send-btn');
-    if(btn){btn.disabled=true;btn.textContent='...';}
-    renderChat();
-    try{
-      var res=await fetch('https://api.anthropic.com/v1/messages',{
-        method:'POST',
-        headers:{'Content-Type':'application/json','x-api-key':getKey(),'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
-        body:JSON.stringify({model:'claude-haiku-4-5-20251001',max_tokens:1024,system:buildCtx(),messages:msgs.map(function(m){return{role:m.role,content:m.content};})})
-      });
-      var data=await res.json();
-      msgs.push({role:'assistant',content:data.content&&data.content[0]?data.content[0].text:'⚠️ '+(data.error?data.error.message:JSON.stringify(data).substring(0,120))});
-    }catch(e){msgs.push({role:'assistant',content:'⚠️ Error: '+e.message});}
-    window._chatMsgs=msgs;
-    renderChat();
-  }
-  renderChat();
-}
-
-function openNewProjForm(){
-  var f=document.getElementById('new-proj-form');
-  if(!f)return;
-  var isOpen=f.style.display!=='none';
-  f.style.display=isOpen?'none':'block';
-  if(!isOpen){document.getElementById('npf-org').focus();}
-}
-function saveNewProj(){
-  var org=document.getElementById('npf-org').value.trim();
-  if(!org){alert('Indica el nombre de la organización');return;}
-  var entry={
-    id:'proj_'+Date.now(),
-    org:org,
-    meta:parseInt(document.getElementById('npf-meta').value)||5,
-    meses:parseInt(document.getElementById('npf-meses').value)||3,
-    montoMes:parseFloat(document.getElementById('npf-monto').value)||0,
-    prob:parseInt(document.getElementById('npf-prob').value)||50,
-    mesEst:document.getElementById('npf-mes').value||'—',
-    nextAction:document.getElementById('npf-next').value.trim()||'Pendiente',
-    active:true
-  };
-  projData.push(entry);
-  saveProj();
-  document.getElementById('new-proj-form').style.display='none';
-  ['npf-org','npf-meta','npf-meses','npf-monto','npf-prob','npf-mes','npf-next'].forEach(function(id){
-    var el=document.getElementById(id);if(el)el.value=el.type==='number'?el.defaultValue:'';
-  });
-  renderProj();
-}
-
-// Nueva iniciativa (Ops)
-var _LS_INIC='kiltro_iniciativas';
-function loadIniciativas(){try{return JSON.parse(localStorage.getItem(_LS_INIC)||'[]');}catch(e){return[];}}
-function saveIniciativas(arr){localStorage.setItem(_LS_INIC,JSON.stringify(arr));}
-function renderNuevaIniciativa(container){
-  var orgNames=OD.map(function(o){return o.nm;});
-  var opts=orgNames.map(function(n){return '<option>'+n+'</option>';}).join('');
-  var items=loadIniciativas();
-  var itemsHtml=items.length===0?'':items.map(function(it,i){
-    return '<div class="oni-item">'+
-      '<div class="oni-item-left">'+
-      '<div class="oni-item-org">'+it.org+(it.esNueva?' <span style="color:#b07d00;font-size:10px">⚠️ Nueva org</span>':'')+'</div>'+
-      '<div class="oni-item-desc">'+it.tipo+' · '+it.desc+'</div>'+
-      '</div>'+
-      '<button class="oni-item-del" onclick="deleteIniciativa('+i+')" title="Eliminar">✕</button>'+
-      '</div>';
-  }).join('');
-  container.innerHTML='<div class="ops-nueva-wrap">'+
-    '<div class="ops-nueva-header">'+
-    '<span class="ops-nueva-title">➕ Nueva iniciativa</span>'+
-    '</div>'+
-    '<div class="ops-nueva-body">'+
-    '<div class="oni-grid">'+
-    '<div><label>Institución</label>'+
-    '<select id="oni-org" onchange="checkNuevaOrg()">'+
-    opts+
-    '<option value="__nueva__">→ Nueva institución (notificar a Comercial)</option>'+
-    '</select></div>'+
-    '<div><label>Tipo de iniciativa</label>'+
-    '<select id="oni-tipo">'+
-    '<option>Mentoría individual</option>'+
-    '<option>Programa grupal</option>'+
-    '<option>Taller</option>'+
-    '<option>Diagnóstico</option>'+
-    '<option>Otro</option>'+
-    '</select></div>'+
-    '</div>'+
-    '<div class="oni-full"><label>Descripción breve</label><input id="oni-desc" type="text" placeholder="Describe la iniciativa..."></div>'+
-    '<div id="oni-alert-nueva" class="oni-alert">⚠️ Esta institución no está en el pipeline activo. Al guardar se generará un mensaje de alerta para el equipo Comercial.</div>'+
-    '<div style="display:flex;gap:8px">'+
-    '<button class="oni-save" onclick="guardarIniciativa()">Guardar iniciativa</button>'+
-    '<button class="oni-cancel" onclick="renderNuevaIniciativa(document.querySelector(\'#ops-nueva-container\'))">Cancelar</button>'+
-    '</div>'+
-    '</div>'+
-    (itemsHtml?'<div class="ops-nueva-list">'+itemsHtml+'</div>':'')+
-    '</div>';
-}
-function checkNuevaOrg(){
-  var sel=document.getElementById('oni-org');
-  var alert=document.getElementById('oni-alert-nueva');
-  if(sel&&alert)alert.style.display=sel.value==='__nueva__'?'block':'none';
-}
-function guardarIniciativa(){
-  var org=document.getElementById('oni-org').value;
-  var tipo=document.getElementById('oni-tipo').value;
-  var desc=document.getElementById('oni-desc').value.trim();
-  if(!desc){alert('Agrega una descripción');return;}
-  var esNueva=org==='__nueva__';
-  var items=loadIniciativas();
-  items.push({org:esNueva?'Nueva institución':org,tipo:tipo,desc:desc,esNueva:esNueva,fecha:new Date().toLocaleDateString('es-CL')});
-  saveIniciativas(items);
-  if(esNueva){
-    var msg='[ALERTA COMERCIAL] Nueva institución detectada desde Operaciones.\nTipo: '+tipo+'\nDescripción: '+desc+'\nFecha: '+new Date().toLocaleDateString('es-CL');
-    navigator.clipboard.writeText(msg).then(function(){
-      alert('✅ Iniciativa guardada.\n\nSe copió al portapapeles un mensaje para el equipo Comercial. Pégalo en Slack o email.');
-    });
-  }
-  var c=document.getElementById('ops-nueva-container');
-  if(c)renderNuevaIniciativa(c);
-}
-function deleteIniciativa(i){
-  var items=loadIniciativas();
-  items.splice(i,1);
-  saveIniciativas(items);
-  var c=document.getElementById('ops-nueva-container');
-  if(c)renderNuevaIniciativa(c);
-}
-function render(){renderSummary();renderInstResumen();renderAlerts();renderGrid();renderProj();(function(){document.querySelectorAll(".proj-input").forEach(function(el){if(!el._sfx){el._sfx=true;el.addEventListener("focus",function(){var y=window.scrollY;setTimeout(function(){if(Math.abs(window.scrollY-y)>30)window.scrollTo(0,y);},10);},true);}});})();var _nic=document.getElementById('ops-nueva-container');if(_nic)renderNuevaIniciativa(_nic);initOpsChat();var _ab=document.getElementById('alertsBar');var _tc=document.getElementById('tab-comercial');if(_ab&&_tc&&_ab.parentElement!==_tc)_tc.appendChild(_ab);if(editMode)document.body.classList.add('edit-mode');}
-
-// ---- edit mode toggle ----
-function toggleEditMode(){
-  editMode=!editMode;
-  document.body.classList.toggle('edit-mode',editMode);
-  const btn=document.getElementById('toggleEdit');
-  btn.textContent=editMode?'✅ Modo edición ON':'✏️ Modo edición';
-  btn.classList.toggle('edit-mode-on',editMode);
-}
-
-// ---- panel toggle ----
-function togglePanel(id){
-  const ep=document.getElementById('ep-'+id);
-  if(!ep) return;
-  const isOpen=ep.classList.contains('open');
-  document.querySelectorAll('.edit-panel.open').forEach(p=>p.classList.remove('open'));
-  if(!isOpen) ep.classList.add('open');
-}
-
-// ---- save ----
-function saveCard(id){
-  const rec=data.find(d=>d.id===id);
-  if(!rec) return;
-  rec.status=document.getElementById('es-'+id).value;
-  rec.lastContact=document.getElementById('elc-'+id).value;
-  rec.contacto=document.getElementById('eco-'+id).value;
-  rec.nextAction=document.getElementById('ena-'+id).value;
-  rec.nextDate=document.getElementById('end-'+id).value;
-  rec.notes=document.getElementById('eno-'+id).value;
-  const txt=document.getElementById('ehx-'+id).value.trim();
-  if(txt){
-    if(!rec.historia) rec.historia=[];
-    rec.historia.push({date:document.getElementById('ehd-'+id).value,tag:document.getElementById('eht-'+id).value,text:txt});
-  }
-  saveData();
-  render();
-  if(editMode) document.body.classList.add('edit-mode');
-}
-
-// ---- filters ----
-document.querySelectorAll('.ftag').forEach(b=>b.addEventListener('click',()=>{
-  document.querySelectorAll('.ftag').forEach(x=>x.classList.remove('on'));
-  b.classList.add('on');
-  activeFilter=b.dataset.f;
-  render();
-}));
-document.getElementById('q').addEventListener('input',e=>{searchQ=e.target.value;render();});
-
-// ---- projections ----
-const PROJ_LS_KEY = 'kiltro_proj_v1';
-const PROJ_DEFAULT = [
-  {id:'proj_2gether',org:'2Gether',meta:3,meses:3,montoMes:400000,prob:90,mesEst:'Ago 2026',nextAction:'Definir y confirmar las 3 startups para agosto'},
-  {id:'proj_ship2b',org:'Ship2B',meta:5,meses:6,montoMes:600000,prob:70,mesEst:'Jun/Sep 2026',nextAction:'Confirmar reunión de cierre junio — propuesta ya enviada'},
-  {id:'proj_knowhub',org:'KnowHub',meta:1,meses:9,montoMes:535500,prob:75,mesEst:'Jun 2026',nextAction:'Confirmar firma contrato Bluera — ciclo en curso'},
-  {id:'proj_chrysalis',org:'Chrysalis',meta:4,meses:8,montoMes:511700,prob:40,mesEst:'Jul 2026',nextAction:'Seguimiento activo — definir reunión de cierre'},
-  {id:'proj_agora',org:'Agora',meta:1,meses:6,montoMes:400000,prob:60,mesEst:'Jun 2026',nextAction:'Confirmar contrato siguiente cohorte esta semana'},
-  {id:'proj_hubapta',org:'HubApta',meta:3,meses:9,montoMes:535500,prob:55,mesEst:'Ago 2026',nextAction:'Propuesta enviada — seguimiento urgente'},
-  {id:'proj_startuplab',org:'Startuplab 01',meta:2,meses:4,montoMes:400000,prob:30,mesEst:'Sep 2026',nextAction:'Confirmar reunión con Consuelo Monje esta semana',active:false},
-  {id:'proj_aceleralatam',org:'AceleraLatam',meta:3,meses:4,montoMes:400000,prob:25,mesEst:'Sep 2026',nextAction:'Agendar vía Calendly de Eugenio Cantuarias',active:false},
-  {id:'proj_kodea',org:'Kodea',meta:2,meses:4,montoMes:400000,prob:20,mesEst:'Oct 2026',nextAction:'Recontactar urgente a Monica Retamal — enero nunca ocurrió',active:false},
-  {id:'proj_impacthub',org:'Impact Hub',meta:3,meses:6,montoMes:535500,prob:25,mesEst:'Oct 2026',nextAction:'Proponer fecha concreta de reunión a Alberto esta semana',active:false},
-  {id:'proj_ciuc',org:'Centro Innovación UC',meta:2,meses:4,montoMes:400000,prob:15,mesEst:'Nov 2026',nextAction:'Identificar responsable de programas e iniciar contacto',active:false},
-  {id:'proj_openbeaucheff',org:'Open Beaucheff',meta:5,meses:5,montoMes:400000,prob:40,mesEst:'Jul 2026',nextAction:'Confirmar reunión semana 16-19 jun — 5 talleres confirmados desde julio',active:false},
-  {id:'proj_b4b',org:'Bridge for Billions',meta:2,meses:6,montoMes:535500,prob:10,mesEst:'Dic 2026',nextAction:'Investigar equipo de partnerships y enviar primer mensaje',active:false},
-];
-const PROJ_USD_RATE = 900;
-
-function loadProj(){
-  if(IS_PUBLIC) return JSON.parse(JSON.stringify(PROJ_DEFAULT));
-
-  try{const s=localStorage.getItem(PROJ_LS_KEY);if(s){const p=JSON.parse(s);if(p&&p.length)return p;}}catch(e){}
-  return JSON.parse(JSON.stringify(PROJ_DEFAULT));
-}
-function saveProj(){if(!IS_PUBLIC)localStorage.setItem(PROJ_LS_KEY,JSON.stringify(projData));}
-function resetProj(){projData=JSON.parse(JSON.stringify(PROJ_DEFAULT));saveProj();renderProj();}
-let projData = loadProj();
-
-function probCls(p){return p>=70?'phigh':p>=40?'pmid':p>=20?'plow':'pvlow';}
-function probBadgeCls(p){return p>=70?'pb-high':p>=40?'pb-mid':p>=20?'pb-low':'pb-vlow';}
-function fmtClp(n){
-  if(n>=1000000) return '$'+(n/1000000).toFixed(1).replace(/\.0$/,'')+'M CLP';
-  return '$'+(n/1000).toFixed(0)+'K CLP';
-}
-function fmtUsdP(n){return n>0?'~USD '+Math.round(n).toLocaleString('en-US'):'—';}
-
-function toggleProjActive(i){
-  projData[i].active = projData[i].active===false ? true : false;
-  saveProj();
-  renderProj();
-}
-
-function renderProj(){
-  const activeData=projData.filter(r=>r.active!==false);
-  const totalBruto=activeData.reduce((s,r)=>s+r.meta*r.meses*r.montoMes,0);
-  const totalPond=activeData.reduce((s,r)=>s+r.meta*r.meses*r.montoMes*r.prob/100,0);
-  const activas=activeData.filter(r=>r.prob>=40).length;
-
-  document.getElementById('projKpis').innerHTML=`
-    <div class="proj-kpi"><div class="proj-kpi-val">${fmtClp(totalBruto)}</div><div class="proj-kpi-label">Pipeline bruto (activas)</div></div>
-    <div class="proj-kpi"><div class="proj-kpi-val green">${fmtClp(totalPond)}</div><div class="proj-kpi-label">Pipeline ponderado (esperado)</div></div>
-    <div class="proj-kpi"><div class="proj-kpi-val blue">${fmtUsdP(totalPond/PROJ_USD_RATE)}</div><div class="proj-kpi-label">Valor esperado ~USD</div></div>
-    <div class="proj-kpi"><div class="proj-kpi-val">${activas} <span style="font-size:.9rem;color:#64748b">/ ${activeData.length}</span></div><div class="proj-kpi-label">Activas con prob ≥40%</div></div>`;
-
-  const rows=projData.map((r,i)=>{
-    const isActive=r.active!==false;
-    const total=r.meta*r.meses*r.montoMes;
-    const esp=total*r.prob/100;
-    const pc=probCls(r.prob);
-    const rowOpacity=isActive?'':'opacity:.35;';
-    const totalFmt=isActive?fmtClp(total):`<span style="text-decoration:line-through;color:#94a3b8">${fmtClp(total)}</span>`;
-    return `<tr style="${rowOpacity}">
-      <td style="text-align:center;padding:6px 4px">
-        <button onclick="toggleProjActive(${i})" title="${isActive?'Desactivar proyección':'Activar proyección'}"
-          style="background:none;border:none;cursor:pointer;font-size:17px;line-height:1;padding:2px">${isActive?'🟢':'⚫'}</button>
-      </td>
-      <td>
-        <div class="proj-org-name">${r.org}</div>
-        <input class="proj-input" type="text" value="${r.mesEst||''}"
-          style="width:100%;font-size:11px;color:#64748b;margin-top:3px;background:transparent;border:none;border-bottom:1px dashed #cbd5e1;padding:1px 2px"
-          oninput="projData[${i}].mesEst=this.value;saveProj()" placeholder="Mes est.">
-      </td>
-      <td class="proj-num"><input class="proj-input" type="number" min="1" max="50" value="${r.meta}" oninput="projData[${i}].meta=Math.max(1,+this.value||1);saveProj();renderProj()"></td>
-      <td class="proj-num"><input class="proj-input" style="width:90px" type="number" min="50000" step="50000" value="${r.montoMes}" oninput="projData[${i}].montoMes=Math.max(50000,+this.value||50000);saveProj();renderProj()"></td>
-      <td class="proj-num"><input class="proj-input" type="number" min="1" max="24" value="${r.meses}" oninput="projData[${i}].meses=Math.max(1,+this.value||1);saveProj();renderProj()"></td>
-      <td class="proj-num">${totalFmt}</td>
-      <td><div class="proj-prob-cell"><input class="proj-slider" type="range" min="0" max="100" step="5" value="${r.prob}" oninput="projData[${i}].prob=+this.value;saveProj();renderProj()"><span class="proj-prob-val ${pc}">${r.prob}%</span></div></td>
-      <td class="proj-num" style="font-weight:700;color:${isActive?'#059669':'#94a3b8'}">${fmtClp(esp)}</td>
-      <td class="proj-num" style="color:${isActive?'#3b82f6':'#94a3b8'}">${fmtUsdP(esp/PROJ_USD_RATE)}</td>
-    </tr>
-    <tr style="${rowOpacity}border-bottom:1px solid #f1f5f9">
-      <td></td>
-      <td colspan="8" style="padding:2px 8px 7px 8px">
-        <input class="proj-input" type="text" value="${(r.nextAction||'').replace(/"/g,'&quot;')}"
-          style="width:100%;font-size:12px;color:#475569;background:transparent;border:none;border-bottom:1px dashed #e2e8f0;padding:2px 4px"
-          oninput="projData[${i}].nextAction=this.value;saveProj()" placeholder="→ Próxima acción...">
-      </td>
-    </tr>`;
-  }).join('');
-
-  document.getElementById('projTable').innerHTML=`
-    <thead><tr>
-      <th style="width:36px;text-align:center">Act.</th>
-      <th>Organización</th><th style="text-align:center">Stups</th><th style="text-align:center">$/mes CLP</th><th style="text-align:center">Meses</th>
-      <th style="text-align:right">Total potencial</th><th>Prob cierre</th>
-      <th style="text-align:right">Valor esperado</th><th style="text-align:right">~USD</th>
-    </tr></thead>
-    <tbody>${rows}</tbody>
-    <tfoot><tr class="proj-tfoot-row">
-      <td colspan="5">TOTAL PIPELINE (activas)</td>
-      <td class="proj-num">${fmtClp(totalBruto)}</td>
-      <td></td>
-      <td class="proj-num" style="color:#059669">${fmtClp(totalPond)}</td>
-      <td class="proj-num" style="color:#3b82f6">${fmtUsdP(totalPond/PROJ_USD_RATE)}</td>
-    </tr></tfoot>`;
-
-  const sorted=[...projData].filter(r=>r.active!==false).sort((a,b)=>b.prob-a.prob);
-  const cards=sorted.map(r=>`
-    <div class="proj-action-card">
-      <span class="proj-action-badge ${probBadgeCls(r.prob)}">${r.prob}% prob · ${r.mesEst}</span>
-      <div class="proj-action-org">${r.org}</div>
-      <div class="proj-action-text">→ ${r.nextAction}</div>
-    </div>`).join('');
-
-  document.getElementById('projActions').innerHTML=`
-    <div class="proj-actions-title">🎯 Próximas acciones recomendadas (ordenadas por probabilidad de cierre)</div>
-    <div class="proj-action-grid">${cards}</div>`;
-
-  document.getElementById('proj-fecha').textContent=new Date().toLocaleDateString('es-ES',{day:'numeric',month:'long',year:'numeric'});
-}
-
-document.getElementById('fecha').textContent=new Date().toLocaleDateString('es-ES',{day:'numeric',month:'long',year:'numeric'});
-render();
-</script>
-<form name="ops-pregunta" netlify netlify-honeypot="bot-field" hidden><input name="form-name"><input name="institucion"><input name="nombre" type="text"><input name="email" type="email"><textarea name="pregunta"></textarea></form>
-</body>
-</html>
+     {date:'2026
